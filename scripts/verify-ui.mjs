@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
 import ts from "typescript";
 
@@ -11,6 +12,8 @@ const manifestJs = ts.transpileModule(manifestSource, {
 }).outputText;
 const { destinations } = await import(`data:text/javascript;base64,${Buffer.from(manifestJs).toString("base64")}`);
 const routes = destinations.filter((entry) => entry.verified && entry.href.startsWith("/")).map((entry) => entry.href);
+
+const axePath = fileURLToPath(new URL("../node_modules/axe-core/axe.min.js", import.meta.url));
 
 const baseUrl = process.env.PERSONAL_OS_URL ?? "http://127.0.0.1:4174";
 const browser = await chromium.launch({ headless: true });
@@ -42,14 +45,19 @@ async function checkViewport(name, viewport) {
 
   /* The road draws only the dated record, and links to the drawing to scale. */
   const road = page.getByRole("region", { name: "The road so far" });
-  assert.equal(await road.getByRole("listitem").count(), 7, `${name}: road should show the 7 dated entries`);
+  assert.equal(await road.getByRole("listitem").count(), 8, `${name}: road should show the 8 dated entries`);
   await road.getByText("B.S. Computer Science").waitFor();
 
-  /* Mile-marker cards; Catch 5 is honest about its state and is not a link. */
+  /* Project rows lead with the question; filters come from the manifest's states. */
   const work = page.getByRole("region", { name: "A few things I’m working through." });
   await work.getByRole("link", { name: "Evidence Room", exact: true }).waitFor();
-  await page.getByRole("button", { name: "Building", exact: true }).click();
-  assert.equal(await work.getByRole("article").count(), 3);
+  await work.getByRole("heading", { level: 3, name: "Could my grandmother's card game live on a phone, and teach someone new to play it?" }).waitFor();
+  for (const [label, count] of [["Active", 5], ["Released", 2], ["All", 7]]) {
+    await page.getByRole("button", { name: label, exact: true }).click();
+    assert.equal(await work.getByRole("article").count(), count, `${name}: ${label} filter`);
+  }
+  assert.equal(await page.getByRole("button", { name: "Parked", exact: true }).count(), 0, `${name}: Parked filter shown with no parked project`);
+  assert.equal(await work.getByRole("link", { name: "CI runs on GitHub" }).count(), 2, `${name}: proof links`);
   await page.getByRole("searchbox", { name: "Search projects" }).fill("x".repeat(300));
   await page.getByText("No projects match that combination.").waitFor();
   await page.getByRole("button", { name: "Show all projects" }).click();
@@ -63,8 +71,8 @@ async function checkViewport(name, viewport) {
   await page.getByText("The cause is still uncertain.", { exact: true }).first().waitFor();
   await page.screenshot({ path: `/tmp/personal-os-${name}-motion.png`, fullPage: true });
   const catch5 = work.getByRole("article").filter({ hasText: "Catch 5" });
-  await catch5.getByText("In development", { exact: true }).waitFor();
-  assert.equal(await catch5.getByRole("link").count(), 0, `${name}: unverified Catch 5 is linked`);
+  await catch5.getByText("Feature work closed; the family plays it.", { exact: true }).waitFor();
+  assert.ok(await catch5.getByRole("link", { name: "Catch 5", exact: true }).count() > 0, `${name}: verified Catch 5 is not linked`);
 
   /* The terminal is closed until asked for, and a tap on a card runs the same
      router as a typed command. */
@@ -83,7 +91,7 @@ async function checkViewport(name, viewport) {
   await page.getByLabel("Portfolio command").press("Enter");
   await page.getByText("command not found", { exact: false }).waitFor();
   await page.getByText("last exit 127", { exact: false }).waitFor();
-  await page.getByLabel("Portfolio command").fill("open catch-5");
+  await page.getByLabel("Portfolio command").fill("open band-charter-outreach");
   await page.getByLabel("Portfolio command").press("Enter");
   await page.getByText("destination not verified yet", { exact: false }).waitFor();
   await page.keyboard.press("Escape");
@@ -112,6 +120,18 @@ async function checkViewport(name, viewport) {
   assert.equal(resumePdf.status(), 200, "/Connor_Murphy_Resume.pdf: expected HTTP 200");
   assert.match(resumePdf.headers()["content-type"] ?? "", /application\/pdf/);
   await page.close();
+  for (const scheme of ["dark", "light"]) {
+    const axePage = await browser.newPage({ viewport, colorScheme: scheme });
+    for (const route of ["/", ...routes]) {
+      await axePage.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
+      await axePage.addScriptTag({ path: axePath });
+      const results = await axePage.evaluate(() => window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"] } }));
+      for (const violation of results.violations) {
+        errors.push(`axe ${name} ${scheme} ${route}: ${violation.id} (${violation.impact}) ${violation.nodes.map(node => node.target.join(" ")).join(" | ")}`);
+      }
+    }
+    await axePage.close();
+  }
   console.log(`[OK] ${name} ${viewport.width}x${viewport.height}: no overflow; interaction and routes passed`);
 }
 

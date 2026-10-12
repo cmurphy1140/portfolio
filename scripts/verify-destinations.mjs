@@ -49,6 +49,20 @@ for (const destination of destinations.filter((entry) => /^https:\/\//.test(entr
   }
 }
 
+for (const destination of destinations.filter((entry) => entry.number)) {
+  const { proof } = destination.number;
+  try {
+    const response = await fetch(proof, {
+      method: "HEAD",
+      redirect: "follow",
+      headers: { "user-agent": "personal-os-destination-check" },
+    });
+    if (!response.ok) errors.push(`${destination.slug}: number proof ${proof} returned ${response.status}`);
+  } catch (error) {
+    errors.push(`${destination.slug}: number proof ${proof} could not be reached (${error.message})`);
+  }
+}
+
 if (errors.length) {
   console.error(`[ERROR] destination manifest failed:\n- ${errors.join("\n- ")}`);
   process.exit(1);

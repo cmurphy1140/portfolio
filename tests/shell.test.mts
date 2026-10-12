@@ -80,7 +80,7 @@ describe("run: open", () => {
   });
 
   test("an unverified destination is refused", () => {
-    const result = run("open catch-5", home);
+    const result = run("open band-charter-outreach", home);
     assert.equal(result.exit, 1);
     assert.equal(result.navigate, undefined);
     assert.match((result.lines[0] as { text: string }).text, /not verified yet/);

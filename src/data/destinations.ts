@@ -21,7 +21,13 @@ export type Destination = {
   /* Shown in the work-picker tab row. false keeps a destination reachable
      through ls/cat/open without competing for the first tabs a visitor sees. */
   primary: boolean;
-  phase?: "Building" | "Maintaining" | "Complete";
+  /* Public state and the question the project answered. status is the honest
+     line beside the state; tags are the stack footnote. */
+  state?: "Active" | "Parked" | "Released";
+  question?: string;
+  /* One number with proof one click away: proof is the evidence, not a claim. */
+  number?: { value: string; label: string; proof: string; proofLabel: string };
+  correction?: string;
   /* The mile-marker label on the home card: a plain category and the tools
      the entry's own evidence names. Nothing here goes beyond that evidence. */
   category?: string;
@@ -36,8 +42,9 @@ export const destinations = [
     kind: "case-study",
     href: "/work/evidence-room",
     summary: "An investigation game built around fictional records, supported claims, and the moment new evidence changes the story. My current learning project.",
-    status: "Phase 1 scaffold · learner implementation in progress",
-    phase: "Building",
+    status: "Phase 1 scaffold built. The validation rule is my exercise, and it is still open.",
+    state: "Active",
+    question: "What does it take to change your mind when new evidence arrives?",
     evidence: [
       "The starter includes fictional records, citation selection, a claim notebook, and a revision flow.",
       "A learning kit pairs diagrams and short explainers with a deliberately unfinished evidence-validation exercise.",
@@ -57,12 +64,13 @@ export const destinations = [
     href: "/work/interview-gym-coach",
     summary:
       "A local web companion for my private interview-practice repository. A live board shows each practice problem's status from its real tests, and a mock-interview runner times the 45-minute loop from the gym's curriculum. Claude Code agents built it; I designed the gym, set the mission and use the tool.",
-    status: "Working local tool · shipped to the gym, October 2026",
-    phase: "Building",
+    status: "Working local tool, in use since October 2026.",
+    state: "Active",
+    question: "How do I practise for interviews against real tests and a real clock?",
     evidence: [
       "Re-runs a problem's tests whenever a file is saved and pushes the new status to the page over server-sent events. The board never shows test code or answers.",
       "The mock-interview runner times the 45-minute loop from the gym's curriculum, with interviewer cues and green/amber/red grading.",
-      "203 Python tests and about 130 headless UI assertions; five independent reviews, with every must-fix finding fixed before it shipped.",
+      "Python tests and headless UI checks, plus five independent reviews; every must-fix finding was fixed before it shipped.",
       "Authorship, plainly: agents chose, built, reviewed and documented the coach in one day. I directed the work and am the one practising with it.",
     ],
     learning:
@@ -70,7 +78,7 @@ export const destinations = [
     verified: true,
     primary: true,
     category: "Tool",
-    tags: ["Python", "Server-sent events", "203 tests"],
+    tags: ["Python", "Server-sent events"],
   },
   {
     slug: "vero",
@@ -80,8 +88,10 @@ export const destinations = [
     href: "/work/vero",
     summary:
       "A safety-bounded reverse-engineering study of a professionally installed home automation system.",
-    status: "Ongoing engineering study",
-    phase: "Maintaining",
+    status: "Ongoing engineering study.",
+    state: "Active",
+    question: "What is the automation system in my house actually doing, and can software act on it without guessing?",
+    correction: "An early note put the settle delay at 1.5 seconds. Twelve timed writes later showed the new level within 0.15 to 0.41 seconds.",
     evidence: [
       "Built repeatable read-only instrumentation instead of relying on screenshots.",
       "Separated measured behavior, inference, and assumption in the written record.",
@@ -102,12 +112,13 @@ export const destinations = [
     href: "/work/itinerary-control",
     summary:
       "A tool for a student travel company that turns a trip record into its printed Word proposal, then turns a director's revision into the reprinted proposal and a paper trail of what changed.",
-    status: "Shipped, 2026",
-    phase: "Maintaining",
+    status: "Working tool, 2026. The client's first review comes next.",
+    state: "Active",
+    question: "Could a director's change reprint the whole proposal without anyone retyping it?",
     evidence: [
       "Renders a trip record into the client's own printed layout: cover, day-by-day schedule, inclusions and exclusions, and a price table.",
       "One command takes a director's revised trip and produces the revised proposal, a change summary that separates material changes (venues, times, prices, inclusions) from wording-only edits, and an internal vendor call list.",
-      "Builds are byte-identical run to run; 242 tests cover the proposal, the revision command, and the change classification; real client data never enters git.",
+      "Builds are byte-identical run to run; tests cover the proposal, the revision command, and the change classification; real client data never enters git.",
       "Each revision also runs a consistency check on the trip data, catching problems like two stops booked at the same time or a supplier named differently in two places, before anything reaches the client.",
     ],
     learning:
@@ -115,7 +126,7 @@ export const destinations = [
     verified: true,
     primary: true,
     category: "Tool",
-    tags: ["Word output", "242 tests"],
+    tags: ["Word output"],
   },
   {
     slug: "tracker-digest",
@@ -125,10 +136,13 @@ export const destinations = [
     href: "/work/tracker-digest",
     summary:
       "A Python command-line tool, standard library only, that reads a job-application tracker CSV, finds applications with no reply for seven or more days, and drafts a digest of them.",
-    status: "Complete, 2026",
-    phase: "Complete",
+    status: "v0.1.0, October 2026. Complete.",
+    state: "Released",
+    question: "Which of my job applications have gone quiet?",
+    number: { value: "33", label: "tests", proof: "https://github.com/cmurphy1140/job-tracker/actions/workflows/tests.yml?query=branch%3Amain", proofLabel: "CI runs on GitHub" },
+    correction: "This page said 20 tests pin the quiet rule. The public suite has 9 for that rule and 33 in all.",
     evidence: [
-      "Keeps the rule for what counts as gone quiet in one function, with 20 tests pinning the behavior.",
+      "Keeps the rule for what counts as gone quiet in one function, with 9 tests pinning the behavior.",
       "Reports rows with unreadable or missing dates under a Needs fixing section with their CSV line numbers, instead of dropping them.",
       "Puts a human review step before any output leaves the program, recording every approve or reject decision in an append-only audit log.",
     ],
@@ -147,8 +161,9 @@ export const destinations = [
     href: "/work/mac-hardening",
     summary:
       "Audited and cleaned a macOS system end to end, then scripted its weekly maintenance.",
-    status: "Complete, 2026",
-    phase: "Complete",
+    status: "Complete, 2026.",
+    state: "Released",
+    question: "What is actually running on this Mac, and what can safely go?",
     evidence: [
       "Removed 34 orphaned launch items left behind by uninstalled software.",
       "Migrated Homebrew to its native arm64 install.",
@@ -169,9 +184,11 @@ export const destinations = [
     kind: "case-study",
     href: "/work/catch-5",
     summary:
-      "Developing a Swift/SwiftUI app for playing and learning Catch 5, with a standalone rules engine, computer opponents, interactive tutorials, strategy explanations, and save/resume functionality.",
-    status: "In development",
-    phase: "Building",
+      "A Swift and SwiftUI app for playing and learning Catch 5: a standalone rules engine, computer opponents, interactive tutorials, strategy explanations, and save and resume.",
+    status: "Feature work closed; the family plays it.",
+    state: "Active",
+    question: "Could my grandmother's card game live on a phone, and teach someone new to play it?",
+    number: { value: "264", label: "tests", proof: "https://github.com/cmurphy1140/catch-5/actions/workflows/tests.yml?query=branch%3Amain", proofLabel: "CI runs on GitHub" },
     evidence: [
       "Standalone rules engine separated from the app UI.",
       "Computer opponents for solo play.",
@@ -180,7 +197,7 @@ export const destinations = [
     ],
     learning:
       "Separating the rules engine from the interface let the same game logic drive both play and the interactive tutorials, instead of duplicating rules in each.",
-    verified: false,
+    verified: true,
     primary: true,
     category: "App",
     tags: ["Swift", "SwiftUI"],
@@ -194,6 +211,7 @@ export const destinations = [
     summary:
       "Built a PostgreSQL lead pipeline for a band travel charter client.",
     status: "2025",
+    question: "Which schools have band programs that travel, and who should hear from us first?",
     evidence: [
       "Filtered East Coast schools to traveling band programs, with music-department contacts found through parameter testing.",
       "Chained queries into soft-lead scoring and templated email generation.",

@@ -11,8 +11,9 @@
     "test:ui": "node scripts/verify-ui.mjs",
     "validate:destinations": "node scripts/verify-destinations.mjs",
     "validate:images": "bash scripts/validate-images.sh .",
+    "validate:vault": "node scripts/verify-vault-status.mjs",
     "validate:privacy": "node scripts/verify-public-output.mjs",
-    "verify": "npm run validate:destinations && npm run lint && npm test && npm run build && npm run validate:privacy && npm run validate:images"
+    "verify": "npm run validate:destinations && npm run lint && npm test && npm run build && npm run validate:privacy && npm run validate:images && npm run validate:vault"
   },
   "dependencies": {
     "@remotion/player": "4.0.532",
@@ -26,6 +27,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axe-core": "4.13.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "playwright-core": "^1.63.0",

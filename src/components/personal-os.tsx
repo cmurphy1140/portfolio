@@ -97,7 +97,7 @@ export default function PersonalOS() {
       <SiteHeader onTerminal={openTerminal} terminalOpen={terminalOpen} />
       <main>
         <section className="living-hero" aria-labelledby="hero-title">
-          <div className="hero-context"><span>Software engineer. Always a student.</span><time dateTime="2026-10-04">Updated October 4, 2026</time></div>
+          <div className="hero-context"><span>Software engineer. Always a student.</span><time dateTime="2026-10-12">Updated October 12, 2026</time></div>
           <h1 id="hero-title">Connor<br />Murphy<span aria-hidden="true">.</span></h1>
           <div className="hero-bottom">
             <p>I build things to understand them.<br />Then I follow the next question.</p>

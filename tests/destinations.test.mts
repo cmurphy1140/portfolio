@@ -43,12 +43,34 @@ describe("destination manifest", () => {
     }
   });
 
-  test("primary case studies carry a phase, so the state filter can place them", () => {
+  test("primary case studies carry a state: Active, Parked or Released", () => {
     for (const destination of destinations) {
       if (destination.kind === "case-study" && destination.primary) {
-        assert.ok("phase" in destination && destination.phase, `${destination.slug}: no phase`);
+        assert.ok(
+          "state" in destination && ["Active", "Parked", "Released"].includes(destination.state),
+          `${destination.slug}: no valid state`,
+        );
       }
     }
+  });
+
+  test("every case study leads with a non-empty question", () => {
+    for (const destination of destinations) {
+      if (destination.kind === "case-study") {
+        assert.ok("question" in destination && destination.question.trim(), `${destination.slug}: no question`);
+      }
+    }
+  });
+
+  test("a number's proof link is https", () => {
+    for (const destination of destinations) {
+      if ("number" in destination) assert.match(destination.number.proof, /^https:\/\//, destination.slug);
+    }
+  });
+
+  test("at most two destinations carry a correction", () => {
+    const corrected = destinations.filter((destination) => "correction" in destination);
+    assert.ok(corrected.length <= 2, `${corrected.length} corrections`);
   });
 
   test("findDestination returns the entry or undefined, never a near match", () => {
