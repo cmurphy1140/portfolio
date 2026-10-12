@@ -33,7 +33,7 @@ export type TimelineEntry = {
 };
 
 /** The date the record was last checked against the resume. No clock is read. */
-export const TIMELINE_AS_OF = "2026-09";
+export const TIMELINE_AS_OF = "2026-10";
 
 export const TIMELINE_FIRST_YEAR = 2021;
 export const TIMELINE_LAST_YEAR = 2026;
@@ -46,16 +46,25 @@ export const timeline: readonly TimelineEntry[] = [
     org: "University of New Hampshire, CS 791/792",
     start: "2021",
     end: "2022",
-    note: "Redesigned an AWS serverless data-processing pipeline using Lambda, Step Functions, S3 and the Serverless Framework.",
+    note: "On a team moving a seafloor-mapping data pipeline onto AWS Lambda, Step Functions and S3, built the timestamp Lambda, the interpolation step and the deduplication step.",
   },
   {
-    id: "liberty-mutual",
+    id: "liberty-mutual-2022",
     lane: "work",
-    title: "Telematics backend development intern",
+    title: "Telematics backend development intern, full time",
     org: "Liberty Mutual",
     start: "2022-05",
-    end: "2022-08",
+    end: "2022-09",
     note: "Developed Java backend components on AWS Lambda for a telematics scoring pipeline; offered the TechStart full-time software engineer program.",
+  },
+  {
+    id: "liberty-mutual-2023",
+    lane: "work",
+    title: "Telematics backend development intern, part time",
+    org: "Liberty Mutual",
+    start: "2023-05",
+    end: "2023-09",
+    note: "Second summer on the same telematics team.",
   },
   {
     id: "unh",
@@ -95,7 +104,7 @@ export const timeline: readonly TimelineEntry[] = [
     title: "Cyber-Physical System Assurance — home automation field study",
     org: "Independent",
     start: "2026",
-    note: "Reverse-engineered a professionally installed home automation system's local interfaces; built a 182-test Swift suite.",
+    note: "Reverse-engineered a professionally installed home automation system's local interfaces; built a Swift client with 318 automated tests.",
     slug: "vero",
   },
 ];
