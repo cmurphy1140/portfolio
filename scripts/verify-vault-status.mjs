@@ -69,7 +69,7 @@ for (const destination of destinations.filter((entry) => entry.kind === "case-st
     const [note] = notes;
     const state = vaultState(note.pairs);
     if (!state) {
-      errors.push(`${destination.slug}: ${note.name} has no usable stage or release`);
+      errors.push(`${destination.slug}: ${note.name} has no usable site_state, stage or release`);
     } else {
       console.log(`${destination.slug}: site ${destination.state}, vault ${state} (${note.name})`);
       if (state !== destination.state) errors.push(`${destination.slug}: site says ${destination.state}, vault says ${state} (${note.name})`);

@@ -47,7 +47,7 @@ export const destinations = [
     question: "What does it take to change your mind when new evidence arrives?",
     evidence: [
       "The starter includes fictional records, citation selection, a claim notebook, and a revision flow.",
-      "A learning kit pairs diagrams and short explainers with a deliberately unfinished evidence-validation exercise.",
+      "Diagrams of the player journey, the code flow and the learning roadmap pair with a deliberately unfinished evidence-validation exercise.",
       "Persistence, an API, a database, and case authoring are proposed later phases, not shipped features.",
     ],
     learning: "Build one understandable rule, follow its effect through the interface, then add the next layer. A working scaffold is the start of the learning, not proof that the exercise is finished.",
@@ -64,7 +64,7 @@ export const destinations = [
     href: "/work/interview-gym-coach",
     summary:
       "A local web companion for my private interview-practice repository. A live board shows each practice problem's status from its real tests, and a mock-interview runner times the 45-minute loop from the gym's curriculum. Claude Code agents built it; I designed the gym, set the mission and use the tool.",
-    status: "Working local tool, in use since October 2026.",
+    status: "Shipped October 2026. A later docs move broke the mock runner's curriculum path.",
     state: "Active",
     question: "How do I practise for interviews against real tests and a real clock?",
     evidence: [
@@ -91,9 +91,9 @@ export const destinations = [
     status: "Ongoing engineering study.",
     state: "Active",
     question: "What is the automation system in my house actually doing, and can software act on it without guessing?",
-    correction: "An early note put the settle delay at 1.5 seconds. Twelve timed writes later showed the new level within 0.15 to 0.41 seconds.",
+    correction: "The simulated house first assumed a light takes 1.5 seconds to settle at a new level. Twelve timed writes on the real house showed it within 0.15 to 0.41 seconds.",
     evidence: [
-      "Built repeatable read-only instrumentation instead of relying on screenshots.",
+      "Built repeatable instrumentation that read the house before changing anything and confirms every write by reading it back.",
       "Separated measured behavior, inference, and assumption in the written record.",
       "Documented security findings without publishing household identifiers or raw device data.",
     ],
@@ -118,7 +118,7 @@ export const destinations = [
     evidence: [
       "Renders a trip record into the client's own printed layout: cover, day-by-day schedule, inclusions and exclusions, and a price table.",
       "One command takes a director's revised trip and produces the revised proposal, a change summary that separates material changes (venues, times, prices, inclusions) from wording-only edits, and an internal vendor call list.",
-      "Builds are byte-identical run to run; tests cover the proposal, the revision command, and the change classification; real client data never enters git.",
+      "Rebuilding the same trip record produces the identical file, and tests cover the proposal, the revision command and the change classification. Client output stays out of git, except one demo trip committed with the client's OK.",
       "Each revision also runs a consistency check on the trip data, catching problems like two stops booked at the same time or a supplier named differently in two places, before anything reaches the client.",
     ],
     learning:
@@ -135,7 +135,7 @@ export const destinations = [
     kind: "case-study",
     href: "/work/tracker-digest",
     summary:
-      "A Python command-line tool, standard library only, that reads a job-application tracker CSV, finds applications with no reply for seven or more days, and drafts a digest of them.",
+      "A Python command-line tool, standard library only in its core, that reads a job-application tracker CSV, finds applications with no reply for seven or more days, and drafts a digest of them.",
     status: "v0.1.0, October 2026. Complete.",
     state: "Released",
     question: "Which of my job applications have gone quiet?",
@@ -144,7 +144,7 @@ export const destinations = [
     evidence: [
       "Keeps the rule for what counts as gone quiet in one function, with 9 tests pinning the behavior.",
       "Reports rows with unreadable or missing dates under a Needs fixing section with their CSV line numbers, instead of dropping them.",
-      "Puts a human review step before any output leaves the program, recording every approve or reject decision in an append-only audit log.",
+      "Puts a human review step before any stale application reaches the digest, and logs each approve or reject decision.",
     ],
     learning:
       "A deliberate edge-case pass found that a blank line in the CSV shifted the reported line number for a bad row, because the code assumed row index plus two instead of asking the CSV reader for its own line count. A test that failed on the old code and passed on the fix pinned the correction.",
@@ -161,11 +161,11 @@ export const destinations = [
     href: "/work/mac-hardening",
     summary:
       "Audited and cleaned a macOS system end to end, then scripted its weekly maintenance.",
-    status: "Complete, 2026.",
+    status: "Cleanup complete, 2026. Removing the old Intel Homebrew waited on a one-week soak.",
     state: "Released",
     question: "What is actually running on this Mac, and what can safely go?",
     evidence: [
-      "Removed 34 orphaned launch items left behind by uninstalled software.",
+      "Removed 34 third-party launch items, 27 of them orphaned by uninstalled software.",
       "Migrated Homebrew to its native arm64 install.",
       "Reclaimed 89 GiB of storage.",
       "Scripted weekly maintenance with launchd.",
@@ -185,8 +185,8 @@ export const destinations = [
     href: "/work/catch-5",
     summary:
       "A Swift and SwiftUI app for playing and learning Catch 5: a standalone rules engine, computer opponents, interactive tutorials, strategy explanations, and save and resume.",
-    status: "Feature work closed; the family plays it.",
-    state: "Active",
+    status: "Development closed; the family plays it.",
+    state: "Parked",
     question: "Could my grandmother's card game live on a phone, and teach someone new to play it?",
     number: { value: "264", label: "tests", proof: "https://github.com/cmurphy1140/catch-5/actions/workflows/tests.yml?query=branch%3Amain", proofLabel: "CI runs on GitHub" },
     evidence: [
@@ -196,7 +196,7 @@ export const destinations = [
       "Save/resume functionality.",
     ],
     learning:
-      "Separating the rules engine from the interface let the same game logic drive both play and the interactive tutorials, instead of duplicating rules in each.",
+      "Separating the rules engine from the interface let the same game logic drive both play and the interactive rule trials, instead of duplicating rules in each.",
     verified: true,
     primary: true,
     category: "App",
@@ -209,16 +209,16 @@ export const destinations = [
     kind: "case-study",
     href: "/work/band-charter-outreach",
     summary:
-      "Built a PostgreSQL lead pipeline for a band travel charter client.",
-    status: "2025",
+      "A Python lead finder for a student travel client: it reads public parade and band pages, merges the schools they name, and scores each one into a tier.",
+    status: "2026",
     question: "Which schools have band programs that travel, and who should hear from us first?",
     evidence: [
-      "Filtered East Coast schools to traveling band programs, with music-department contacts found through parameter testing.",
-      "Chained queries into soft-lead scoring and templated email generation.",
-      "Built with Python, PostgreSQL, and SQL.",
+      "Reads public parade and band pages, then merges and dedupes the schools they name.",
+      "Enriches each school from its own website, scores it 0 to 100 and assigns an A, B or C tier.",
+      "Writes a spreadsheet with Tier A, Tier B, East Coast and All sheets.",
     ],
     learning:
-      "Turning a manual outreach list into a scored, queryable pipeline made it possible to prioritize leads and generate templated contact instead of working the list by hand.",
+      "Turning a manual outreach list into a scored, tiered spreadsheet made it possible to prioritize leads instead of working the list by hand.",
     verified: false,
     /* Thinnest evidence, no test count, no shipped status: kept reachable via
        ls/cat/open, not shown in the tab row (docs/home-page-proposal.md). */

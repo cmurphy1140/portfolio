@@ -52,11 +52,10 @@ async function checkViewport(name, viewport) {
   const work = page.getByRole("region", { name: "A few things I’m working through." });
   await work.getByRole("link", { name: "Evidence Room", exact: true }).waitFor();
   await work.getByRole("heading", { level: 3, name: "Could my grandmother's card game live on a phone, and teach someone new to play it?" }).waitFor();
-  for (const [label, count] of [["Active", 5], ["Released", 2], ["All", 7]]) {
+  for (const [label, count] of [["Active", 4], ["Parked", 1], ["Released", 2], ["All", 7]]) {
     await page.getByRole("button", { name: label, exact: true }).click();
     assert.equal(await work.getByRole("article").count(), count, `${name}: ${label} filter`);
   }
-  assert.equal(await page.getByRole("button", { name: "Parked", exact: true }).count(), 0, `${name}: Parked filter shown with no parked project`);
   assert.equal(await work.getByRole("link", { name: "CI runs on GitHub" }).count(), 2, `${name}: proof links`);
   await page.getByRole("searchbox", { name: "Search projects" }).fill("x".repeat(300));
   await page.getByText("No projects match that combination.").waitFor();
@@ -71,7 +70,7 @@ async function checkViewport(name, viewport) {
   await page.getByText("The cause is still uncertain.", { exact: true }).first().waitFor();
   await page.screenshot({ path: `/tmp/personal-os-${name}-motion.png`, fullPage: true });
   const catch5 = work.getByRole("article").filter({ hasText: "Catch 5" });
-  await catch5.getByText("Feature work closed; the family plays it.", { exact: true }).waitFor();
+  await catch5.getByText("Development closed; the family plays it.", { exact: true }).waitFor();
   assert.ok(await catch5.getByRole("link", { name: "Catch 5", exact: true }).count() > 0, `${name}: verified Catch 5 is not linked`);
 
   /* The terminal is closed until asked for, and a tap on a card runs the same
