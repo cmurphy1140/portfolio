@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteHeader from "@/components/site-header";
+import VeroCaseStudy from "@/components/vero-case-study";
 import { destinations, findDestination, type Destination } from "@/data/destinations";
 
 export function generateStaticParams() {
@@ -18,6 +19,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const destination: Destination | undefined = findDestination(slug);
   if (!destination || destination.kind !== "case-study") notFound();
+  if (destination.slug === "vero") return <div className="frame"><SiteHeader /><VeroCaseStudy destination={destination} /></div>;
   const label = destination.category ?? "Case study";
   return (
     <div className="frame">

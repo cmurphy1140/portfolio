@@ -3,6 +3,8 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
 import ts from "typescript";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
 /* Routes come from the destinations manifest, loaded the way
    verify-destinations.mjs loads it: verified internal hrefs only. */
@@ -13,12 +15,70 @@ const manifestJs = ts.transpileModule(manifestSource, {
 const { destinations } = await import(`data:text/javascript;base64,${Buffer.from(manifestJs).toString("base64")}`);
 const routes = destinations.filter((entry) => entry.verified && entry.href.startsWith("/")).map((entry) => entry.href);
 
+/* Render the server component without launching a browser: every approved
+   sentence must survive the new composition, with closed native disclosures. */
+async function checkVeroMarkup() {
+  const source = await readFile(new URL("../src/components/vero-case-study.tsx", import.meta.url), "utf8");
+  const componentJs = ts.transpileModule(source.replace(/import styles from .*?;/, 'const styles = new Proxy({}, { get: (_, key) => String(key) });'), {
+    compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX },
+  }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve("react/jsx-runtime"))).replaceAll('"next/link"', JSON.stringify(import.meta.resolve("next/link.js")));
+  const { default: VeroCaseStudy } = await import(`data:text/javascript;base64,${Buffer.from(componentJs).toString("base64")}`);
+  const vero = destinations.find(entry => entry.slug === "vero");
+  const markup = renderToStaticMarkup(createElement(VeroCaseStudy, { destination: vero }));
+  const escape = value => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;");
+  for (const text of [vero.question, vero.summary, vero.status, ...vero.evidence, vero.correction, vero.learning]) {
+    assert.ok(markup.includes(escape(text)), `Vero dropped approved content: ${text}`);
+  }
+  assert.equal((markup.match(/<details[ >]/g) ?? []).length, 3);
+  assert.equal((markup.match(/<summary[ >]/g) ?? []).length, 3);
+  assert.doesNotMatch(markup, /<details[^>]*\bopen[=> ]/);
+  for (const value of ["1.5", "0.15–0.41", "Twelve timed writes", ...vero.tags]) assert.ok(markup.includes(value));
+  assert.doesNotMatch(markup, /<(?:script|video|audio|iframe)[ >]/);
+  console.log("[OK] Vero server markup: 3 closed disclosures; all approved content and timing preserved");
+}
+
+await checkVeroMarkup();
+if (process.argv.includes("--markup-only")) process.exit(0);
+
 const axePath = fileURLToPath(new URL("../node_modules/axe-core/axe.min.js", import.meta.url));
 
 const baseUrl = process.env.PERSONAL_OS_URL ?? "http://127.0.0.1:4174";
 const browser = await chromium.launch({ headless: true });
 const errors = [];
 
+
+async function checkVeroInteractions(page, viewport, label) {
+  const vero = destinations.find(entry => entry.slug === "vero");
+  await page.goto(`${baseUrl}/work/vero`, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { level: 1, name: vero.question }).waitFor();
+  const disclosures = page.locator("main details");
+  assert.equal(await disclosures.count(), 3, `${label}: evidence disclosures`);
+  for (let index = 0; index < vero.evidence.length; index++) {
+    const disclosure = disclosures.nth(index);
+    const summary = disclosure.locator("summary");
+    assert.equal(await disclosure.getAttribute("open"), null);
+    assert.equal(await disclosure.getByText(vero.evidence[index], { exact: true }).isVisible(), false);
+    await summary.click();
+    assert.notEqual(await disclosure.getAttribute("open"), null);
+    await disclosure.getByText(vero.evidence[index], { exact: true }).waitFor();
+    await summary.press("Enter");
+    assert.equal(await disclosure.getAttribute("open"), null);
+    await summary.press("Space");
+    assert.notEqual(await disclosure.getAttribute("open"), null);
+    assert.equal(await summary.evaluate(element => element === document.activeElement), true);
+  }
+  await page.getByText(vero.correction, { exact: true }).waitFor();
+  await page.getByText(vero.learning, { exact: true }).waitFor();
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), viewport.width, `${label}: expanded Vero overflow`);
+  assert.equal(await page.locator("main video, main audio, main iframe").count(), 0);
+  assert.equal(await page.locator("main").evaluate(element => element.getAnimations({ subtree: true }).length), 0, `${label}: Vero should be static`);
+  await page.screenshot({ path: `/tmp/personal-os-${label}-vero.png`, fullPage: true });
+  const other = destinations.find(entry => entry.slug === "itinerary-control");
+  await page.goto(`${baseUrl}${other.href}`, { waitUntil: "networkidle" });
+  assert.equal(await page.locator("main details").count(), 0, `${label}: non-Vero layout changed`);
+  assert.equal(await page.locator("main ul.evidence li").count(), other.evidence.length);
+  for (const evidence of other.evidence) await page.getByText(evidence, { exact: true }).waitFor();
+}
 
 async function checkViewport(name, viewport) {
   const page = await browser.newPage({ viewport, colorScheme: "dark" });
@@ -129,6 +189,7 @@ async function checkViewport(name, viewport) {
         errors.push(`axe ${name} ${scheme} ${route}: ${violation.id} (${violation.impact}) ${violation.nodes.map(node => node.target.join(" ")).join(" | ")}`);
       }
     }
+    await checkVeroInteractions(axePage, viewport, `${name}-${scheme}`);
     await axePage.close();
   }
   console.log(`[OK] ${name} ${viewport.width}x${viewport.height}: no overflow; interaction and routes passed`);
@@ -147,6 +208,7 @@ try {
   await page.locator(".static-chapter").getByText("The cause is still uncertain.").waitFor();
   assert.equal(await page.locator("video, audio").count(), 0);
   await page.screenshot({path: "/tmp/personal-os-mobile-reduced-light.png", fullPage: true});
+  await checkVeroInteractions(page, { width: 390, height: 844 }, "mobile-reduced-light");
   await page.close();
   assert.deepEqual(errors, [], "browser errors");
   console.log("[OK] reduced motion, light theme, zero browser errors");
