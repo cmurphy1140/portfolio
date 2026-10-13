@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
@@ -15,13 +16,46 @@ const manifestJs = ts.transpileModule(manifestSource, {
 const { destinations } = await import(`data:text/javascript;base64,${Buffer.from(manifestJs).toString("base64")}`);
 const routes = destinations.filter((entry) => entry.verified && entry.href.startsWith("/")).map((entry) => entry.href);
 
+async function checkVeroParity() {
+  const fixture = await readFile(new URL("./fixtures/highlighter-markup-page.html", import.meta.url), "utf8");
+  const config = JSON.parse(await readFile(new URL("../src/components/vero-design/provenance.json", import.meta.url), "utf8"));
+  const hash = createHash("sha256").update(fixture).digest("hex");
+  assert.equal(hash, "6d3f3c1e06b91734a09814d10e3c310cf89c92439d5cd20dbe19bf9013c9f88e");
+  assert.equal(hash, config.sha256);
+  const styles = [...fixture.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(match => match[1]).join("\n");
+  const cleanStyles = styles.replace(/\/\*[\s\S]*?\*\//g, "");
+  for (const rule of config.rules) {
+    assert.ok(cleanStyles.includes(rule.selector + " {" + rule.declarations + "}"), `Imported rule drifted: ${rule.selector}`);
+  }
+  const expected = "/* Imported from pinned InstaLanding source; see provenance.json. */\n" + config.rules.map(rule => rule.scopedSelector + " {" + rule.declarations.replaceAll("url(#rough)", "url(#vero-rough)").replaceAll("url(#paper)", "url(#vero-paper)") + "}\n").join("") + "@media (max-width: 900px) { .vero-import .figures { grid-template-columns: repeat(2, 1fr); } }\n@media (max-width: 520px) { .vero-import .figures { grid-template-columns: 1fr; } }\n";
+  const runtime = await readFile(new URL("../src/components/vero-design/upstream.css", import.meta.url), "utf8");
+  assert.equal(runtime, expected, "Runtime imported CSS differs from pinned declaration baseline");
+  for (const filter of config.filters.match(/<filter[\s\S]*?<\/filter>/g)) assert.ok(fixture.includes(filter));
+  const adapter = await readFile(new URL("../src/components/vero-case-study.module.css", import.meta.url), "utf8");
+  assert.doesNotMatch(adapter, /(?:^|[;{])\s*(?:opacity|filter|box-shadow|rotate|inset|height|border-radius)\s*:/, "Brand adapter changes upstream effect geometry");
+  assert.match(adapter, /mark\.w\) \{ color: #100f0f;/);
+  const luminance = color => {
+    const channels = color.map(value => value / 255).map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  };
+  for (const [name, amber, paper] of [["dark", [217,169,92], [18,18,20]], ["light", [138,92,18], [251,250,247]]]) {
+    const stroke = amber.map((value, index) => value * 0.75 + paper[index] * 0.25);
+    const contrast = (luminance(stroke) + 0.05) / (luminance([16,15,15]) + 0.05);
+    assert.ok(contrast >= 4.5, `${name}: theoretical marker contrast ${contrast}`);
+  }
+  console.log(`[OK] Vero parity: ${config.rules.length} exact imported rules, pinned source hash, filters, brand-only geometry guard and both theme contrast calculations`);
+}
+
+await checkVeroParity();
+
 /* Render the server component without launching a browser: every approved
-   sentence must survive the new composition, with closed native disclosures. */
+   sentence must survive the new composition, with initially collapsed linked claim controls. */
 async function checkVeroMarkup() {
   const source = await readFile(new URL("../src/components/vero-case-study.tsx", import.meta.url), "utf8");
-  const componentJs = ts.transpileModule(source.replace(/import styles from .*?;/, 'const styles = new Proxy({}, { get: (_, key) => String(key) });'), {
+  assert.ok(source.includes('import "./vero-design/upstream.css";'), "Pinned design CSS is not imported at runtime");
+  const componentJs = ts.transpileModule(source.replace(/import ".*?\.css";/g, "").replace(/import styles from .*?;/, 'const styles = new Proxy({}, { get: (_, key) => String(key) });'), {
     compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX },
-  }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve("react/jsx-runtime"))).replaceAll('"next/link"', JSON.stringify(import.meta.resolve("next/link.js")));
+  }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve("react/jsx-runtime"))).replaceAll('"next/link"', JSON.stringify(import.meta.resolve("next/link.js"))).replaceAll('"react"', JSON.stringify(import.meta.resolve("react")));
   const { default: VeroCaseStudy } = await import(`data:text/javascript;base64,${Buffer.from(componentJs).toString("base64")}`);
   const vero = destinations.find(entry => entry.slug === "vero");
   const markup = renderToStaticMarkup(createElement(VeroCaseStudy, { destination: vero }));
@@ -29,12 +63,26 @@ async function checkVeroMarkup() {
   for (const text of [vero.question, vero.summary, vero.status, ...vero.evidence, vero.correction, vero.learning]) {
     assert.ok(markup.includes(escape(text)), `Vero dropped approved content: ${text}`);
   }
-  assert.equal((markup.match(/<details[ >]/g) ?? []).length, 3);
-  assert.equal((markup.match(/<summary[ >]/g) ?? []).length, 3);
-  assert.doesNotMatch(markup, /<details[^>]*\bopen[=> ]/);
+  assert.equal((markup.match(/aria-expanded="false"/g) ?? []).length, 3);
+  assert.equal((markup.match(/aria-controls="vero-note"/g) ?? []).length, 3);
+  assert.match(markup, /id="vero-note"[^>]*hidden/);
+  assert.match(markup, /<noscript>/);
+  assert.match(markup, /id="vero-rough"/);
+  const config = JSON.parse(await readFile(new URL("../src/components/vero-design/provenance.json", import.meta.url), "utf8"));
+  const normalizeFilter = value => value.replace(/<([A-Za-z]+)([^>]*?)\s*\/>/g, "<$1$2></$1>").replace(/>\s+</g, "><").replace(/\s+>/g, ">");
+  for (const original of config.filters.match(/<filter[\s\S]*?<\/filter>/g)) {
+    const expected = normalizeFilter(original.replace('id="rough"', 'id="vero-rough"').replace('id="paper"', 'id="vero-paper"'));
+    assert.ok(markup.includes(expected), "Rendered filter differs from imported SVG configuration");
+  }
+  assert.equal((markup.match(/class="w last"/g) ?? []).length, 3);
+  const license = await readFile(new URL("../src/components/vero-case-study.LICENSE", import.meta.url), "utf8");
+  const distributedLicense = await readFile(new URL("../public/licenses/instalanding-highlighter.txt", import.meta.url), "utf8");
+  assert.equal(distributedLicense, license, "Public license must preserve both full MIT notices exactly");
+  assert.match(markup, /<a href="\/licenses\/instalanding-highlighter\.txt">MIT licenses<\/a>/);
+
   for (const value of ["1.5", "0.15–0.41", "Twelve timed writes", ...vero.tags]) assert.ok(markup.includes(value));
   assert.doesNotMatch(markup, /<(?:script|video|audio|iframe)[ >]/);
-  console.log("[OK] Vero server markup: 3 closed disclosures; all approved content and timing preserved");
+  console.log("[OK] Vero server markup: 3 collapsed claim controls; all approved content and timing preserved");
 }
 
 await checkVeroMarkup();
@@ -51,21 +99,29 @@ async function checkVeroInteractions(page, viewport, label) {
   const vero = destinations.find(entry => entry.slug === "vero");
   await page.goto(`${baseUrl}/work/vero`, { waitUntil: "networkidle" });
   await page.getByRole("heading", { level: 1, name: vero.question }).waitFor();
-  const disclosures = page.locator("main details");
-  assert.equal(await disclosures.count(), 3, `${label}: evidence disclosures`);
-  for (let index = 0; index < vero.evidence.length; index++) {
-    const disclosure = disclosures.nth(index);
-    const summary = disclosure.locator("summary");
-    assert.equal(await disclosure.getAttribute("open"), null);
-    assert.equal(await disclosure.getByText(vero.evidence[index], { exact: true }).isVisible(), false);
-    await summary.click();
-    assert.notEqual(await disclosure.getAttribute("open"), null);
-    await disclosure.getByText(vero.evidence[index], { exact: true }).waitFor();
-    await summary.press("Enter");
-    assert.equal(await disclosure.getAttribute("open"), null);
-    await summary.press("Space");
-    assert.notEqual(await disclosure.getAttribute("open"), null);
-    assert.equal(await summary.evaluate(element => element === document.activeElement), true);
+  const claims = page.locator("main .claim");
+  const note = page.locator("#vero-note");
+  assert.equal(await claims.count(), 3, `${label}: claims`);
+  for (let index = 0; index < 3; index++) assert.equal(await claims.nth(index).getAttribute("aria-expanded"), "false");
+  for (let index = 0; index < 3; index++) {
+    const claim = claims.nth(index);
+    assert.equal(await claim.getAttribute("aria-controls"), "vero-note");
+    await claim.click();
+    assert.equal(await claim.getAttribute("aria-expanded"), "true");
+    await note.getByText(vero.evidence[index], { exact: true }).waitFor();
+    assert.equal(await page.locator('main .claim[aria-expanded="true"]').count(), 1);
+    await claim.press("Enter");
+    assert.equal(await claim.getAttribute("aria-expanded"), "false");
+    assert.equal(await note.isVisible(), false);
+    await claim.press("Space");
+    assert.equal(await claim.getAttribute("aria-expanded"), "true");
+    assert.equal(await claim.evaluate(element => element === document.activeElement), true);
+  }
+  assert.equal(await page.locator("#vero-rough feTurbulence").getAttribute("baseFrequency"), ".08");
+  assert.equal(await page.locator("#vero-rough feDisplacementMap").getAttribute("scale"), "5");
+  if (viewport.width === 390) {
+    const lines = await claims.nth(1).locator("mark.w").evaluateAll(words => new Set(words.map(word => Math.round(word.getBoundingClientRect().top))).size);
+    assert.ok(lines > 1, `${label}: multi-word mark did not wrap`);
   }
   await page.getByText(vero.correction, { exact: true }).waitFor();
   await page.getByText(vero.learning, { exact: true }).waitFor();
@@ -210,6 +266,11 @@ try {
   await page.screenshot({path: "/tmp/personal-os-mobile-reduced-light.png", fullPage: true});
   await checkVeroInteractions(page, { width: 390, height: 844 }, "mobile-reduced-light");
   await page.close();
+  const noScript = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  await noScript.goto(`${baseUrl}/work/vero`);
+  for (const text of destinations.find(entry => entry.slug === "vero").evidence) await noScript.getByText(text, { exact: true }).waitFor();
+  assert.equal(await noScript.evaluate(() => document.documentElement.scrollWidth), 390);
+  await noScript.close();
   assert.deepEqual(errors, [], "browser errors");
   console.log("[OK] reduced motion, light theme, zero browser errors");
 } finally {

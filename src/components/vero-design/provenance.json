@@ -1,0 +1,144 @@
+{
+  "commit": "bac39a18466a9d870b68d850ca5e4ff79b34f373",
+  "source": "https://github.com/RayVelez27/instalanding.ai/blob/bac39a18466a9d870b68d850ca5e4ff79b34f373/pages/highlighter-markup-page/index.html",
+  "sha256": "6d3f3c1e06b91734a09814d10e3c310cf89c92439d5cd20dbe19bf9013c9f88e",
+  "rules": [
+    {
+      "selector": ":root",
+      "declarations": "\n  color-scheme: light;\n  \n  --paper: #fffcf0;\n  --paper-2: #f2f0e5;\n  --paper-3: #e6e4d9;\n  --ink: #100f0f;\n  --ink-2: #6f6e69;\n  --ink-3: #b7b5ac;\n  --rule: #dad8ce;\n\n  \n  \n  --hl-red: hsl(6, 82%, 79%);\n  --hl-orange: hsl(27, 98%, 84%);\n  --hl-yellow: hsl(46, 83%, 80%);\n  --hl-green: hsl(66, 45%, 79%);\n  --hl-cyan: hsl(158, 47%, 83%);\n  --hl-blue: hsl(199, 42%, 84%);\n  --hl-purple: hsl(274, 27%, 88%);\n  --hl-magenta: hsl(345, 88%, 90%);\n\n  --serif: \"Source Serif 4\", Georgia, serif;\n  --mono: \"JetBrains Mono\", ui-monospace, monospace;\n\n  \n  --step--1: clamp(0.83rem, 0.8rem + 0.16vw, 0.92rem);\n  --step-0: clamp(1rem, 0.96rem + 0.22vw, 1.13rem);\n  --step-1: clamp(1.2rem, 1.13rem + 0.35vw, 1.42rem);\n  --step-2: clamp(1.44rem, 1.32rem + 0.58vw, 1.8rem);\n  --step-4: clamp(2.07rem, 1.76rem + 1.55vw, 3.05rem);\n  --step-6: clamp(2.99rem, 2.3rem + 3.44vw, 5.15rem);\n\n  \n  --grain: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E\");\n  \n  --grain-page: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E\");\n",
+      "scopedSelector": ".vero-import"
+    },
+    {
+      "selector": "mark",
+      "declarations": "\n  --color: var(--hl-yellow);\n  position: relative;\n  display: inline-block;   \n  background-color: unset; \n  color: inherit;\n  isolation: isolate;\n",
+      "scopedSelector": ".vero-import mark"
+    },
+    {
+      "selector": "mark::before",
+      "declarations": "\n  content: \"\"; position: absolute; inset: 0; z-index: -1;\n  \n  width: calc(100% + 1ch); left: -0.25ch;\n  height: 112%; top: -6%;\n  border-bottom-right-radius: 20px 30px;\n  background-color: var(--color);\n  background-image: var(--grain);\n  opacity: 0.75;\n  box-shadow:\n    inset -2px 0 1px hsl(from var(--color) h s calc(l - 20)),\n    inset -4px 0 5px hsl(from var(--color) h s calc(l - 20));\n  filter: url(#rough);\n",
+      "scopedSelector": ".vero-import mark::before"
+    },
+    {
+      "selector": "mark::after",
+      "declarations": "\n  content: \"\"; position: absolute; z-index: -1;\n  height: 1ch; width: 0.5ch; top: 2px; right: -0.25em;\n  background: radial-gradient(hsl(from var(--color) h s calc(l - 30)), hsl(from var(--color) h s l));\n  opacity: 0.4;\n  border-radius: 10px 0 50px / 200px 0;\n  rotate: 15deg;\n  filter: url(#rough);\n",
+      "scopedSelector": ".vero-import mark::after"
+    },
+    {
+      "selector": "mark[data-split]",
+      "declarations": " display: inline; ",
+      "scopedSelector": ".vero-import mark[data-split]"
+    },
+    {
+      "selector": "mark.w",
+      "declarations": " margin-right: 0.24ch; ",
+      "scopedSelector": ".vero-import mark.w"
+    },
+    {
+      "selector": "mark.w:not(.last)::after",
+      "declarations": " content: none; ",
+      "scopedSelector": ".vero-import mark.w:not(.last)::after"
+    },
+    {
+      "selector": "mark[data-split]:has(> mark.w)::before,\nmark[data-split]:has(> mark.w)::after",
+      "declarations": " content: none; ",
+      "scopedSelector": ".vero-import mark[data-split]:has(> mark.w)::before,\n.vero-import mark[data-split]:has(> mark.w)::after"
+    },
+    {
+      "selector": ".sheet",
+      "declarations": "\n  position: relative; padding: clamp(1.75rem, 4vw, 3rem);\n  border: 1px solid var(--rule);\n  rotate: -0.25deg;\n  box-shadow: 0 1px 0 var(--paper-3), 0 18px 40px -28px rgba(16, 15, 15, 0.45);\n",
+      "scopedSelector": ".vero-import .sheet"
+    },
+    {
+      "selector": ".sheet-head",
+      "declarations": "\n  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;\n  padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--rule); flex-wrap: wrap;\n",
+      "scopedSelector": ".vero-import .sheet-head"
+    },
+    {
+      "selector": ".sheet-body p",
+      "declarations": " font-size: var(--step-1); line-height: 1.75; max-width: 58ch; ",
+      "scopedSelector": ".vero-import .sheet-body p"
+    },
+    {
+      "selector": ".sheet-body p + p",
+      "declarations": " margin-top: 1.1rem; ",
+      "scopedSelector": ".vero-import .sheet-body p + p"
+    },
+    {
+      "selector": ".claim",
+      "declarations": " font: inherit; color: inherit; padding: 0; text-align: left; cursor: pointer; ",
+      "scopedSelector": ".vero-import .claim"
+    },
+    {
+      "selector": ".claim mark",
+      "declarations": " pointer-events: none; ",
+      "scopedSelector": ".vero-import .claim mark"
+    },
+    {
+      "selector": ".claim:focus-visible",
+      "declarations": " outline: 2px solid var(--ink); outline-offset: 3px; ",
+      "scopedSelector": ".vero-import .claim:focus-visible"
+    },
+    {
+      "selector": ".note",
+      "declarations": "\n  margin-top: 1.75rem; padding: 1.15rem 1.35rem;\n  background: var(--paper-2); border-left: 3px solid var(--ink);\n  font-size: var(--step--1); line-height: 1.65;\n",
+      "scopedSelector": ".vero-import .note"
+    },
+    {
+      "selector": ".note .who",
+      "declarations": " font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); display: block; margin-bottom: 0.35rem; ",
+      "scopedSelector": ".vero-import .note .who"
+    },
+    {
+      "selector": ".note q",
+      "declarations": " font-style: italic; ",
+      "scopedSelector": ".vero-import .note q"
+    },
+    {
+      "selector": ".note cite",
+      "declarations": " display: block; margin-top: 0.5rem; font-family: var(--mono); font-style: normal; color: var(--ink-2); ",
+      "scopedSelector": ".vero-import .note cite"
+    },
+    {
+      "selector": ".figures",
+      "declarations": " display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; ",
+      "scopedSelector": ".vero-import .figures"
+    },
+    {
+      "selector": ".fig b",
+      "declarations": " display: block; font-size: var(--step-4); font-weight: 600; letter-spacing: -0.02em; line-height: 1; ",
+      "scopedSelector": ".vero-import .fig b"
+    },
+    {
+      "selector": ".fig span",
+      "declarations": " display: block; margin-top: 0.5rem; font-family: var(--mono); font-size: var(--step--1); color: var(--ink-2); line-height: 1.5; ",
+      "scopedSelector": ".vero-import .fig span"
+    },
+    {
+      "selector": ".paper",
+      "declarations": " position: relative; isolation: isolate; background-color: #fffdf6; ",
+      "scopedSelector": ".vero-import .paper"
+    },
+    {
+      "selector": ".paper::before",
+      "declarations": "\n  content: \"\"; position: absolute; inset: 0; z-index: -1;\n  filter: url(#paper); mix-blend-mode: multiply; opacity: 0.6;\n  border-radius: inherit; pointer-events: none;\n  \n  clip-path: inset(0 round var(--paper-r, 0px));\n",
+      "scopedSelector": ".vero-import .paper::before"
+    },
+    {
+      "selector": ".label",
+      "declarations": "\n  font-family: var(--mono); font-size: var(--step--1); font-weight: 500;\n  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);\n",
+      "scopedSelector": ".vero-import .label"
+    }
+  ],
+  "filters": "<filter id=\"rough\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\".08\" numOctaves=\"4\" />\n      <feDisplacementMap in=\"SourceGraphic\" scale=\"5\" />\n    </filter><filter id=\"paper\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.03\" numOctaves=\"5\" stitchTiles=\"stitch\" result=\"noise\" />\n      <feDiffuseLighting in=\"noise\" lighting-color=\"white\" surfaceScale=\"3\">\n        <feDistantLight azimuth=\"30\" elevation=\"60\" />\n      </feDiffuseLighting>\n    </filter>",
+  "adaptations": [
+    "Selectors scoped under .vero-import; SVG IDs namespaced vero-rough and vero-paper.",
+    "Palette/paper/ink/rule/highlighter variables use existing site theme tokens. Source defaults remain in upstream.css.",
+    "Serif and mono variables use installed Geist fonts; color-scheme inherits site.",
+    "paper background uses themed surface; mark glyphs use original source ink #100f0f for contrast. No geometry, texture, shadow or filter override.",
+    "Figures grid has two desktop columns for two approved measurements, preserving upstream 900px and 520px responsive rules.",
+    "React pre-splits words with upstream w/last classes; React state replaces DOM mutation for single active note.",
+    "No-JS noscript evidence list preserves all approved sentences. Fictional text replaced; unused sections and motion omitted.",
+    "Existing header/back link retained; outer reading measure 68ch. Additional sections/tags use current site classes.",
+    "Marked glyphs use original source ink #100f0f in both themes for contrast; --vero-ink captures inherited portfolio ink before baseline scope. Header separation/context caption margins are surrounding portfolio composition, not sheet overrides; sheet heading margin zero preserves upstream reset."
+  ]
+}

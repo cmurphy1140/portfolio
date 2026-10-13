@@ -1,140 +1,31 @@
-.study {
+/* Brand adapter only. Geometry and spacing live in the imported upstream CSS. */
+.study:global(.vero-import) {
   max-width: 68ch;
+  --paper: var(--ground);
+  --paper-2: var(--surface-raised);
+  --paper-3: var(--line);
+  --ink: var(--vero-ink);
+  --ink-2: var(--ink-soft);
+  --ink-3: var(--ink-faint);
+  --rule: var(--line);
+  --hl-yellow: var(--amber);
+  --serif: var(--font-geist-sans), system-ui, sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
+  color-scheme: inherit;
+  font-family: var(--serif);
+  font-size: var(--step-0);
+  line-height: 1.6;
 }
 
-.head {
-  padding-bottom: clamp(28px, 5vw, 48px);
-  border-bottom: 1px solid var(--line);
-}
+.study:global(.vero-import) :global(.paper) { background-color: var(--surface); }
+.study:global(.vero-import) :global(mark.w) { color: #100f0f; }
+.study:global(.vero-import) :global(.figures) { grid-template-columns: repeat(2, 1fr); }
+.study:global(.vero-import) > header { margin-bottom: 2.75rem; }
+.study:global(.vero-import) :global(.sheet-head h2) { margin: 0; }
+.study:global(.vero-import) :global(.note p) { color: var(--ink); }
+.context { margin-top: 2rem; color: var(--ink-soft); line-height: 1.65; }
+.credit { font: 400 var(--step--1)/1.65 var(--mono); color: var(--ink-soft); }
 
-.section {
-  margin-top: clamp(32px, 5vw, 52px);
-}
-
-.section h2 {
-  margin-bottom: 20px;
-  font: 600 1.4rem/1.25 var(--sans);
-  letter-spacing: -0.02em;
-}
-
-.marker {
-  color: inherit;
-  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 32%, transparent) 58%, color-mix(in srgb, var(--amber) 32%, transparent) 93%, transparent 93%);
-  white-space: nowrap;
-}
-
-.evidence {
-  border-top: 1px solid var(--line);
-}
-
-.disclosure {
-  border-bottom: 1px solid var(--line);
-}
-
-.disclosure summary {
-  padding: 22px 0;
-  cursor: pointer;
-  font: 500 clamp(1rem, 0.95rem + 0.3vw, 1.15rem)/1.6 var(--sans);
-}
-
-.disclosure summary::marker {
-  color: var(--ink-soft);
-}
-
-.index {
-  margin: 0 14px 0 6px;
-  font: 400 0.75rem/1 var(--mono);
-  color: var(--ink-soft);
-}
-
-.disclosure p {
-  margin: 0 0 24px;
-  padding-left: 30px;
-  color: var(--ink-soft);
-  line-height: 1.7;
-}
-
-.correction {
-  margin: 0;
-}
-
-.comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.comparison > div {
-  min-width: 0;
-  padding: clamp(20px, 3vw, 30px);
-}
-
-.comparison > div + div {
-  border-left: 1px solid var(--line);
-}
-
-.label {
-  margin-bottom: 16px;
-  font: 500 0.75rem/1.4 var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-}
-
-.timing {
-  font: 500 clamp(1.65rem, 1.2rem + 1.5vw, 2.5rem)/1.2 var(--sans);
-  letter-spacing: -0.035em;
-}
-
-.timing > span:last-child {
-  display: block;
-  margin-top: 8px;
-  font: 400 0.9rem/1.5 var(--sans);
-  letter-spacing: normal;
-  color: var(--ink-soft);
-}
-
-.writes {
-  margin-top: 16px;
-  font: 400 0.75rem/1.5 var(--mono);
-  color: var(--ink-soft);
-}
-
-.correction figcaption {
-  margin-top: 18px;
-  color: var(--ink-soft);
-  line-height: 1.7;
-}
-
-.learning {
-  padding-left: 20px;
-  border-left: 3px solid var(--amber);
-  font: 400 1.15rem/1.7 var(--sans);
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 28px 0 32px;
-  list-style: none;
-}
-
-.tags li {
-  padding: 7px 12px;
-  border: 1px solid var(--line);
-  font: 400 0.75rem/1.4 var(--mono);
-  color: var(--ink-soft);
-}
-
-@media (max-width: 600px) {
-  .comparison {
-    grid-template-columns: 1fr;
-  }
-
-  .comparison > div + div {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
+@media (max-width: 520px) {
+  .study:global(.vero-import) :global(.figures) { grid-template-columns: 1fr; }
 }
