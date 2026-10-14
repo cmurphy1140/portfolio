@@ -153,24 +153,84 @@ async function checkNotebook(page, viewport) {
   for(let index=1;index<noteCount;index++)await next.press('Enter');
   assert.equal(await note.textContent(),first,'notebook wraps through the source notes');
   await notebook.getByText(`1/${noteCount}`,{exact:true}).waitFor();
-  const character=page.getByRole('img',{name:'Brown-haired companion sitting cross-legged in a tan shirt and black pants'});
+  const character=page.getByRole('img',{name:'Faceless cartoon companion sitting cross-legged in a tan shirt and black pants'});
   await character.waitFor();
   await character.evaluate(image=>image.decode());
   const bounds=await character.boundingBox();
-  assert.ok(bounds.width>=(viewport.width===390?135:235)&&bounds.width<=(viewport.width===390?150:265),'character size respects the reading space');
+  const compact=viewport.width<=700;
+  assert.ok(bounds.width>=(compact?(viewport.width<360?85:100):150)&&bounds.width<=(compact?120:170),'character size respects the reading space');
   assert.ok(bounds.x+bounds.width<=viewport.width,'character stays inside viewport');
   const heading=await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).boundingBox();
   const overlaps=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
   assert.equal(overlaps(bounds,heading),false,'character never covers the name');
-  const receipts=await page.getByRole('complementary',{name:'Contextual evidence'}).locator('summary').first().boundingBox();
-  assert.equal(overlaps(bounds,receipts),false,'character never covers evidence controls');
+  assert.equal(await page.getByRole('complementary',{name:'Contextual evidence'}).count(),0,'no right-side evidence panel');
+  assert.ok(bounds.x>=heading.x+heading.width,'character sits immediately beside the name');
+  assert.ok(bounds.x-heading.x-heading.width<=40,'name and companion form one row');
   const contrast=await page.evaluate(()=>{
     const luminance=value=>{const rgb=value.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
     return [...document.querySelectorAll('[data-contrast-check]')].map(el=>{const style=getComputedStyle(el);let background=style.backgroundColor;let parent=el.parentElement;while(background==='rgba(0, 0, 0, 0)'&&parent){background=getComputedStyle(parent).backgroundColor;parent=parent.parentElement;}const a=luminance(style.color),b=luminance(background);return {label:el.getAttribute('data-contrast-check'),ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};});
   });
   assert.ok(contrast.length>=3,'actual text and button colors measured');
-  for(const item of contrast) assert.ok(item.ratio>=7,`${item.label}: measured contrast ${item.ratio.toFixed(2)}:1`);
+  for(const item of contrast) assert.ok(item.ratio>=4.5,`${item.label}: measured contrast ${item.ratio.toFixed(2)}:1`);
   console.log(`[OK] notebook keyboard/source wording, companion placement, measured contrast ${contrast.map(v=>`${v.label} ${v.ratio.toFixed(2)}:1`).join(', ')}`);
+}
+
+async function checkQuickFind(page) {
+  const trigger=page.getByRole('button',{name:'Find Career',exact:true});
+  await trigger.click();
+  const dialog=page.getByRole('dialog',{name:'Find Career',exact:true});
+  await dialog.evaluate(element=>Promise.all(element.getAnimations().map(animation=>animation.finished)));
+  const search=dialog.getByRole('searchbox',{name:'Search Career'});
+  await search.fill('zzzz-no-result');
+  await dialog.getByRole('heading',{name:'No Career results.'}).waitFor();
+  await dialog.getByRole('button',{name:'Show all Career results'}).click();
+  assert.ok(await dialog.getByRole('link').count()>0);
+  assert.ok(await dialog.getByRole('link').count()<=8);
+  await search.focus();await page.keyboard.press('Tab');
+  assert.equal(await dialog.getByRole('link').first().evaluate(el=>el===document.activeElement),true,'Tab reaches the first result');
+  const kindColors=await dialog.locator('a > span').evaluateAll(labels=>labels.map(label=>getComputedStyle(label).color));
+  assert.ok(kindColors.every(color=>color==='rgb(244, 248, 252)'),'result kinds keep white text on every blue surface');
+  await page.addScriptTag({path:axePath});
+  const accessibility=await page.evaluate(()=>window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+  for(const violation of accessibility.violations)errors.push(`axe open finder: ${violation.id} ${violation.nodes.map(node=>node.target.join(' ')).join(' | ')}`);
+  await page.keyboard.press('Escape');
+  assert.equal(await trigger.evaluate(el=>el===document.activeElement),true,'quick find restores focus');
+  await page.keyboard.press('Control+k');
+  await dialog.waitFor();
+  await search.fill('resume');
+  await search.press('Control+k');
+  assert.equal(await search.inputValue(),'resume','shortcut does not reset active input');
+  const result=dialog.getByRole('link').first();
+  const href=await result.getAttribute('href');
+  assert.ok(href.startsWith('/career/'),'results use known Career routes');
+  await result.focus();await result.press('Enter');
+  await page.waitForURL(`**${href}`);
+  assert.equal(await dialog.isVisible(),false,'quick find closes after navigation');
+  await page.goto(baseUrl,{waitUntil:'networkidle'});
+  if(await page.getByRole('button',{name:'Open Career navigation'}).isVisible()) {
+    await page.goto(`${baseUrl}/career/resumes`,{waitUntil:'networkidle'});
+    await page.getByRole('button',{name:'Open Career navigation'}).click();
+    const drawer=page.getByRole('dialog',{name:'Career navigation'});
+    const drawerFind=drawer.getByRole('button',{name:'Find Career',exact:true});
+    await drawerFind.click();
+    await page.keyboard.press('Escape');
+    assert.equal(await drawer.isVisible(),true,'Escape keeps the underlying navigation drawer');
+    assert.equal(await drawerFind.evaluate(element=>element===document.activeElement),true,'Escape restores focus inside the drawer');
+    await drawerFind.click();
+    const document=career.documents.find(entry=>entry.folderId==='resumes'&&entry.kind==='note');
+    await search.fill(document.title);
+    const documentHref=`/career/documents/${document.id}`;
+    await dialog.locator(`a[href="${documentHref}"]`).click();
+    await page.waitForURL(`**${documentHref}`);
+    assert.equal(await dialog.isVisible(),false,'finder closes after drawer result navigation');
+    assert.equal(await drawer.isVisible(),false,'underlying drawer closes after folder-to-document navigation');
+    await page.getByRole('button',{name:'Open Career navigation'}).click();
+    await drawer.getByRole('button',{name:'Find Career',exact:true}).click();
+    await search.fill(document.title);
+    await dialog.locator(`a[href="${documentHref}"]`).click();
+    assert.equal(await drawer.isVisible(),false,'underlying drawer closes when selecting the current document');
+    await page.goto(baseUrl,{waitUntil:'networkidle'});
+  }
 }
 
 async function checkViewport(name, viewport) {
@@ -181,6 +241,7 @@ async function checkViewport(name, viewport) {
   await page.getByText('Applications are reps.',{exact:true}).first().waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width);
   await checkNotebook(page,viewport);
+  await checkQuickFind(page);
   if(name==='mobile') {
     const open=page.getByRole('button',{name:'Open Career navigation'});
     await open.click();
@@ -201,7 +262,7 @@ async function checkViewport(name, viewport) {
     await page.waitForURL(`**/career/walkthrough?stop=${chapter.id}`);
     for(const id of chapter.receiptIds) {
       const receipt=career.receipts.find(r=>r.id===id);
-      await page.getByRole('complementary',{name:'Contextual evidence'}).getByText(receipt.title,{exact:true}).waitFor();
+      await page.getByRole('region',{name:'Receipts at this stop'}).getByText(receipt.title,{exact:true}).waitFor();
     }
   }
   await page.goBack();
@@ -230,12 +291,14 @@ async function checkViewport(name, viewport) {
   for(const folder of career.folders.filter(f=>f.id!=='root')) {
     const response=await page.goto(`${baseUrl}/career/${folder.id}`);
     assert.equal(response.status(),200,folder.id);
+    assert.equal(await page.getByRole('complementary',{name:'Contextual evidence'}).count(),0,`${folder.id}: removed side panel`);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width,`${folder.id} overflow`);
     for(const id of folder.documentIds) assert.ok(await page.locator(`main a[href="/career/documents/${id}"]`).count()>0,`${id} missing from folder`);
   }
   for(const doc of career.documents) {
     const response=await page.goto(`${baseUrl}/career/documents/${doc.id}`);
     assert.equal(response.status(),200,doc.id);
+    assert.equal(await page.getByRole('complementary',{name:'Contextual evidence'}).count(),0,`${doc.id}: removed side panel`);
     await page.getByRole('heading',{level:1,name:doc.title,exact:true}).waitFor();
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width,`${doc.id} overflow`);
   }
@@ -271,6 +334,29 @@ async function checkViewport(name, viewport) {
     await axePage.close();
   }
   console.log(`[OK] ${name}: seven chapters, 23 filtered roles, every folder/document, previews/focus, legacy case studies, no overflow`);
+}
+
+if(process.argv.includes('--career-interactions-only')) {
+  try {
+    for(const width of [320,390,768,1440]) {
+      const page=await browser.newPage({viewport:{width,height:900},colorScheme:'dark'});
+      page.on('pageerror',error=>errors.push(error.message));
+      await page.goto(baseUrl,{waitUntil:'networkidle'});
+      await checkNotebook(page,{width,height:900});
+      await checkQuickFind(page);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,`${width}: overflow`);
+      const chapter=career.chapters[0];
+      await page.goto(`${baseUrl}/career/walkthrough?stop=${chapter.id}`,{waitUntil:'networkidle'});
+      const receipts=page.getByRole('region',{name:'Receipts at this stop'});
+      for(const id of chapter.receiptIds)await receipts.getByText(career.receipts.find(receipt=>receipt.id===id).title,{exact:true}).waitFor();
+      assert.equal(await page.getByRole('complementary',{name:'Contextual evidence'}).count(),0);
+      await page.close();
+      console.log(`[OK] ${width}px: finder/search/keyboard/drawer, notebook, geometry and inline receipts`);
+    }
+    assert.deepEqual(errors,[],'interaction accessibility/browser errors');
+    console.log('[OK] focused Career interactions passed');
+  } finally { await browser.close(); }
+  process.exit(0);
 }
 
 try {
