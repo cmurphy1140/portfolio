@@ -137,6 +137,42 @@ async function checkVeroInteractions(page, viewport, label) {
 }
 
 const career = JSON.parse(await readFile(new URL('../src/data/career-public.json', import.meta.url), 'utf8'));
+async function checkNotebook(page, viewport) {
+  const notebook=page.getByRole('region',{name:'From my notebook'});
+  await notebook.waitFor();
+  const note=notebook.locator('[aria-live="polite"]');
+  const first=await note.textContent();
+  const next=notebook.getByRole('button',{name:'Next note'});
+  await next.focus();
+  await next.press('Enter');
+  assert.notEqual(await note.textContent(),first,'notebook changes only after its button is activated');
+  assert.ok(career.approach.concat(career.words).includes((await note.textContent()).trim()),'notebook uses real source wording');
+  assert.equal(await next.evaluate(el=>el===document.activeElement),true,'note control keeps keyboard focus');
+  const noteCount=(career.approach.length?career.approach:career.words).length;
+  await notebook.getByText(`2/${noteCount}`,{exact:true}).waitFor();
+  for(let index=1;index<noteCount;index++)await next.press('Enter');
+  assert.equal(await note.textContent(),first,'notebook wraps through the source notes');
+  await notebook.getByText(`1/${noteCount}`,{exact:true}).waitFor();
+  const character=page.getByRole('img',{name:'Brown-haired companion sitting cross-legged in a tan shirt and black pants'});
+  await character.waitFor();
+  await character.evaluate(image=>image.decode());
+  const bounds=await character.boundingBox();
+  assert.ok(bounds.width>=(viewport.width===390?135:235)&&bounds.width<=(viewport.width===390?150:265),'character size respects the reading space');
+  assert.ok(bounds.x+bounds.width<=viewport.width,'character stays inside viewport');
+  const heading=await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).boundingBox();
+  const overlaps=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+  assert.equal(overlaps(bounds,heading),false,'character never covers the name');
+  const receipts=await page.getByRole('complementary',{name:'Contextual evidence'}).locator('summary').first().boundingBox();
+  assert.equal(overlaps(bounds,receipts),false,'character never covers evidence controls');
+  const contrast=await page.evaluate(()=>{
+    const luminance=value=>{const rgb=value.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
+    return [...document.querySelectorAll('[data-contrast-check]')].map(el=>{const style=getComputedStyle(el);let background=style.backgroundColor;let parent=el.parentElement;while(background==='rgba(0, 0, 0, 0)'&&parent){background=getComputedStyle(parent).backgroundColor;parent=parent.parentElement;}const a=luminance(style.color),b=luminance(background);return {label:el.getAttribute('data-contrast-check'),ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};});
+  });
+  assert.ok(contrast.length>=3,'actual text and button colors measured');
+  for(const item of contrast) assert.ok(item.ratio>=7,`${item.label}: measured contrast ${item.ratio.toFixed(2)}:1`);
+  console.log(`[OK] notebook keyboard/source wording, companion placement, measured contrast ${contrast.map(v=>`${v.label} ${v.ratio.toFixed(2)}:1`).join(', ')}`);
+}
+
 async function checkViewport(name, viewport) {
   const page=await browser.newPage({viewport,colorScheme:'dark'});
   page.on('pageerror',error=>errors.push(error.message));
@@ -144,6 +180,7 @@ async function checkViewport(name, viewport) {
   await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).waitFor();
   await page.getByText('Applications are reps.',{exact:true}).first().waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width);
+  await checkNotebook(page,viewport);
   if(name==='mobile') {
     const open=page.getByRole('button',{name:'Open Career navigation'});
     await open.click();
