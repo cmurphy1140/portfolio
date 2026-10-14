@@ -1,0 +1,1250 @@
+{
+  "mode": "public",
+  "asOf": "2026-10-14",
+  "folders": [
+    {
+      "id": "root",
+      "title": "Career",
+      "path": "Career",
+      "description": "The walkthrough, the receipts, and the thinking behind the work.",
+      "documentIds": [
+        "base-resume-cover-letter-plan-md",
+        "base-resume-cover-letter-review-md",
+        "career-root-md",
+        "my-words-2026-10-14-md",
+        "the-receipts-md",
+        "the-walkthrough-md"
+      ]
+    },
+    {
+      "id": "resumes",
+      "title": "Resumes",
+      "path": "Career/resumes",
+      "description": "Start with the current resume, then choose a version for your audience.",
+      "documentIds": [
+        "resumes-resume-send-this-md",
+        "resumes-resume-send-this-pdf",
+        "resumes-resumes-md"
+      ]
+    },
+    {
+      "id": "resumes/assets",
+      "title": "Resume assets",
+      "path": "Career/resumes/assets",
+      "description": "A page preview and duplicate PDF of the main professional resume.",
+      "documentIds": [
+        "resumes-assets-resume-send-this-pdf",
+        "resumes-assets-resume-send-this-png"
+      ],
+      "parentId": "resumes"
+    },
+    {
+      "id": "resumes/tailored",
+      "title": "Audience variants",
+      "path": "Career/resumes/tailored",
+      "description": "Compare versions for IT and analyst roles, relocation, and professional networking.",
+      "documentIds": [
+        "resumes-tailored-resume-send-this-it-and-analyst-pdf",
+        "resumes-tailored-resume-send-this-relocating-pdf",
+        "resumes-tailored-resume-savant-network-pdf"
+      ],
+      "parentId": "resumes"
+    },
+    {
+      "id": "cover-letters",
+      "title": "Cover letters",
+      "path": "Career/cover-letters",
+      "description": "A reusable master and employer-specific writing. Templates retain their intentional placeholders.",
+      "documentIds": [
+        "cover-letters-cover-letter-master-md",
+        "cover-letters-cover-letter-master-pdf",
+        "cover-letters-cover-letters-md"
+      ]
+    },
+    {
+      "id": "cover-letters/assets",
+      "title": "Supporting writing",
+      "path": "Career/cover-letters/assets",
+      "description": "Application fields, KSA answers, and supporting prose are available in the local workspace.",
+      "documentIds": [
+        "cover-letters-assets-application-form-kit-md",
+        "cover-letters-assets-ksa-answers-md",
+        "cover-letters-assets-the-closing-md"
+      ],
+      "parentId": "cover-letters"
+    },
+    {
+      "id": "cover-letters/tailored",
+      "title": "Tailored letters",
+      "path": "Career/cover-letters/tailored",
+      "description": "Sixteen note/PDF pairs, six employer letters available as PDFs, and one general template. Drafts are separate from sends.",
+      "documentIds": [
+        "cover-letters-tailored-cover-letter-additec-pdf",
+        "cover-letters-tailored-cover-letter-bae-systems-merrimack-nh-md",
+        "cover-letters-tailored-cover-letter-bae-systems-merrimack-nh-pdf",
+        "cover-letters-tailored-cover-letter-bae-systems-nashua-nh-md",
+        "cover-letters-tailored-cover-letter-bae-systems-nashua-nh-pdf",
+        "cover-letters-tailored-cover-letter-bel-fuse-md",
+        "cover-letters-tailored-cover-letter-bel-fuse-pdf",
+        "cover-letters-tailored-cover-letter-benco-dental-pdf",
+        "cover-letters-tailored-cover-letter-cartridge-technologies-md",
+        "cover-letters-tailored-cover-letter-cartridge-technologies-pdf",
+        "cover-letters-tailored-cover-letter-cca-global-partners-md",
+        "cover-letters-tailored-cover-letter-cca-global-partners-pdf",
+        "cover-letters-tailored-cover-letter-deerfield-beach-business-analyst-md",
+        "cover-letters-tailored-cover-letter-deerfield-beach-business-analyst-pdf",
+        "cover-letters-tailored-cover-letter-enterprise-pdf",
+        "cover-letters-tailored-cover-letter-fdc-systems-project-analyst-md",
+        "cover-letters-tailored-cover-letter-fdc-systems-project-analyst-pdf",
+        "cover-letters-tailored-cover-letter-fidelity-leap-md",
+        "cover-letters-tailored-cover-letter-fidelity-leap-pdf",
+        "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-md",
+        "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-pdf",
+        "cover-letters-tailored-cover-letter-general-pdf",
+        "cover-letters-tailored-cover-letter-owl-services-md",
+        "cover-letters-tailored-cover-letter-owl-services-pdf",
+        "cover-letters-tailored-cover-letter-perfectserve-md",
+        "cover-letters-tailored-cover-letter-perfectserve-pdf",
+        "cover-letters-tailored-cover-letter-piper-pdf",
+        "cover-letters-tailored-cover-letter-price-fire-protection-pdf",
+        "cover-letters-tailored-cover-letter-servicenow-md",
+        "cover-letters-tailored-cover-letter-servicenow-pdf",
+        "cover-letters-tailored-cover-letter-ucf-applications-programmer-ii-md",
+        "cover-letters-tailored-cover-letter-ucf-applications-programmer-ii-pdf",
+        "cover-letters-tailored-cover-letter-ucf-cloud-computing-engineer-i-md",
+        "cover-letters-tailored-cover-letter-ucf-cloud-computing-engineer-i-pdf",
+        "cover-letters-tailored-cover-letter-ucf-it-project-manager-i-md",
+        "cover-letters-tailored-cover-letter-ucf-it-project-manager-i-pdf",
+        "cover-letters-tailored-cover-letter-ucf-transformational-giving-analyst-md",
+        "cover-letters-tailored-cover-letter-ucf-transformational-giving-analyst-pdf",
+        "cover-letters-tailored-cover-letter-va-pdf"
+      ],
+      "parentId": "cover-letters"
+    },
+    {
+      "id": "to-apply",
+      "title": "To apply",
+      "path": "Career/to-apply",
+      "description": "Search the shortlist and compare preparation status before choosing your next application.",
+      "documentIds": [
+        "to-apply-applications-csv",
+        "to-apply-applications-xlsx",
+        "to-apply-to-apply-md",
+        "attached-job-applications-xlsx"
+      ]
+    },
+    {
+      "id": "applied",
+      "title": "Applied",
+      "path": "Career/applied",
+      "description": "Review recorded application history and follow-up notes.",
+      "documentIds": [
+        "applied-applied-md",
+        "applied-leads-2026-10-12-csv"
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Document review",
+      "path": "Career/review",
+      "description": "Follow how the resume and cover letter are reviewed and revised.",
+      "documentIds": [
+        "review-connor-murphy-base-cover-letter-review-md",
+        "review-connor-murphy-base-cover-letter-review-pdf",
+        "review-connor-murphy-base-resume-review-md",
+        "review-connor-murphy-base-resume-review-pdf",
+        "review-resume-and-cover-letter-review-md"
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": "applied-applied-md",
+      "title": "Application history guide",
+      "kind": "note",
+      "folderId": "applied",
+      "summary": "Read the recorded sends and their follow-up context.",
+      "sourceLabel": "Career/applied/applied.md",
+      "localOnly": true
+    },
+    {
+      "id": "applied-leads-2026-10-12-csv",
+      "title": "Historical leads tracker",
+      "kind": "csv",
+      "folderId": "applied",
+      "summary": "The full recorded research tracker, distinct from confirmed submissions.",
+      "sourceLabel": "Career/applied/leads-2026-10-12.csv",
+      "localOnly": true
+    },
+    {
+      "id": "base-resume-cover-letter-plan-md",
+      "title": "Resume and letter revision plan",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "The proposed direction for revising the core application documents.",
+      "sourceLabel": "Career/base-resume-cover-letter-plan.md",
+      "localOnly": true
+    },
+    {
+      "id": "base-resume-cover-letter-review-md",
+      "title": "Resume and letter revision notes",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Working feedback on the next resume and cover-letter drafts.",
+      "sourceLabel": "Career/base-resume-cover-letter-review.md",
+      "localOnly": true
+    },
+    {
+      "id": "career-root-md",
+      "title": "Career overview",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "The four main drawers and the principles that connect them.",
+      "sourceLabel": "Career/career-root.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-assets-application-form-kit-md",
+      "title": "Application form kit",
+      "kind": "note",
+      "folderId": "cover-letters/assets",
+      "summary": "Personal application fields and reusable answers, available locally.",
+      "sourceLabel": "Career/cover-letters/assets/application-form-kit.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-assets-ksa-answers-md",
+      "title": "KSA answers",
+      "kind": "note",
+      "folderId": "cover-letters/assets",
+      "summary": "Supporting answers for Knowledge, Skills and Abilities questions.",
+      "sourceLabel": "Career/cover-letters/assets/ksa-answers.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-assets-the-closing-md",
+      "title": "The closing",
+      "kind": "note",
+      "folderId": "cover-letters/assets",
+      "summary": "Supporting writing for bringing a letter to a clear close.",
+      "sourceLabel": "Career/cover-letters/assets/the-closing.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-cover-letter-master-md",
+      "title": "Cover-letter template source",
+      "kind": "note",
+      "folderId": "cover-letters",
+      "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
+      "sourceLabel": "Career/cover-letters/cover-letter-MASTER.md",
+      "localOnly": true,
+      "template": true
+    },
+    {
+      "id": "cover-letters-cover-letter-master-pdf",
+      "title": "Cover-letter template",
+      "kind": "pdf",
+      "folderId": "cover-letters",
+      "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
+      "sourceLabel": "Career/cover-letters/cover-letter-MASTER.pdf",
+      "localOnly": true,
+      "template": true
+    },
+    {
+      "id": "cover-letters-cover-letters-md",
+      "title": "Cover-letter guide",
+      "kind": "note",
+      "folderId": "cover-letters",
+      "summary": "Find employer drafts, templates, and supporting answers.",
+      "sourceLabel": "Career/cover-letters/cover-letters.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-additec-pdf",
+      "title": "Additec \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-additec.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bae-systems-merrimack-nh-md",
+      "title": "Bae Systems Merrimack Nh \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bae-systems-merrimack-nh.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bae-systems-merrimack-nh-pdf",
+      "title": "Bae Systems Merrimack Nh \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bae-systems-merrimack-nh.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bae-systems-nashua-nh-md",
+      "title": "Bae Systems Nashua Nh \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bae-systems-nashua-nh.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bae-systems-nashua-nh-pdf",
+      "title": "Bae Systems Nashua Nh \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bae-systems-nashua-nh.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bel-fuse-md",
+      "title": "Bel Fuse \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bel-fuse.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-bel-fuse-pdf",
+      "title": "Bel Fuse \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-bel-fuse.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-benco-dental-pdf",
+      "title": "Benco Dental \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-benco-dental.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-cartridge-technologies-md",
+      "title": "Cartridge Technologies \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-cartridge-technologies.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-cartridge-technologies-pdf",
+      "title": "Cartridge Technologies \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-cartridge-technologies.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-cca-global-partners-md",
+      "title": "Cca Global Partners \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-cca-global-partners.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-cca-global-partners-pdf",
+      "title": "Cca Global Partners \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-cca-global-partners.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-deerfield-beach-business-analyst-md",
+      "title": "Deerfield Beach Business Analyst \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-deerfield-beach-business-analyst.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-deerfield-beach-business-analyst-pdf",
+      "title": "Deerfield Beach Business Analyst \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-deerfield-beach-business-analyst.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-enterprise-pdf",
+      "title": "Enterprise \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-enterprise.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-fdc-systems-project-analyst-md",
+      "title": "Fdc Systems Project Analyst \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-fdc-systems-project-analyst.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-fdc-systems-project-analyst-pdf",
+      "title": "Fdc Systems Project Analyst \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-fdc-systems-project-analyst.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-fidelity-leap-md",
+      "title": "Fidelity Leap \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-fidelity-leap.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-fidelity-leap-pdf",
+      "title": "Fidelity Leap \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-fidelity-leap.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-md",
+      "title": "Florida Digital Service Training Consultant \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-florida-digital-service-training-consultant.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-pdf",
+      "title": "Florida Digital Service Training Consultant \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-florida-digital-service-training-consultant.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-general-pdf",
+      "title": "General letter template",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-general.pdf",
+      "localOnly": true,
+      "template": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-owl-services-md",
+      "title": "Owl Services \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-owl-services.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-owl-services-pdf",
+      "title": "Owl Services \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-owl-services.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-perfectserve-md",
+      "title": "Perfectserve \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-perfectserve.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-perfectserve-pdf",
+      "title": "Perfectserve \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-perfectserve.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-piper-pdf",
+      "title": "Piper \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-piper.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-price-fire-protection-pdf",
+      "title": "Price Fire Protection \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-price-fire-protection.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-servicenow-md",
+      "title": "Servicenow \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-servicenow.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-servicenow-pdf",
+      "title": "Servicenow \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-servicenow.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-applications-programmer-ii-md",
+      "title": "Ucf Applications Programmer Ii \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-applications-programmer-ii.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-applications-programmer-ii-pdf",
+      "title": "Ucf Applications Programmer Ii \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-applications-programmer-ii.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-cloud-computing-engineer-i-md",
+      "title": "Ucf Cloud Computing Engineer I \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-cloud-computing-engineer-i.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-cloud-computing-engineer-i-pdf",
+      "title": "Ucf Cloud Computing Engineer I \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-cloud-computing-engineer-i.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-it-project-manager-i-md",
+      "title": "Ucf It Project Manager I \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-it-project-manager-i.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-it-project-manager-i-pdf",
+      "title": "Ucf It Project Manager I \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-it-project-manager-i.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-transformational-giving-analyst-md",
+      "title": "Ucf Transformational Giving Analyst \u00b7 letter source",
+      "kind": "note",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, retained as editable writing.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-transformational-giving-analyst.md",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-ucf-transformational-giving-analyst-pdf",
+      "title": "Ucf Transformational Giving Analyst \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-ucf-transformational-giving-analyst.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "cover-letters-tailored-cover-letter-va-pdf",
+      "title": "Va \u00b7 letter",
+      "kind": "pdf",
+      "folderId": "cover-letters/tailored",
+      "summary": "Employer-specific letter draft, ready to preview as a PDF.",
+      "sourceLabel": "Career/cover-letters/tailored/cover-letter-va.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "my-words-2026-10-14-md",
+      "title": "My words",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Original phrasing and reflections, preserved in the local workspace.",
+      "sourceLabel": "Career/my-words-2026-10-14.md",
+      "localOnly": true
+    },
+    {
+      "id": "resumes-assets-resume-send-this-pdf",
+      "title": "Resume PDF asset",
+      "kind": "pdf",
+      "folderId": "resumes/assets",
+      "summary": "One-page resume connecting software, teaching, and practical operations.",
+      "sourceLabel": "Career/resumes/assets/resume-SEND-THIS.pdf",
+      "localOnly": false,
+      "href": "/career/resume-SEND-THIS.pdf",
+      "previewHref": "/career/resume-SEND-THIS.png"
+    },
+    {
+      "id": "resumes-assets-resume-send-this-png",
+      "title": "Resume preview",
+      "kind": "image",
+      "folderId": "resumes/assets",
+      "summary": "See the current one-page resume before opening the PDF.",
+      "sourceLabel": "Career/resumes/assets/resume-SEND-THIS.png",
+      "localOnly": false,
+      "href": "/career/resume-SEND-THIS.png",
+      "previewHref": "/career/resume-SEND-THIS.png"
+    },
+    {
+      "id": "resumes-resume-send-this-md",
+      "title": "Resume source and revisions",
+      "kind": "note",
+      "folderId": "resumes",
+      "summary": "The written resume, its supporting notes, and the record of revisions.",
+      "sourceLabel": "Career/resumes/resume-SEND-THIS.md",
+      "localOnly": true
+    },
+    {
+      "id": "resumes-resume-send-this-pdf",
+      "title": "Current resume",
+      "kind": "pdf",
+      "folderId": "resumes",
+      "summary": "One-page resume connecting software, teaching, and practical operations.",
+      "sourceLabel": "Career/resumes/resume-SEND-THIS.pdf",
+      "localOnly": false,
+      "href": "/career/resume-SEND-THIS.pdf",
+      "previewHref": "/career/resume-SEND-THIS.png"
+    },
+    {
+      "id": "resumes-resumes-md",
+      "title": "Resume guide",
+      "kind": "note",
+      "folderId": "resumes",
+      "summary": "Choose the main resume, an audience variant, or the page preview.",
+      "sourceLabel": "Career/resumes/resumes.md",
+      "localOnly": true
+    },
+    {
+      "id": "resumes-tailored-resume-send-this-it-and-analyst-pdf",
+      "title": "IT and analyst resume",
+      "kind": "pdf",
+      "folderId": "resumes/tailored",
+      "summary": "Audience variant for IT and analyst roles; consult the local review before sending.",
+      "sourceLabel": "Career/resumes/tailored/resume-SEND-THIS-it-and-analyst.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "resumes-tailored-resume-send-this-relocating-pdf",
+      "title": "Relocating resume",
+      "kind": "pdf",
+      "folderId": "resumes/tailored",
+      "summary": "Audience variant for opportunities that involve a move.",
+      "sourceLabel": "Career/resumes/tailored/resume-SEND-THIS-relocating.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "resumes-tailored-resume-savant-network-pdf",
+      "title": "Networking resume",
+      "kind": "pdf",
+      "folderId": "resumes/tailored",
+      "summary": "A version for professional introductions and networking.",
+      "sourceLabel": "Career/resumes/tailored/resume-savant-network.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "review-connor-murphy-base-cover-letter-review-md",
+      "title": "Connor Murphy Base Cover Letter Review",
+      "kind": "note",
+      "folderId": "review",
+      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
+      "sourceLabel": "Career/review/Connor-Murphy-Base-Cover-Letter-Review.md",
+      "localOnly": true
+    },
+    {
+      "id": "review-connor-murphy-base-cover-letter-review-pdf",
+      "title": "Connor Murphy Base Cover Letter Review",
+      "kind": "pdf",
+      "folderId": "review",
+      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
+      "sourceLabel": "Career/review/Connor-Murphy-Base-Cover-Letter-Review.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "review-connor-murphy-base-resume-review-md",
+      "title": "Connor Murphy Base Resume Review",
+      "kind": "note",
+      "folderId": "review",
+      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
+      "sourceLabel": "Career/review/Connor-Murphy-Base-Resume-Review.md",
+      "localOnly": true
+    },
+    {
+      "id": "review-connor-murphy-base-resume-review-pdf",
+      "title": "Connor Murphy Base Resume Review",
+      "kind": "pdf",
+      "folderId": "review",
+      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
+      "sourceLabel": "Career/review/Connor-Murphy-Base-Resume-Review.pdf",
+      "localOnly": true
+    },
+    {
+      "id": "review-resume-and-cover-letter-review-md",
+      "title": "Resume and Cover Letter Review",
+      "kind": "note",
+      "folderId": "review",
+      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
+      "sourceLabel": "Career/review/Resume-and-Cover-Letter-Review.md",
+      "localOnly": true
+    },
+    {
+      "id": "the-receipts-md",
+      "title": "The receipts",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Read the evidence and qualifications behind the walkthrough.",
+      "sourceLabel": "Career/the-receipts.md",
+      "localOnly": true
+    },
+    {
+      "id": "the-walkthrough-md",
+      "title": "The walkthrough",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Seven stops connecting mindset, work, selection, and evidence.",
+      "sourceLabel": "Career/the-walkthrough.md",
+      "localOnly": true
+    },
+    {
+      "id": "to-apply-applications-csv",
+      "title": "Vault application records",
+      "kind": "csv",
+      "folderId": "to-apply",
+      "summary": "The vault tracker snapshot; kept separate from the attached preparation shortlist.",
+      "sourceLabel": "Career/to-apply/applications.csv",
+      "localOnly": true
+    },
+    {
+      "id": "to-apply-applications-xlsx",
+      "title": "Vault application tracker",
+      "kind": "xlsx",
+      "folderId": "to-apply",
+      "summary": "The vault tracker snapshot; kept separate from the attached preparation shortlist.",
+      "sourceLabel": "Career/to-apply/applications.xlsx",
+      "localOnly": true
+    },
+    {
+      "id": "to-apply-to-apply-md",
+      "title": "Shortlist guide",
+      "kind": "note",
+      "folderId": "to-apply",
+      "summary": "Understand the preparation queue and the next steps recorded in it.",
+      "sourceLabel": "Career/to-apply/to-apply.md",
+      "localOnly": true
+    },
+    {
+      "id": "attached-job-applications-xlsx",
+      "title": "Attached job applications",
+      "kind": "xlsx",
+      "folderId": "to-apply",
+      "summary": "23-role preparation shortlist supplied separately from the vault tracker.",
+      "sourceLabel": "Job_Applications.xlsx \u00b7 Job shortlist",
+      "localOnly": true
+    }
+  ],
+  "chapters": [
+    {
+      "id": "mentality",
+      "title": "The mentality",
+      "summary": "Applications are reps.",
+      "paragraphs": [
+        "Applications are reps, not lottery tickets. The search is an experiment with a scoreboard.",
+        "Precision is the argument: verify the result, own the work, and revise what cannot be defended."
+      ],
+      "links": [
+        {
+          "label": "To apply",
+          "href": "/career/to-apply"
+        }
+      ],
+      "receiptIds": [
+        "measurement",
+        "precision"
+      ]
+    },
+    {
+      "id": "outgoing",
+      "title": "What goes out the door",
+      "summary": "One master, variants by audience.",
+      "paragraphs": [
+        "A resume and a letter should make a specific, defensible case. The current resume connects software, teaching, and practical operations.",
+        "Sixteen employer letters have note/PDF pairs. Six more employer letters are PDF-only. The master and general letter are templates."
+      ],
+      "links": [
+        {
+          "label": "Resumes",
+          "href": "/career/resumes"
+        },
+        {
+          "label": "Cover letters",
+          "href": "/career/cover-letters"
+        }
+      ],
+      "receiptIds": [
+        "documents"
+      ]
+    },
+    {
+      "id": "projects",
+      "title": "The projects are deliverables",
+      "summary": "Things that run, with evidence attached.",
+      "paragraphs": [
+        "Catch 5 is an iPhone card game. Drive Score is a synthetic-trip prototype rebuilding a telematics pipeline. The own-driving-data stage is unverified here.",
+        "The point is the useful result and the decisions behind it. Case studies distinguish recorded results from current checks."
+      ],
+      "links": [
+        {
+          "label": "Catch 5",
+          "href": "/work/catch-5"
+        },
+        {
+          "label": "Drive Score",
+          "href": "/work/drive-score"
+        }
+      ],
+      "receiptIds": [
+        "catch-five",
+        "drive-score",
+        "vero"
+      ]
+    },
+    {
+      "id": "selection",
+      "title": "Selection, not chasing",
+      "summary": "Stay useful inside whatever a team needs.",
+      "paragraphs": [
+        "Independent searches expose different blind spots. Read the workload evidence before making assumptions from a job title.",
+        "The attached shortlist holds 23 retained roles: 10 Ready, five Review schedule, five Review fit, and three Closed. These are preparation labels recorded in the workbook."
+      ],
+      "links": [
+        {
+          "label": "To apply",
+          "href": "/career/to-apply"
+        }
+      ],
+      "receiptIds": [
+        "selection"
+      ]
+    },
+    {
+      "id": "measurement",
+      "title": "The instrument",
+      "summary": "Build a scoreboard before drawing conclusions.",
+      "paragraphs": [
+        "The measuring rule is screens per twenty applications. tracker-digest ships a CSV follow-up digest; board ingestion and automated conversion scoring are unverified. Its release notes record tests and supported Python versions.",
+        "Preparation, source history, and confirmed submission are distinct. A Done cell alone cannot settle a conflicting history."
+      ],
+      "links": [
+        {
+          "label": "Applied",
+          "href": "/career/applied"
+        }
+      ],
+      "receiptIds": [
+        "measurement"
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "The AI era, honestly",
+      "summary": "Learn the tools and understand their limits.",
+      "paragraphs": [
+        "AI-assisted development and analytics are skills to learn. Knowing where governance and oversight matter is part of that skill.",
+        "Dated earlier projects create an opportunity to compare an original approach with a deliberate rebuild."
+      ],
+      "links": [],
+      "receiptIds": [
+        "pre-ai"
+      ]
+    },
+    {
+      "id": "contribution",
+      "title": "What I actually bring",
+      "summary": "Technical work is also human work.",
+      "paragraphs": [
+        "Explain a technical idea to someone without the same background. Reconcile cash to zero variance. Write the next person a usable handoff.",
+        "Teaching, restaurants, and a county golf course shaped how I communicate, adapt, and follow through."
+      ],
+      "links": [],
+      "receiptIds": [
+        "contribution"
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "id": "catch-five",
+      "title": "Catch 5",
+      "claim": "264 tests recorded",
+      "detail": "The receipts note reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-receipts.md",
+      "href": "/work/catch-5"
+    },
+    {
+      "id": "vero",
+      "title": "Vero",
+      "claim": "318 tests, one skipped, recorded",
+      "detail": "The receipts note reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-receipts.md",
+      "href": "/work/vero"
+    },
+    {
+      "id": "drive-score",
+      "title": "Drive Score",
+      "claim": "26 tests recorded",
+      "detail": "The receipts note records a clean-export check dated October 12, 2026. This export did not rerun the project.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-receipts.md",
+      "href": "/work/drive-score"
+    },
+    {
+      "id": "precision",
+      "title": "Precision",
+      "claim": "Remove a number that cannot be defended",
+      "detail": "The source describes revising application materials and adding a regression check. This export presents the recorded practice, not a newly executed check.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-receipts.md"
+    },
+    {
+      "id": "documents",
+      "title": "Outgoing documents",
+      "claim": "One current resume; audience-specific variants",
+      "detail": "The current mapped main file is resume-SEND-THIS.pdf. An older index reference to an October 14 master is absent; it is not invented here.",
+      "state": "Recorded",
+      "sourceLabel": "Career/resumes/resumes.md",
+      "href": "/career/documents/resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "selection",
+      "title": "Search selection",
+      "claim": "Independent sweeps; explicit preparation labels",
+      "detail": "Job_Applications.xlsx supplies the 23-role shortlist. Ready, Review schedule, Review fit and Closed describe preparation as recorded, not live posting status.",
+      "state": "Recorded",
+      "sourceLabel": "Career/to-apply/to-apply.md",
+      "href": "/career/to-apply"
+    },
+    {
+      "id": "measurement",
+      "title": "Measurement",
+      "claim": "Screens per twenty applications",
+      "detail": "The receipts note records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-receipts.md",
+      "href": "/work/tracker-digest"
+    },
+    {
+      "id": "pre-ai",
+      "title": "Dated original work",
+      "claim": "Compare the original approach with a rebuild",
+      "detail": "The walkthrough describes CS770 work dated September\u2013December 2022. The original commit histories have not been independently inspected for this website.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-walkthrough.md"
+    },
+    {
+      "id": "contribution",
+      "title": "Communication and follow-through",
+      "claim": "Practical habits across technical and service work",
+      "detail": "The walkthrough connects teaching, restaurants and county golf-course work to explanation, documentation and dependable operations.",
+      "state": "Recorded",
+      "sourceLabel": "Career/the-walkthrough.md",
+      "href": "/career/resumes"
+    }
+  ],
+  "roles": [
+    {
+      "id": "florida-digital-service-training-consultant",
+      "company": "Florida Digital Service",
+      "title": "Training Consultant",
+      "location": "Tallahassee, FL\nIn-office",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.myflorida.com/job/TALLAHASSEE-TRAINING-CONSULTANT-72004171-FL-32399/1438642500/",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "ucf-it-project-manager-i",
+      "company": "UCF",
+      "title": "IT Project Manager I",
+      "location": "Orlando, FL\nOnsite",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.ucf.edu/jobs/it-project-manager-i-orlando-florida-united-states-eb0e826b-759f-427b-bc54-71fc3ecaa4f6",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "ucf-cloud-computing-engineer-i",
+      "company": "UCF",
+      "title": "Cloud Computing Engineer I",
+      "location": "Orlando, FL\nOnsite",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.ucf.edu/jobs/cloud-computing-engineer-i-orlando-florida-united-states-f23a86dd-f7bf-45ba-a6ef-b8aebc927df4",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "florida-department-of-corrections-systems-project-analyst",
+      "company": "Florida Department of Corrections",
+      "title": "Systems Project Analyst",
+      "location": "Lake Butler / Region II, FL\nOnsite and site visits",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.myflorida.com/job/LAKE-BUTLER-SYSTEMS-PROJECT-ANALYST-FL-32054/1438591800/",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "ucf-applications-programmer-ii-success-pathways",
+      "company": "UCF",
+      "title": "Applications Programmer II, Success Pathways",
+      "location": "Orlando, FL\nOnsite",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.ucf.edu/jobs/applications-programmer-ii-success-pathways-orlando-florida-united-states",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "florida-senate-it-net-software-developer",
+      "company": "Florida Senate IT",
+      "title": ".NET Software Developer",
+      "location": "Tallahassee, FL\nOnsite",
+      "preparationStatus": "Review schedule",
+      "postingUrl": "https://www.governmentjobs.com/jobs/5278034-0/net-software-developer-angular-c-tallahassee-fl",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "ucf-transformational-giving-analyst",
+      "company": "UCF",
+      "title": "Transformational Giving Analyst",
+      "location": "Orlando, FL\nOnsite",
+      "preparationStatus": "Review fit",
+      "postingUrl": "https://jobs.ucf.edu/jobs/transformational-giving-analyst-orlando-florida-united-states",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "city-of-deerfield-beach-business-analyst",
+      "company": "City of Deerfield Beach",
+      "title": "Business Analyst",
+      "location": "Deerfield Beach, FL\nOnsite",
+      "preparationStatus": "Review schedule",
+      "postingUrl": "https://www.governmentjobs.com/jobs/5498244-0/business-analyst",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "fiscalnote-associate-software-engineer",
+      "company": "FiscalNote",
+      "title": "Associate Software Engineer",
+      "location": "Remote, US / DC hybrid",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://jobs.lever.co/fiscalnote/c76e748f-6e25-42cf-bf26-ebae44280ffd",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "john-gore-organization-broadway-com-software-engineer",
+      "company": "John Gore Organization / Broadway.com",
+      "title": "Software Engineer",
+      "location": "Boca Raton, FL\nOffice Mon\u2013Thu",
+      "preparationStatus": "Closed",
+      "postingUrl": "https://johngore.wd1.myworkdayjobs.com/careers/job/Boca-Raton-FL-Mon---Th-in-Office/Software-Engineer_R100723",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "whoop-software-engineer-i-frontend-ai-platform",
+      "company": "WHOOP",
+      "title": "Software Engineer I, Frontend / AI Platform",
+      "location": "Boston, MA\nOffice required",
+      "preparationStatus": "Review schedule",
+      "postingUrl": "https://www.builtinboston.com/job/software-engineer-i-frontend-ai-platform/11530216",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "oppfi-software-engineer-i",
+      "company": "OppFi",
+      "title": "Software Engineer I",
+      "location": "Remote, US",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://job-boards.greenhouse.io/opploans/jobs/8011770003",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "optum-associate-software-engineer",
+      "company": "Optum",
+      "title": "Associate Software Engineer",
+      "location": "Remote, US",
+      "preparationStatus": "Review fit",
+      "postingUrl": "https://careers.unitedhealthgroup.com/job/basking-ridge/associate-software-engineer/34088/101072065280",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "thought-industries-tier-2-customer-support-specialist",
+      "company": "Thought Industries",
+      "title": "Tier 2 Customer Support Specialist",
+      "location": "Remote; Boston-listed\nConfirm state eligibility",
+      "preparationStatus": "Review schedule",
+      "postingUrl": "https://www.builtinboston.com/job/tier-2-customer-support-specialist/11579622",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "prestige-trucking-insurance-junior-software-engineer",
+      "company": "Prestige Trucking Insurance",
+      "title": "Junior Software Engineer",
+      "location": "Tamarac, FL\nOnsite",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://www.jobtarget.com/jobs/jt-plxmh2kqvr/junior-software-engineer-tamarac-florida",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "tines-technical-support-engineer-i",
+      "company": "Tines",
+      "title": "Technical Support Engineer I",
+      "location": "Boston / Massachusetts\nFour days, incl. weekend",
+      "preparationStatus": "Review schedule",
+      "postingUrl": "https://job-boards.greenhouse.io/tines/jobs/6220150004",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "jamf-software-engineer-i",
+      "company": "Jamf",
+      "title": "Software Engineer I",
+      "location": "Remote, US",
+      "preparationStatus": "Review fit",
+      "postingUrl": "https://www.jamf.com/about/careers/jobs/?gh_jid=6207163004",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "veradigm-entry-level-salesforce-engineer",
+      "company": "Veradigm",
+      "title": "Entry Level Salesforce Engineer",
+      "location": "Remote, US",
+      "preparationStatus": "Review fit",
+      "postingUrl": "https://simplify.jobs/p/ec47c64d-480c-4cc0-8246-f45a85814be0/Entry-Level-Salesforce-Engineer",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "stability-ai-junior-it-support-engineer",
+      "company": "Stability AI",
+      "title": "Junior IT Support Engineer",
+      "location": "Remote, US",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://builtin.com/job/junior-it-support-engineer/10958694",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "onestream-software-engineer-i",
+      "company": "OneStream",
+      "title": "Software Engineer I",
+      "location": "Remote, US",
+      "preparationStatus": "Review fit",
+      "postingUrl": "https://job-boards.greenhouse.io/onestream/jobs/4425162009",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "andromeda-systems-junior-software-developer",
+      "company": "Andromeda Systems",
+      "title": "Junior Software Developer",
+      "location": "Jacksonville, FL\nOnsite",
+      "preparationStatus": "Ready",
+      "postingUrl": "https://www.dice.com/job-detail/b1832427-f3e7-4e0c-bbd5-acac1b8f967a",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "u-haul-quality-assurance-analyst-dispatch",
+      "company": "U-Haul",
+      "title": "Quality Assurance Analyst, Dispatch",
+      "location": "Remote reported in supplied research\nEmployer description lists Phoenix",
+      "preparationStatus": "Closed",
+      "postingUrl": "https://jobs.uhaul.com/OpenJobs/JobDetail/R251132",
+      "resumeId": "resumes-resume-send-this-pdf"
+    },
+    {
+      "id": "nextera-fpl-programmer-analyst-i",
+      "company": "NextEra / FPL",
+      "title": "Programmer Analyst I",
+      "location": "Miami, FL\nWork model unspecified",
+      "preparationStatus": "Closed",
+      "postingUrl": "https://jobs.nexteraenergy.com/job/Miami-Programmer-Analyst-I-FL-33155/1436403600/",
+      "resumeId": "resumes-resume-send-this-pdf"
+    }
+  ],
+  "applied": [],
+  "words": [
+    "If the storm is coming, be a lighthouse.",
+    "be true to the numbers",
+    "The proof is in the action, but I need to show where im headed, how i tuned my compass, and why"
+  ],
+  "approach": [
+    "Applications are reps, not lottery tickets.",
+    "Precision is the argument.",
+    "Stay useful inside whatever a team needs.",
+    "Learn the tools and understand their limits."
+  ],
+  "projects": [
+    {
+      "label": "Catch 5",
+      "href": "/work/catch-5"
+    },
+    {
+      "label": "Drive Score",
+      "href": "/work/drive-score"
+    },
+    {
+      "label": "Vero",
+      "href": "/work/vero"
+    },
+    {
+      "label": "Job tracker",
+      "href": "/work/tracker-digest"
+    }
+  ]
+}

@@ -36,6 +36,26 @@ export type Destination = {
 
 export const destinations = [
   {
+    slug: "drive-score",
+    title: "Drive Score — Understanding a Driving-Score Pipeline",
+    shortTitle: "Drive Score",
+    kind: "case-study",
+    href: "/work/drive-score",
+    summary: "A learning prototype that follows synthetic driving trips through a scoring pipeline, making an internship architecture understandable one layer at a time.",
+    status: "Laptop scaffold recorded as built and tested in October 2026. The scorer remains a hands-on learning task.",
+    question: "Can rebuilding a driving-score pipeline make each infrastructure layer understandable?",
+    evidence: [
+      "The source describes seeded synthetic trips, Kafka and Postgres as the starting architecture.",
+      "The driving model is informed by observed scorecards; it is not an employer's private scoring formula.",
+      "The scorer, further infrastructure stages, deployment and work with personal driving data remain planned or unverified.",
+    ],
+    learning: "Keep the input and scoring rule understandable, then compare what each infrastructure layer is responsible for. The next exercise is writing the scorer and observing its outputs.",
+    verified: true,
+    primary: false,
+    category: "Learning prototype",
+    tags: ["Python", "Kafka", "PostgreSQL"],
+  },
+  {
     slug: "evidence-room",
     title: "Evidence Room — A Game About Changing Your Mind",
     shortTitle: "Evidence Room",
@@ -265,4 +285,13 @@ export const destinations = [
 
 export function findDestination(slug: string) {
   return destinations.find((destination) => destination.slug === slug);
+}
+
+/* The folder inventory changes with the Career source; route construction stays
+   here alongside every other navigation destination. */
+export function buildCareerNavigation(folders: readonly {id:string;title:string;parentId?:string}[]) {
+  return folders.filter(folder=>folder.id !== 'root').map(folder=>({
+    id: folder.id, title: folder.title, parentId: folder.parentId,
+    href: `/career/${folder.id}`,
+  }));
 }

@@ -13,7 +13,8 @@
     "validate:images": "bash scripts/validate-images.sh .",
     "validate:vault": "node scripts/verify-vault-status.mjs",
     "validate:privacy": "node scripts/verify-public-output.mjs",
-    "verify": "npm run validate:destinations && npm run lint && npm test && npm run build && npm run validate:privacy && npm run validate:images && npm run validate:vault"
+    "verify": "npm run validate:destinations && npm run lint && npm test && npm run build && npm run validate:privacy && npm run validate:images && npm run validate:vault",
+    "career:sync": "python3 scripts/export-career.py"
   },
   "dependencies": {
     "@remotion/player": "4.0.532",

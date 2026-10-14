@@ -136,119 +136,104 @@ async function checkVeroInteractions(page, viewport, label) {
   for (const evidence of other.evidence) await page.getByText(evidence, { exact: true }).waitFor();
 }
 
+const career = JSON.parse(await readFile(new URL('../src/data/career-public.json', import.meta.url), 'utf8'));
 async function checkViewport(name, viewport) {
-  const page = await browser.newPage({ viewport, colorScheme: "dark" });
-  page.on("pageerror", error => errors.push(error.message));
-  page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
-  await page.goto(baseUrl, { waitUntil: "networkidle" });
-  const dimensions = await page.evaluate(() => ({
-    innerWidth: window.innerWidth,
-    innerHeight: window.innerHeight,
-    scrollWidth: document.documentElement.scrollWidth,
-  }));
-  assert.equal(dimensions.innerWidth, viewport.width, `${name}: browser ignored viewport width`);
-  assert.equal(dimensions.innerHeight, viewport.height, `${name}: browser ignored viewport height`);
-  assert.equal(dimensions.scrollWidth, dimensions.innerWidth, `${name}: horizontal overflow`);
-  await page.screenshot({ path: `/tmp/personal-os-${name}.png`, fullPage: true });
-
-  /* Who Connor is comes first: one name heading, and a résumé button sized to
-     its label rather than stretched across the column (D1, D2). */
-  await page.getByRole("heading", { level: 1, name: "Connor Murphy" }).waitFor();
-  assert.equal(await page.getByText("Personal OS", { exact: true }).count(), 0, `${name}: "Personal OS" still billed on the page`);
-  const resumeButton = page.getByRole("link", { name: "Download résumé" });
-  const resumeBox = await resumeButton.boundingBox();
-  assert.ok(resumeBox && resumeBox.width < 260, `${name}: résumé button stretched to ${resumeBox?.width}px`);
-
-  /* The road draws only the dated record, and links to the drawing to scale. */
-  const road = page.getByRole("region", { name: "The road so far" });
-  assert.equal(await road.getByRole("listitem").count(), 8, `${name}: road should show the 8 dated entries`);
-  await road.getByText("B.S. Computer Science").waitFor();
-
-  /* Project rows lead with the question; filters come from the manifest's states. */
-  const work = page.getByRole("region", { name: "A few things I’m working through." });
-  await work.getByRole("link", { name: "Evidence Room", exact: true }).waitFor();
-  await work.getByRole("heading", { level: 3, name: "Could my grandmother's card game live on a phone, and teach someone new to play it?" }).waitFor();
-  for (const [label, count] of [["Active", 4], ["Parked", 1], ["Released", 2], ["All", 7]]) {
-    await page.getByRole("button", { name: label, exact: true }).click();
-    assert.equal(await work.getByRole("article").count(), count, `${name}: ${label} filter`);
+  const page=await browser.newPage({viewport,colorScheme:'dark'});
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.goto(baseUrl,{waitUntil:'networkidle'});
+  await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).waitFor();
+  await page.getByText('Applications are reps.',{exact:true}).first().waitFor();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width);
+  if(name==='mobile') {
+    const open=page.getByRole('button',{name:'Open Career navigation'});
+    await open.click();
+    const drawer=page.getByRole('dialog',{name:'Career navigation'});
+    await drawer.waitFor();
+    for(const folder of career.folders.filter(f=>f.id!=='root')) assert.equal(await drawer.locator(`a[href="/career/${folder.id}"]`).count(),1,`${folder.id} missing from mobile navigation`);
+    await page.keyboard.press('Escape');
+    assert.equal(await open.evaluate(el=>el===document.activeElement),true,'drawer restores focus');
   }
-  assert.equal(await work.getByRole("link", { name: "CI runs on GitHub" }).count(), 2, `${name}: proof links`);
-  await page.getByRole("searchbox", { name: "Search projects" }).fill("x".repeat(300));
-  await page.getByText("No projects match that combination.").waitFor();
-  await page.getByRole("button", { name: "Show all projects" }).click();
-  assert.equal(await work.getByRole("article").count(), 7);
-  await work.locator("summary").first().click();
-  assert.ok(await work.locator("details").first().getAttribute("open") !== null);
-  await page.getByRole("button", { name: "Explore how a claim changes" }).click();
-  await page.getByRole("button", { name: "Play video", exact: true }).click();
-  await page.getByRole("button", { name: "Pause video", exact: true }).waitFor();
-  await page.getByRole("button", { name: "3. Revise the claim" }).click();
-  await page.getByText("The cause is still uncertain.", { exact: true }).first().waitFor();
-  await page.screenshot({ path: `/tmp/personal-os-${name}-motion.png`, fullPage: true });
-  const catch5 = work.getByRole("article").filter({ hasText: "Catch 5" });
-  await catch5.getByText("Development closed; the family plays it.", { exact: true }).waitFor();
-  assert.ok(await catch5.getByRole("link", { name: "Catch 5", exact: true }).count() > 0, `${name}: verified Catch 5 is not linked`);
-
-  /* The terminal is closed until asked for, and a tap on a card runs the same
-     router as a typed command. */
-  assert.equal(await page.getByLabel("Portfolio command").isVisible(), false, `${name}: terminal open on load`);
-  await work.getByRole("link", { name: "Proposal Control", exact: true }).click();
-  await page.waitForURL(`${baseUrl}/work/itinerary-control`);
-  await page.goto(baseUrl, { waitUntil: "networkidle" });
-
-  if (name === "desktop") {
-    await page.keyboard.press("Control+k");
-  } else {
-    await page.getByRole("button", { name: "Open the terminal", exact: true }).click();
-  }
-  await page.getByLabel("Portfolio command").waitFor();
-  await page.getByLabel("Portfolio command").fill("sudo whoami");
-  await page.getByLabel("Portfolio command").press("Enter");
-  await page.getByText("command not found", { exact: false }).waitFor();
-  await page.getByText("last exit 127", { exact: false }).waitFor();
-  await page.getByLabel("Portfolio command").fill("open band-charter-outreach");
-  await page.getByLabel("Portfolio command").press("Enter");
-  await page.getByText("destination not verified yet", { exact: false }).waitFor();
-  await page.keyboard.press("Escape");
-  await page.getByLabel("Portfolio command").waitFor({ state: "hidden" });
-
-  if (name === "mobile") {
-    await page.getByRole("button", { name: "Open the terminal", exact: true }).click();
-    await page.getByLabel("Portfolio command").fill("open itinerary-control");
-    await page.getByLabel("Portfolio command").press("Enter");
-    await page.waitForURL(`${baseUrl}/work/itinerary-control`);
-
-    await page.goto(baseUrl, { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "Open the terminal", exact: true }).click();
-    await page.getByLabel("Portfolio command").fill("open vero");
-    await page.getByLabel("Portfolio command").press("Enter");
-    await page.waitForURL(`${baseUrl}/work/vero`);
-  }
-
-  for (const route of routes) {
-    const response = await page.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
-    assert.equal(response?.status(), 200, `${route}: expected HTTP 200`);
-    const width = await page.evaluate(() => document.documentElement.scrollWidth);
-    assert.equal(width, viewport.width, `${name} ${route}: horizontal overflow`);
-  }
-  const resumePdf = await page.request.get(`${baseUrl}/Connor_Murphy_Resume.pdf`);
-  assert.equal(resumePdf.status(), 200, "/Connor_Murphy_Resume.pdf: expected HTTP 200");
-  assert.match(resumePdf.headers()["content-type"] ?? "", /application\/pdf/);
-  await page.close();
-  for (const scheme of ["dark", "light"]) {
-    const axePage = await browser.newPage({ viewport, colorScheme: scheme });
-    for (const route of ["/", ...routes]) {
-      await axePage.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
-      await axePage.addScriptTag({ path: axePath });
-      const results = await axePage.evaluate(() => window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"] } }));
-      for (const violation of results.violations) {
-        errors.push(`axe ${name} ${scheme} ${route}: ${violation.id} (${violation.impact}) ${violation.nodes.map(node => node.target.join(" ")).join(" | ")}`);
-      }
+  await page.screenshot({path:`/tmp/career-${process.env.CAREER_UI_MODE||'public'}-${name}-home.png`,fullPage:true});
+  await page.getByRole('link',{name:'Walk with me'}).click();
+  const progress=page.getByRole('navigation',{name:'Walkthrough chapters'});
+  await progress.getByRole('link').first().waitFor();
+  assert.equal(await progress.getByRole('link').count(),7);
+  for(const [index,chapter] of career.chapters.entries()) {
+    await progress.getByRole('link',{name:`${index+1}. ${chapter.title}`,exact:true}).click();
+    await page.getByRole('heading',{level:1,name:chapter.title,exact:true}).waitFor();
+    await page.waitForURL(`**/career/walkthrough?stop=${chapter.id}`);
+    for(const id of chapter.receiptIds) {
+      const receipt=career.receipts.find(r=>r.id===id);
+      await page.getByRole('complementary',{name:'Contextual evidence'}).getByText(receipt.title,{exact:true}).waitFor();
     }
-    await checkVeroInteractions(axePage, viewport, `${name}-${scheme}`);
+  }
+  await page.goBack();
+  await page.getByRole('heading',{level:1,name:career.chapters[5].title,exact:true}).waitFor();
+  await page.getByRole('navigation',{name:'Continue walkthrough'}).getByRole('link',{name:/Next stop/}).click();
+  await page.getByRole('heading',{level:1,name:career.chapters[6].title,exact:true}).waitFor();
+  await page.getByRole('navigation',{name:'Continue walkthrough'}).getByRole('link',{name:/Previous stop/}).click();
+  await page.getByRole('heading',{level:1,name:career.chapters[5].title,exact:true}).waitFor();
+  await page.goto(`${baseUrl}/career/to-apply`);
+  await page.getByRole('status').getByText('23 of 23 roles',{exact:true}).waitFor();
+  for(const status of [...new Set(career.roles.map(r=>r.preparationStatus))]) {
+    await page.getByRole('combobox',{name:/^Preparation status/}).selectOption(status);
+    assert.equal(await page.locator('main details').count(),career.roles.filter(r=>r.preparationStatus===status).length);
+  }
+  await page.getByRole('combobox',{name:/^Preparation status/}).selectOption('All');
+  const search=page.getByRole('searchbox',{name:'Search applications'});
+  await search.fill(career.roles[0].company);
+  assert.equal(await page.locator('main details').count(),career.roles.filter(r=>`${r.company} ${r.title} ${r.location}`.toLowerCase().includes(career.roles[0].company.toLowerCase())).length);
+  await search.fill('zzzz-no-match');
+  await page.getByRole('heading',{name:'No roles match.'}).waitFor();
+  await page.getByRole('button',{name:'Show all applications'}).click();
+  assert.equal(await page.locator('main details').count(),23);
+  await page.locator('main details summary').first().click();
+  assert.ok(await page.locator('main details').first().getAttribute('open')!==null);
+  await page.screenshot({path:`/tmp/career-${process.env.CAREER_UI_MODE||'public'}-${name}-applications.png`,fullPage:true});
+  for(const folder of career.folders.filter(f=>f.id!=='root')) {
+    const response=await page.goto(`${baseUrl}/career/${folder.id}`);
+    assert.equal(response.status(),200,folder.id);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width,`${folder.id} overflow`);
+    for(const id of folder.documentIds) assert.ok(await page.locator(`main a[href="/career/documents/${id}"]`).count()>0,`${id} missing from folder`);
+  }
+  for(const doc of career.documents) {
+    const response=await page.goto(`${baseUrl}/career/documents/${doc.id}`);
+    assert.equal(response.status(),200,doc.id);
+    await page.getByRole('heading',{level:1,name:doc.title,exact:true}).waitFor();
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width,`${doc.id} overflow`);
+  }
+  const resume=career.documents.find(d=>d.kind==='pdf'&&d.href);
+  await page.goto(`${baseUrl}/career/documents/${resume.id}`);
+  const trigger=page.getByRole('button',{name:'Preview PDF'});
+  await trigger.click();
+  await page.getByRole('dialog',{name:resume.title}).waitFor();
+  assert.ok(await page.locator('dialog img[alt], dialog iframe[title]').count()>0);
+  await page.keyboard.press('Escape');
+  assert.equal(await trigger.evaluate(el=>el===document.activeElement),true,'preview restores focus');
+  for(const route of ['/career/receipts','/career/my-words','/career','/timeline',...routes]) {
+    const response=await page.goto(`${baseUrl}${route}`);
+    assert.equal(response.status(),200,route);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width,`${route} overflow`);
+  }
+  const mode=process.env.CAREER_UI_MODE||'public';
+  const privateDoc=career.documents.find(d=>d.localOnly&&d.kind==='pdf');
+  const privateResponse=await page.request.get(`${baseUrl}/career-files/${privateDoc.id}`);
+  assert.equal(privateResponse.status(),mode==='local'?200:404,'private download boundary');
+  const missing=await page.request.get(`${baseUrl}/career/documents/not-a-document`);
+  assert.equal(missing.status(),404);
+  await page.close();
+  for(const scheme of ['dark','light']) {
+    const axePage=await browser.newPage({viewport,colorScheme:scheme});
+    for(const route of ['/', '/career/walkthrough', '/career/to-apply','/career/resumes','/career/applied',...routes]) {
+      await axePage.goto(`${baseUrl}${route}`,{waitUntil:'networkidle'});
+      await axePage.addScriptTag({path:axePath});
+      const results=await axePage.evaluate(()=>window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+      for(const violation of results.violations) errors.push(`axe ${name} ${scheme} ${route}: ${violation.id} ${violation.nodes.map(n=>n.target.join(' ')).join(' | ')}`);
+    }
+    await checkVeroInteractions(axePage,viewport,`${name}-${scheme}`);
     await axePage.close();
   }
-  console.log(`[OK] ${name} ${viewport.width}x${viewport.height}: no overflow; interaction and routes passed`);
+  console.log(`[OK] ${name}: seven chapters, 23 filtered roles, every folder/document, previews/focus, legacy case studies, no overflow`);
 }
 
 try {
@@ -258,10 +243,9 @@ try {
   page.on("pageerror", error => errors.push(error.message));
   page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
   await page.goto(baseUrl);
-  await page.getByRole("button", { name: "Explore how a claim changes" }).click();
-  await page.locator(".static-chapter").waitFor();
-  await page.getByRole("button", { name: "3. Revise the claim" }).click();
-  await page.locator(".static-chapter").getByText("The cause is still uncertain.").waitFor();
+  await page.getByRole('link',{name:'Walk with me'}).click();
+  await page.getByRole('navigation',{name:'Walkthrough chapters'}).getByRole('link').nth(2).click();
+  await page.getByRole('heading',{level:1,name:career.chapters[2].title,exact:true}).waitFor();
   assert.equal(await page.locator("video, audio").count(), 0);
   await page.screenshot({path: "/tmp/personal-os-mobile-reduced-light.png", fullPage: true});
   await checkVeroInteractions(page, { width: 390, height: 844 }, "mobile-reduced-light");
