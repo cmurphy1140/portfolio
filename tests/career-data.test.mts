@@ -10,7 +10,7 @@ import { GET } from '@/app/career-files/[id]/route';
 
 test('public snapshot has seven stops, every drawer and no private fields', () => {
   const content = getPublicCareerContent();
-  assert.equal(content.chapters.length, 3);
+  assert.equal(content.chapters.length, 2);
   assert.equal(content.roles.length, 23);
   assert.deepEqual(Object.fromEntries(['Ready', 'Review schedule', 'Review fit', 'Closed'].map(s => [s, content.roles.filter(r => r.preparationStatus === s).length])), {Ready:10,'Review schedule':5,'Review fit':5,Closed:3});
   for (const id of ['applied','cover-letters','cover-letters/assets','cover-letters/tailored','resumes','resumes/assets','resumes/tailored','to-apply','review']) assert.ok(content.folders.some(f => f.id === id));

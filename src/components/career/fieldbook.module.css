@@ -792,3 +792,38 @@
 .fieldbook main .showcase .docsVisual .pages .pageItem:first-child a.pageCaption{align-self:flex-start}
 @media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px!important}}
 .fieldbook main .showcase .docsVisual .pages .pageItem+.pageItem{margin-left:clamp(-28px,-2vw,-16px);margin-top:14px}
+
+/* Index: larger and fixed in place at the top right of the home page. */
+.fieldbook main .beforeSheet>.menuRail{position:absolute;top:0;right:0;height:auto;margin-right:0}
+.fieldbook .menu ul.tocList li a{font-size:clamp(26px,2.6vw,34px);padding:8px 26px;line-height:1.25}
+.fieldbook .menu ul.tocList{border-left-width:3px}
+/* Download page: the two papers, slightly overlapping, then the spreadsheet. */
+.downloadPage{display:flex;align-items:flex-start;flex-wrap:wrap;gap:40px;margin-top:40px}
+.downloadPage .pages{display:flex;position:static;height:auto}
+.downloadPage .pageItem a.pageImage{display:block;width:clamp(150px,16vw,220px)}
+.downloadPage .pageItem+.pageItem{margin-left:-24px;margin-top:16px}
+.downloadPage .pageItem+.pageItem a.pageImage{position:relative;z-index:1}
+.downloadPage img{display:block;width:100%;height:auto;background:#fff;outline:1px solid #e4dccf;outline-offset:-1px}
+.fieldbook.fieldbook.fieldbook main a.sheetDownload{display:flex;flex-direction:column;gap:4px;padding-top:16px}
+.fieldbook.fieldbook.fieldbook main a.sheetDownload span{font-family:var(--serif)!important;font-size:26px!important;font-weight:300!important}
+.fieldbook.fieldbook.fieldbook main a.sheetDownload small{font-family:var(--sans)!important;font-size:13px!important;color:#6b6460!important}
+@media(max-width:700px){.fieldbook main .beforeSheet>.menuRail{position:static;justify-content:flex-start;margin-bottom:24px}}
+/* Index sits in the layout beside the headline so the sheet starts below it. */
+.fieldbook main .beforeSheet{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start}
+.fieldbook main .beforeSheet>.menuRail{position:static!important;grid-column:2;grid-row:1;height:auto}
+.fieldbook main .beforeSheet>.opening{grid-column:1;grid-row:1}
+.fieldbook main .beforeSheet>.trackingHead{grid-column:1/-1;grid-row:2}
+@media(max-width:700px){.fieldbook main .beforeSheet{grid-template-columns:1fr}.fieldbook main .beforeSheet>.menuRail{grid-column:1;grid-row:2;justify-content:flex-start}.fieldbook main .beforeSheet>.trackingHead{grid-row:3}}
+.paperRow{display:flex;align-items:flex-start}
+.paperRow .pageItem{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.paperRow .pageItem a.pageImage{display:block;width:clamp(150px,16vw,220px)}
+.paperRow .pageItem+.pageItem{margin-left:-24px;margin-top:16px}
+.paperRow .pageItem+.pageItem a.pageImage{position:relative;z-index:1}
+.paperRow img{display:block;width:100%;height:auto;background:#fff;outline:1px solid #e4dccf;outline-offset:-1px}
+.paperRow .pageItem+.pageItem a.pageCaption{padding-left:24px}
+/* Resume page: Projects and Download follow as subsections. */
+.subSection{margin-top:56px}
+.fieldbook.fieldbook.fieldbook main .subSection h2{font-family:var(--serif)!important;font-size:clamp(26px,2.4vw,32px)!important;font-weight:300!important;color:var(--phthalo)!important;margin-bottom:18px}
+.subSection .downloadPage{margin-top:8px}
+.fieldbook main .beforeSheet>.trackingHead{padding-top:clamp(64px,8vw,120px)}
+.fieldbook .stopGrid{padding-right:clamp(0px,4vw,56px)}

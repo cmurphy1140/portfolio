@@ -822,36 +822,6 @@
       ]
     },
     {
-      "id": "projects",
-      "title": "Projects",
-      "summary": "Things that ran, with evidence attached.",
-      "paragraphs": [
-        "Catch 5 was the card game played at home, built as an iPhone app. It showed ownership from start to finish: the rules, the interface, the testing and the release.",
-        "Drive Score rebuilt the data pipeline from the Liberty Mutual internship without a team around it, carrying that experience into independent work.",
-        "Vero, a home-automation client, separated what a device reported from what it actually did. That careful checking is exactly what a team wants from a new engineer.",
-        "tracker-digest turned the job search itself into a small tool, a habit of measuring before deciding."
-      ],
-      "links": [
-        {
-          "label": "Catch 5",
-          "href": "/work/catch-5"
-        },
-        {
-          "label": "Drive Score",
-          "href": "/work/drive-score"
-        },
-        {
-          "label": "Vero",
-          "href": "/work/vero"
-        },
-        {
-          "label": "tracker-digest",
-          "href": "/work/tracker-digest"
-        }
-      ],
-      "receiptIds": []
-    },
-    {
       "id": "selection",
       "title": "Filter",
       "summary": "Applied wide, accepted narrow.",
