@@ -42,11 +42,10 @@
 .main{padding:60px clamp(28px,4.5vw,64px) 0;min-width:0}
 .hero{padding:8px 0 44px}
 .intro{font-size:14px;color:var(--muted);margin-bottom:29px!important}
-.heroIdentity{display:flex;align-items:center;gap:32px;max-width:100%}
-.fieldbook .hero h1{position:relative;font-size:clamp(72px,7.7vw,110px);letter-spacing:-.075em;line-height:.99;font-weight:650;width:fit-content;flex-shrink:0}
-.hero h1::after{content:'';position:absolute;width:58px;height:3px;background:var(--tan);right:4px;bottom:-12px;transform:rotate(-4deg);border-radius:99px}
+.heroIdentity{--hero-size:clamp(72px,7.7vw,110px);--companion-size:160px;--hero-gap:32px;position:relative;display:flex;align-items:flex-end;gap:var(--hero-gap);width:fit-content;max-width:100%;padding-bottom:24px}
+.fieldbook .hero h1{position:relative;font-size:var(--hero-size);letter-spacing:-.075em;line-height:.99;font-weight:650;width:fit-content;flex-shrink:0}
 .period{color:var(--blue)}
-.heroCharacter{display:block;flex:0 0 auto;width:160px;height:auto;max-height:185px;object-fit:contain;background:transparent;border:0;box-shadow:none}
+.heroCharacter{display:block;flex:0 0 auto;width:var(--companion-size);height:auto;max-height:185px;object-fit:contain;background:transparent;border:0;box-shadow:none}
 .hero .motto{margin:35px 0 20px;font-family:var(--font-source-serif),Georgia,serif;font-size:clamp(27px,2.6vw,36px);font-weight:500;letter-spacing:-.02em;color:var(--blue)}
 .heroText{color:var(--muted);font-size:16px;max-width:52ch}
 .actions{display:flex;align-items:center;gap:25px;margin-top:32px;flex-wrap:wrap}
@@ -173,8 +172,7 @@
 .drawer .identity{padding-left:10px}
 .drawer .railFoot{margin-top:20px}
 @media(max-width:1000px){
-  .heroIdentity{gap:24px}
-  .fieldbook .hero h1{font-size:clamp(60px,8vw,82px)}
+  .heroIdentity{--hero-gap:24px;--hero-size:clamp(60px,8vw,82px)}
   .notebook{grid-template-columns:120px minmax(0,1fr);gap:15px 20px}
   .notebook button{grid-column:2;justify-self:start}
 }
@@ -186,10 +184,8 @@
   .breadcrumb{padding:14px 22px;font-size:12px;gap:8px;min-height:48px}.edition{font-size:12px}
   .main{padding:38px 24px 0}.hero{padding-top:0;padding-bottom:32px}
   .intro{font-size:12px;margin-bottom:26px!important}
-  .heroIdentity{gap:16px}
-  .fieldbook .hero h1{font-size:clamp(36px,12vw,52px)}
-  .heroCharacter{width:clamp(90px,28.2vw,110px);max-height:130px}
-  .hero h1::after{width:36px;bottom:-9px;height:2px}
+  .heroIdentity{--hero-gap:16px;--hero-size:clamp(36px,12vw,52px);--companion-size:clamp(90px,28.2vw,110px)}
+  .heroCharacter{max-height:130px}
   .hero .motto{font-size:28px;margin-top:32px}
   .heroText{font-size:16px;line-height:1.8}.actions{gap:23px;margin-top:27px}
   .primary{font-size:12px;padding:11px 15px}.secondary{font-size:12px}
@@ -254,3 +250,5 @@
 .hero .motto,.words,.note blockquote{font-weight:500}
 .notebook>p{font-weight:600}
 @media(max-width:380px){.mobileHeader{gap:6px}.mobileHeader button{padding-left:5px;padding-right:5px;gap:6px}}
+
+.heroGrounding{position:absolute;right:calc(var(--companion-size) * .08);bottom:0;width:calc(var(--companion-size) + var(--hero-gap) + var(--hero-size) * .58);height:34px;color:var(--tan);pointer-events:none;overflow:visible}

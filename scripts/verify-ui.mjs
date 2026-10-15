@@ -137,7 +137,29 @@ async function checkVeroInteractions(page, viewport, label) {
 }
 
 const career = JSON.parse(await readFile(new URL('../src/data/career-public.json', import.meta.url), 'utf8'));
+async function checkHeroGrounding(page) {
+  const line=page.locator('[data-hero-grounding]');
+  assert.equal(await line.count(),1,'one continuous grounding stroke');
+  assert.equal(await line.getAttribute('aria-hidden'),'true');
+  const geometry=await line.evaluate(svg=>{
+    const path=svg.querySelector('path');const matrix=path.getScreenCTM();
+    const point=length=>{const value=path.getPointAtLength(length);return {x:value.x*matrix.a+value.y*matrix.c+matrix.e,y:value.x*matrix.b+value.y*matrix.d+matrix.f};};
+    const title=svg.parentElement.querySelector('h1');const y=title.querySelector('[data-hero-y]');const image=svg.parentElement.querySelector('img');
+    const rect=element=>{const box=element.getBoundingClientRect();return {left:box.left,right:box.right,top:box.top,bottom:box.bottom};};
+    return {start:point(0),end:point(path.getTotalLength()),points:Array.from({length:21},(_,i)=>point(path.getTotalLength()*i/20)),title:rect(title),y:rect(y),image:rect(image),pseudo:getComputedStyle(title,'::after').content,pointer:getComputedStyle(svg).pointerEvents,stroke:parseFloat(getComputedStyle(path).strokeWidth),cap:path.getAttribute('stroke-linecap'),join:path.getAttribute('stroke-linejoin')};
+  });
+  assert.ok(geometry.start.x>=geometry.y.left-14&&geometry.start.x<=geometry.y.right,'stroke starts beneath the final y');
+  assert.ok(geometry.start.y>=geometry.title.bottom+2&&geometry.start.y<=geometry.title.bottom+20,'stroke follows the name baseline');
+  assert.ok(geometry.end.x>geometry.image.left+40&&geometry.end.x<=geometry.image.right,'stroke ends beneath the seated figure');
+  assert.ok(geometry.points.every(point=>point.y>=geometry.image.bottom&&point.y>=geometry.title.bottom),'stroke never crosses name or avatar');
+  assert.ok(['none','normal'].includes(geometry.pseudo),'old separate underline is absent');
+  assert.equal(geometry.pointer,'none');assert.equal(geometry.cap,'round');assert.equal(geometry.join,'round');
+  assert.ok(geometry.stroke>=2.5&&geometry.stroke<=3);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'grounding path has no horizontal overflow');
+}
+
 async function checkNotebook(page, viewport) {
+  await checkHeroGrounding(page);
   const notebook=page.getByRole('region',{name:'From my notebook'});
   await notebook.waitFor();
   const note=notebook.locator('[aria-live="polite"]');
@@ -428,6 +450,21 @@ async function checkViewport(name, viewport) {
     await axePage.close();
   }
   console.log(`[OK] ${name}: seven chapters, 23 filtered roles, every folder/document, previews/focus, legacy case studies, no overflow`);
+}
+
+if(process.argv.includes('--career-hero-only')) {
+  try {
+    for(const width of [320,390,768,1440]) {
+      const page=await browser.newPage({viewport:{width,height:900},colorScheme:'dark'});
+      await page.goto(baseUrl,{waitUntil:'networkidle'});
+      await checkNotebook(page,{width,height:900});
+      await page.addScriptTag({path:axePath});
+      const result=await page.evaluate(()=>window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+      assert.deepEqual(result.violations.map(violation=>violation.id),[],`${width}px hero accessibility`);
+      await page.close();console.log(`[OK] ${width}px: selected companion, continuous grounding stroke, notebook and accessibility`);
+    }
+  } finally {await browser.close();}
+  process.exit(0);
 }
 
 if(process.argv.includes('--career-interactions-only')) {
