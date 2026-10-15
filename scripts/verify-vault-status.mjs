@@ -48,7 +48,9 @@ const errors = [];
 const notesBySlug = new Map();
 for await (const file of walk(vaultRoot)) {
   const pairs = frontmatterOf(await readFile(file, "utf8"));
-  if (!pairs?.site) continue;
+  // A site value that is a URL names a live address, not a manifest slug
+  // (_archive/ball-knowledge keeps one; archived pages keep their words).
+  if (!pairs?.site || /^[a-z][a-z0-9+.-]*:\/\//i.test(pairs.site)) continue;
   const note = { name: path.relative(vaultRoot, file), pairs };
   notesBySlug.set(pairs.site, [...(notesBySlug.get(pairs.site) ?? []), note]);
 }
