@@ -265,48 +265,6 @@
 .sidebar nav .active svg,.drawer nav .active svg{color:var(--beige)}
 .sidebar .folderChildren,.drawer .folderChildren{border-color:var(--brown)}
 
-/* Home: walkthrough plan and tracker */
-.plan{margin-bottom:56px}
-.planList{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:0}
-.planList li{display:grid;grid-template-columns:35px minmax(0,1fr);gap:22px;padding:18px 0;border-bottom:1px solid color-mix(in srgb,var(--edge) 45%,transparent)}
-.planList li:last-child{border-bottom:0}
-.planList h3 a{color:var(--text)!important}
-.planList h3 a:hover{color:var(--tan)!important}
-.planList p{color:var(--muted);font-size:15px;line-height:1.6;margin-top:5px;max-width:62ch}
-.planList .planShow{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-top:10px;font-size:14px;font-weight:700}
-.planShow>span{font-size:12px;font-weight:650;color:var(--base);background:var(--tan);border-radius:999px;padding:1px 10px}
-.planShow a{color:var(--robin)!important}
-.tracker{border-top:2px solid var(--edge);padding-top:30px;margin-bottom:56px;scroll-margin-top:24px}
-.trackerHead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
-.trackerHead p{font-size:14px;color:var(--muted);margin-top:9px}
-.statusTally{list-style:none;padding:0;margin:24px 0 18px;display:flex;flex-wrap:wrap;gap:10px}
-.statusTally li{display:flex;align-items:baseline;gap:8px;padding:8px 14px;border-radius:12px;background:var(--rail);font-size:13px;color:var(--beige)}
-.statusTally strong{font-size:20px;color:var(--text);font-variant-numeric:tabular-nums}
-.statusTally [data-status="Ready"]{box-shadow:inset 0 -3px var(--robin)}
-.statusTally [data-status="Review schedule"]{box-shadow:inset 0 -3px var(--tan)}
-.statusTally [data-status="Review fit"]{box-shadow:inset 0 -3px var(--blue)}
-.statusTally [data-status="Closed"]{box-shadow:inset 0 -3px var(--mocha)}
-.trackerTable{max-height:440px;overflow:auto;border:2px solid var(--panel);border-radius:16px;background:color-mix(in srgb,var(--rail) 55%,var(--base))}
-.trackerTable:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-.trackerTable table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45}
-.trackerTable th{position:sticky;top:0;z-index:1;text-align:left;font-size:12px;font-weight:700;color:var(--base);background:var(--tan);padding:10px 14px}
-.trackerTable td{padding:11px 14px;border-top:1px solid color-mix(in srgb,var(--edge) 35%,transparent);vertical-align:top;color:var(--text)}
-.trackerTable td:first-child{font-weight:700;color:var(--beige)}
-.trackerTable td small{display:block;color:var(--muted);font-size:12px}
-.statusPill{display:inline-block;white-space:nowrap;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;color:var(--base);background:var(--blue)}
-.statusPill[data-status="Ready"]{background:var(--robin)}
-.statusPill[data-status="Review schedule"]{background:var(--tan)}
-.statusPill[data-status="Closed"]{background:var(--mocha);color:var(--text)}
-.trackerNote{font-size:12px;color:var(--muted);margin-top:14px!important}
-.trackerNote a{margin-left:8px;font-weight:700}
-@media (max-width:700px){
- .trackerTable{max-height:none;overflow:visible;border:0;background:transparent}
- .trackerTable thead{display:none}
- .trackerTable table,.trackerTable tbody,.trackerTable tr,.trackerTable td{display:block}
- .trackerTable tr{padding:14px 16px;margin-bottom:10px;border-radius:14px;background:var(--rail)}
- .trackerTable td{border:0;padding:2px 0}
-}
-
 /* Light edition: off-white page, deep blue for headers, light blue for numbering,
    layered browns that carry white lettering. Overrides the dark tokens above. */
 .fieldbook{
@@ -347,37 +305,137 @@
 .filters input,.filters select,.finderLabel input{background:#fff;color:var(--ink)}
 .filters input::placeholder,.finderLabel input::placeholder{color:var(--muted)}
 .preview::backdrop,.drawer::backdrop,.finder::backdrop{background:rgba(47,36,28,.7)}
-/* Home plan and tracker on the light page. */
-.planList h3 a{color:var(--ink)!important}
-.planList h3 a:hover{color:var(--phthalo)!important}
-.planShow>span{background:var(--bark);color:#fff}
-.planShow a{color:var(--phthalo)!important}
-.statusTally li{background:var(--bark);color:#eadfd0}
-.statusTally strong{color:#fff}
-.statusTally [data-status="Ready"]{box-shadow:inset 0 -4px var(--robin)}
-.statusTally [data-status="Review fit"]{box-shadow:inset 0 -4px var(--sky)}
-.statusTally [data-status="Closed"]{background:var(--mocha);box-shadow:none}
-.trackerTable{background:#fff;border-color:var(--edge)}
-.trackerTable th{background:var(--bark);color:#fff}
-.trackerTable td{color:var(--ink);border-top-color:var(--beige)}
-.trackerTable td:first-child{color:var(--bark)}
-.statusPill{color:var(--ink);background:var(--sky)}
-.statusPill[data-status="Closed"]{background:var(--mocha);color:#fff}
-@media(max-width:700px){
-  .trackerTable tr{background:#fff;border:2px solid var(--edge)}
-  .mobileHeader{border-bottom-color:var(--bark)}
-}
+
 .chapterReceipts .evidenceState{color:var(--sky)}
-.statusTally [data-status="Closed"]{color:#fff}
-/* Base documents: brown layers with white lettering. */
-.baseDocs{margin-bottom:56px}
-.baseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
-.baseCard{background:var(--bark);color:#fff;border-radius:16px;padding:22px 24px;border-top:6px solid var(--tan);display:flex;flex-direction:column;gap:10px}
-.baseCard:nth-child(2){background:var(--mocha)}
-.fieldbook .baseCard h3{color:#fff;font-size:19px}
-.baseCard p{color:#f1e8dc;font-size:14px;line-height:1.6}
-.baseCard div{display:flex;gap:18px;margin-top:auto;padding-top:8px;font-size:14px;font-weight:700}
-.fieldbook .baseCard a{color:#fff;text-decoration:underline;text-underline-offset:4px}
-.fieldbook .baseCard a:focus-visible{outline-color:var(--sky)}
-@media(max-width:700px){.baseGrid{grid-template-columns:1fr}}
-.baseCard:nth-child(2) p{color:#fff}
+
+/* Editorial edition: one top bar, serif type, no boxes around text.
+   Home reads in a Z, documents sit like product shots, the tracker reads in an F,
+   and each walkthrough stop pairs a headline column with a reading column. */
+.fieldbook{--numeral:#4a86bb;--serif:var(--font-source-serif),Georgia,serif;font-size:18px}
+.fieldbook .sidebar{display:none}
+.workspace{margin-left:0}
+.fieldbook .mobileHeader{display:flex;align-items:center;gap:14px;max-width:1240px;margin:0 auto;padding:30px clamp(24px,5vw,64px) 6px;background:transparent;border:0}
+.fieldbook .mobileHeader>a{margin-right:auto;font-family:var(--serif);font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--phthalo);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:7px}
+.fieldbook .mobileHeader button{background:transparent;color:var(--phthalo);border:2px solid var(--phthalo);border-radius:12px;font-size:15px;font-weight:700;padding:10px 16px;min-height:44px}
+.fieldbook .mobileHeader button:hover{background:var(--phthalo);color:#fff}
+.breadcrumb{max-width:1240px;margin:0 auto;padding:10px clamp(24px,5vw,64px);background:transparent;border:0;min-height:0;font-size:13px}
+.readingLayout{max-width:1240px}
+.main{padding:40px clamp(24px,5vw,64px) 0}
+.fieldbook main p,.fieldbook main li{font-family:var(--serif)}
+.fieldbook main h2,.chapterHeading h1,.fieldbook main h1.documentTitle{font-family:var(--serif);font-weight:800;letter-spacing:-.02em;color:var(--phthalo)}
+.fieldbook .primary{font-size:16px;padding:15px 26px;min-height:52px;border-radius:12px;justify-content:center;gap:12px}
+.intro{font-weight:700!important}
+.heroText{font-size:19px!important;color:var(--ink)!important}
+.hero{padding-bottom:96px}
+
+/* Z: headline left, numbered stops right. */
+.zPlan{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 72px;padding:72px 0 112px;border-top:1px solid var(--edge)}
+.zLead{align-self:start;position:sticky;top:32px}
+.zLead h2{font-size:clamp(40px,5vw,64px)!important;line-height:1.02}
+.zLead p{font-size:20px;color:var(--muted);margin-top:18px!important}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;padding:0 0 40px}
+.numeral{font-family:var(--serif);font-size:44px;line-height:1;font-weight:800;color:var(--numeral)}
+.steps h3{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.2}
+.steps h3 a{color:var(--ink)!important}
+.steps h3 a:hover{color:var(--phthalo)!important;text-decoration:underline}
+.steps p{font-size:19px;line-height:1.6;color:var(--ink);margin-top:8px!important;max-width:52ch}
+.steps .showed{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:16px;margin-top:10px!important}
+.showed em{color:var(--muted)}
+.showed a{color:var(--phthalo)!important;text-decoration:underline;text-underline-offset:4px;font-weight:600}
+
+/* Product shot: two pages, no frame, text centered beside them. */
+.showcase{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px;padding:96px 0 120px}
+.pages{position:relative;height:clamp(360px,42vw,520px)}
+.pages a{position:absolute;display:block;width:58%;transition:transform .25s ease}
+.pages a:first-child{left:4%;top:0;transform:rotate(-6deg);z-index:2}
+.pages a:last-child{left:38%;top:9%;transform:rotate(5deg)}
+.pages a:hover{transform:rotate(0) translateY(-6px);z-index:3}
+.pages img{display:block;width:100%;height:auto;background:#fff;filter:drop-shadow(0 22px 28px rgba(47,36,28,.18)) drop-shadow(0 2px 4px rgba(47,36,28,.12))}
+.showcaseText{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.showcaseText h2{font-size:clamp(34px,4vw,52px)!important;line-height:1.08}
+.showcaseText p{font-size:20px;line-height:1.55;max-width:34ch;color:var(--ink)}
+.fieldbook .more{font-size:17px;font-weight:700;color:var(--phthalo)}
+
+/* F: heading, numbers, then a plain ledger read down the left edge. */
+.ledgerSection{padding:72px 0 96px;border-top:1px solid var(--edge)}
+.ledgerSection h2{font-size:clamp(40px,5vw,64px)!important;line-height:1.02}
+.ledgerLede{font-size:20px;color:var(--muted);margin-top:14px!important}
+.tally{list-style:none;padding:0;margin:40px 0 32px;display:flex;flex-wrap:wrap;gap:24px 56px}
+.tally li{display:flex;flex-direction:column}
+.tally strong{font-family:var(--serif);font-size:56px;line-height:1;font-weight:800;color:var(--phthalo)}
+.tally span{font-size:15px;color:var(--muted);margin-top:6px;font-family:var(--font-manrope),sans-serif}
+.tally [data-status="Ready"] strong{color:var(--numeral)}
+.ledger{width:100%;border-collapse:collapse;font-size:17px}
+.ledger th{text-align:left;font-size:13px;font-weight:700;color:var(--muted);padding:0 16px 12px 0;border-bottom:2px solid var(--ink)}
+.ledger td{padding:16px 16px 16px 0;border-bottom:1px solid var(--edge);vertical-align:top;font-family:var(--serif);color:var(--ink)}
+.ledger td:first-child{font-weight:700}
+.ledger td small{display:block;font-size:14px;color:var(--muted)}
+.ledgerStatus{white-space:nowrap;font-weight:700;color:var(--phthalo)!important}
+.ledgerStatus::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:9px;background:currentColor;vertical-align:1px}
+.ledgerStatus[data-status="Ready"]{color:var(--numeral)!important}
+.ledgerStatus[data-status="Review schedule"],.ledgerStatus[data-status="Review fit"]{color:var(--bark)!important}
+.ledgerStatus[data-status="Closed"]{color:var(--muted)!important;font-weight:500}
+.ledgerActions{display:flex;align-items:center;gap:20px 32px;flex-wrap:wrap;margin-top:36px}
+.ledgerActions p{font-size:15px;color:var(--muted)}
+
+/* Notebook: a quote in open space, no card. */
+.fieldbook .notebook{display:block;background:transparent;border:0;border-radius:0;padding:96px 0;margin:0;text-align:center;color:var(--ink);border-top:1px solid var(--edge)}
+.fieldbook .notebookHeading h3{color:var(--muted)!important;font-size:14px;display:inline}
+.fieldbook .notebookHeading span{display:inline;margin-left:10px;color:var(--muted);font-size:14px}
+.fieldbook .notebook>p{font-family:var(--serif);font-size:clamp(30px,4vw,46px);font-weight:700;line-height:1.2;color:var(--phthalo);max-width:24ch;margin:22px auto 26px!important}
+.fieldbook .notebook button{display:inline-flex;background:transparent;border:0;color:var(--bark);font-size:16px;font-weight:700;text-decoration:underline;text-underline-offset:5px;min-height:44px}
+
+/* Walkthrough stops: light blue numerals, headline column, reading column. */
+.progress{margin:8px 0 56px;gap:8px}
+.progress a::after{display:none}
+.fieldbook .progress span{background:none;border:0;width:auto;height:auto;display:block;font-family:var(--serif);font-size:30px;font-weight:800;color:var(--numeral);place-items:initial}
+.fieldbook .progress a[aria-current] span{background:none;color:var(--phthalo);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.progress small{font-size:13px;max-width:110px}
+.stopGrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 80px;align-items:start}
+.chapterHeading{position:sticky;top:32px}
+.chapterHeading h1{font-size:clamp(40px,5vw,66px)!important;line-height:1.02!important}
+.chapterHeading .lede{font-family:var(--serif);font-size:24px;font-style:italic;color:var(--bark)}
+.chapterBody{font-size:21px;line-height:1.7}
+.chapterBody p+p{margin-top:28px}
+.relatedLinks{font-size:17px;font-weight:700}
+.fieldbook .chapterReceipts{--text:var(--ink);--muted:var(--muted);color:var(--ink);background:transparent;padding:32px 0 0;border-radius:0;border-top:1px solid var(--edge)}
+.fieldbook .chapterReceipts h2{color:var(--phthalo)!important;font-size:24px}
+.fieldbook .chapterReceipts a{color:var(--phthalo)}
+.fieldbook .chapterReceipts .evidenceState{color:var(--numeral)}
+.receipt{border-bottom-color:var(--edge)}
+.receipt strong{font-size:17px}
+.fieldbook .chapterPaging a{font-family:var(--serif);font-size:15px;padding:20px 0;min-height:64px}
+.fieldbook .chapterPaging span{font-size:24px;font-weight:700;color:var(--phthalo)}
+
+/* Roles list: status as coloured text, no badge. */
+.fieldbook .status{background:transparent;border:0;padding:0;color:var(--phthalo);font-weight:700;font-size:14px}
+
+@media(max-width:900px){
+  .zPlan,.showcase,.stopGrid{grid-template-columns:1fr}
+  .zLead,.chapterHeading{position:static}
+  .pages{height:clamp(300px,90vw,440px);max-width:460px;margin:0 auto;width:100%}
+}
+@media(max-width:700px){
+  .fieldbook .mobileHeader{padding:20px 20px 4px;gap:8px}
+  .fieldbook .mobileHeader>a{font-size:22px}
+  .fieldbook .mobileHeader button{font-size:13px;padding:8px 10px}
+  .main{padding:28px 20px 0}
+  .steps li{grid-template-columns:44px minmax(0,1fr)}
+  .numeral{font-size:34px}
+  .ledger thead{display:none}
+  .ledger,.ledger tbody,.ledger tr,.ledger td{display:block}
+  .ledger tr{padding:16px 0;border-bottom:1px solid var(--edge)}
+  .ledger td{border:0;padding:2px 0}
+  .tally strong{font-size:44px}
+  .chapterBody{font-size:19px}
+  .fieldbook .progress span{font-size:24px}
+}
+@media(prefers-reduced-motion:reduce){.pages a{transition:none}}
+.fieldbook .notebook{--muted:#6e5646;--text:var(--ink);--blue:var(--phthalo)}
+/* Small text in light blue needs the deeper shade; large numerals keep the light one. */
+.fieldbook{--numeral-ink:#2e6599}
+.ledgerStatus[data-status="Ready"],.fieldbook .chapterReceipts .evidenceState{color:var(--numeral-ink)!important}
+.ledgerActions p a{text-decoration:underline;text-underline-offset:4px}
+.fieldbook .mobileHeader>a,.fieldbook .mobileHeader button{white-space:nowrap}
+@media(max-width:700px){.fieldbook .mobileHeader>a{font-size:20px;text-underline-offset:5px}}
