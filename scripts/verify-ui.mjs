@@ -236,7 +236,7 @@ async function checkQuickFind(page) {
   await search.focus();await page.keyboard.press('Tab');
   assert.equal(await dialog.getByRole('link').first().evaluate(el=>el===document.activeElement),true,'Tab reaches the first result');
   const kindColors=await dialog.locator('a > span').evaluateAll(labels=>labels.map(label=>getComputedStyle(label).color));
-  assert.ok(kindColors.every(color=>color==='rgb(244, 248, 252)'),'result kinds keep white text on every blue surface');
+  assert.ok(kindColors.every(color=>color==='rgb(244, 248, 252)'),'result kinds keep white text on warm search surfaces');
   await page.addScriptTag({path:axePath});
   const accessibility=await page.evaluate(()=>window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
   for(const violation of accessibility.violations)errors.push(`axe open finder: ${violation.id} ${violation.nodes.map(node=>node.target.join(' ')).join(' | ')}`);
