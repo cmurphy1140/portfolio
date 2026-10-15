@@ -677,3 +677,11 @@
 /* Name in a refined serif. */
 .fieldbook.fieldbook.fieldbook main .hero h1,.fieldbook.fieldbook.fieldbook main .hero h1 *{font-family:var(--serif)!important;font-weight:500!important;letter-spacing:-.02em!important}
 .fieldbook.fieldbook.fieldbook main .hero h1 .period{color:var(--mocha)!important}
+
+/* Documents slide flipped: quote above the pages on the left, Resume and its list on the right. */
+.fieldbook main .showcase.slide{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.docsVisual{display:flex;flex-direction:column;gap:18px}
+.fieldbook main .showcase .showcaseText{justify-content:flex-start}
+.fieldbook.fieldbook.fieldbook main h2.bigTitle{font-family:var(--serif)!important;font-size:clamp(60px,7vw,104px)!important;font-weight:500!important;letter-spacing:-.02em!important;line-height:1!important;color:var(--phthalo)!important;margin:0}
+@media(max-width:900px){.fieldbook main .showcase.slide{grid-template-columns:1fr}}
+.fieldbook main .showcase .docsVisual .pages{height:clamp(240px,26vw,340px);max-width:440px;width:100%}
