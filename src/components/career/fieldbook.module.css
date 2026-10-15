@@ -644,3 +644,13 @@
 .fieldbook main .showcase .pages a{width:44%}
 .fieldbook main .showcase .pages a:first-child{left:8%}
 .fieldbook main .showcase .pages a:last-child{left:42%;top:8%}
+
+/* Whitespace trimmed by 30% at the top and bottom of the page and each section. */
+.fieldbook .main{padding-top:clamp(34px,5.6vw,67px)}
+.fieldbook .opening{min-height:calc(70svh - clamp(34px,5.6vw,67px));padding-bottom:28px}
+.fieldbook main .slide{min-height:min(70svh,644px);padding:67px 0}
+.fieldbook main .showcase.slide{min-height:0;padding:39px 0 45px}
+.fieldbook main .ledgerSection.slide{min-height:0;padding:50px 0 67px}
+.fieldbook .stopGrid{margin-bottom:0}
+.fieldbook main .chapterPaging{margin-top:29px}
+@media(max-width:700px){.fieldbook main .slide{padding:50px 0}.fieldbook .opening{min-height:0}}
