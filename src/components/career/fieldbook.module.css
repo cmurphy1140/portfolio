@@ -734,3 +734,6 @@
 .fieldbook main .pages a:first-child:hover{transform:rotate(-6deg)!important;z-index:2}
 .fieldbook main .pages a:last-child:hover{transform:rotate(5deg)!important;z-index:auto}
 .fieldbook main .pages a:hover{opacity:1!important}
+/* Applications are free and Tracking read as normal text. */
+.fieldbook.fieldbook.fieldbook main .showcase p.intro,.fieldbook.fieldbook.fieldbook main .trackingHead h2{font-family:var(--sans)!important;font-size:16px!important;font-weight:400!important;line-height:1.6!important;letter-spacing:0!important;color:var(--black)!important}
+.trackingHead h2{margin-bottom:12px!important}
