@@ -166,6 +166,17 @@ async function checkNotebook(page, viewport) {
   assert.equal(await page.getByRole('complementary',{name:'Contextual evidence'}).count(),0,'no right-side evidence panel');
   assert.ok(bounds.x>=heading.x+heading.width,'character sits immediately beside the name');
   assert.ok(bounds.x-heading.x-heading.width<=40,'name and companion form one row');
+  const typography=await page.evaluate(()=>{
+    const main=getComputedStyle(document.querySelector('main'));
+    const title=getComputedStyle(document.querySelector('main h1'));
+    const navigation=getComputedStyle(document.querySelector('nav[aria-label="Career folders"] a'));
+    const action=getComputedStyle(document.querySelector('a[data-contrast-check="primary action"]'));
+    const circle=getComputedStyle(document.querySelector('main ol li a>span'));
+    const icon=getComputedStyle(document.querySelector('nav[aria-label="Career folders"] svg'));
+    return {body:Number(main.fontWeight),size:parseFloat(main.fontSize),heading:Number(title.fontWeight),navigation:Number(navigation.fontWeight),control:parseFloat(action.borderTopWidth),circle:parseFloat(circle.borderTopWidth),stroke:parseFloat(icon.strokeWidth)};
+  });
+  assert.ok(typography.body>=500&&typography.size>=16&&typography.heading>=650&&typography.navigation>=500,'stronger rendered typography');
+  assert.ok(typography.control>=2&&typography.circle>=2&&typography.stroke>=2,'stronger rendered borders and icon strokes');
   const contrast=await page.evaluate(()=>{
     const luminance=value=>{const rgb=value.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
     return [...document.querySelectorAll('[data-contrast-check]')].map(el=>{const style=getComputedStyle(el);let background=style.backgroundColor;let parent=el.parentElement;while(background==='rgba(0, 0, 0, 0)'&&parent){background=getComputedStyle(parent).backgroundColor;parent=parent.parentElement;}const a=luminance(style.color),b=luminance(background);return {label:el.getAttribute('data-contrast-check'),ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};});
@@ -233,6 +244,86 @@ async function checkQuickFind(page) {
   }
 }
 
+async function checkFolderDisclosures(page, viewport) {
+  const mobile=viewport.width<=700;
+  const openNav=async()=>{if(mobile&&!await page.getByRole('dialog',{name:'Career navigation'}).isVisible())await page.getByRole('button',{name:'Open Career navigation'}).click();return page.getByRole('navigation',{name:'Career folders'});};
+  let nav=await openNav();
+  const resumes=career.folders.find(folder=>folder.id==='resumes');
+  const assets=career.folders.find(folder=>folder.id==='resumes/assets');
+  const expand=nav.getByRole('button',{name:`Expand ${resumes.title}`,exact:true});
+  await expand.waitFor();
+  const hiddenAsset=nav.locator('a[href="/career/resumes/assets"]');
+  assert.equal(await hiddenAsset.isVisible(),false,'collapsed folder hides nested links');
+  const url=page.url();
+  await expand.focus();await expand.press('Tab');
+  assert.equal(await nav.locator('a[href="/career/resumes"]').evaluate(element=>element===document.activeElement),true,'folder link follows its disclosure button');
+  await page.keyboard.press('Tab');
+  assert.equal(await nav.getByRole('button',{name:'Expand Cover letters',exact:true}).evaluate(element=>element===document.activeElement),true,'Tab skips collapsed descendants');
+  await expand.focus();await expand.press('Enter');
+  assert.equal(page.url(),url,'disclosure never navigates');
+  await hiddenAsset.waitFor();
+  const assetsToggle=nav.getByRole('button',{name:`Expand ${assets.title}`,exact:true});
+  await assetsToggle.press('Space');
+  const source=career.documents.find(document=>assets.documentIds.includes(document.id));
+  const sourceLink=nav.locator(`a[href="/career/documents/${source.id}"]`);
+  await sourceLink.focus();
+  const collapseAssets=nav.getByRole('button',{name:`Collapse ${assets.title}`,exact:true});
+  await collapseAssets.evaluate(button=>button.click());
+  assert.equal(await nav.getByRole('button',{name:`Expand ${assets.title}`,exact:true}).evaluate(button=>button===document.activeElement),true,'collapsing a focused descendant returns focus to its disclosure');
+  await nav.getByRole('button',{name:`Expand ${assets.title}`,exact:true}).press('Space');
+  await sourceLink.click();
+  await page.waitForURL(`**/career/documents/${source.id}`);
+  await page.getByRole('heading',{level:1,name:source.title,exact:true}).waitFor();
+  nav=await openNav();
+  await nav.getByRole('button',{name:`Collapse ${resumes.title}`,exact:true}).waitFor();
+  await nav.getByRole('button',{name:`Collapse ${assets.title}`,exact:true}).waitFor();
+  await nav.locator('a[href="/career/review"]').click();
+  await page.waitForURL('**/career/review');
+  await page.reload({waitUntil:'networkidle'});
+  nav=await openNav();
+  await nav.getByRole('button',{name:`Collapse ${assets.title}`,exact:true}).waitFor();
+  const relationships=await page.evaluate(()=>{
+    const controls=[...document.querySelectorAll('nav[aria-label="Career folders"] button[aria-controls]')];
+    const ids=[...document.querySelectorAll('[id]')].map(element=>element.id);
+    return {unique:ids.length===new Set(ids).size,valid:controls.every(button=>{const target=document.getElementById(button.getAttribute('aria-controls'));return target&&target.tagName==='UL'&&target.hidden===(button.getAttribute('aria-expanded')==='false');})};
+  });
+  assert.deepEqual(relationships,{unique:true,valid:true},'both navigation copies have unique IDs and valid hidden relationships');
+  await nav.getByRole('button',{name:`Collapse ${assets.title}`,exact:true}).press('Enter');
+  await nav.getByRole('button',{name:`Collapse ${resumes.title}`,exact:true}).press('Enter');
+  if(mobile){await page.keyboard.press('Escape');}
+  await page.goto(`${baseUrl}/career/documents/${source.id}`,{waitUntil:'networkidle'});
+  nav=await openNav();
+  await nav.getByRole('button',{name:`Collapse ${assets.title}`,exact:true}).waitFor();
+  assert.equal(await nav.locator('[aria-current="page"]').count(),1,'only the document leaf is the current page');
+  if(mobile)await page.keyboard.press('Escape');
+  await page.goto(baseUrl,{waitUntil:'networkidle'});
+}
+
+async function checkChapterMotion(page, reduced=false) {
+  await page.addInitScript(()=>{window.careerMotions=[];const animate=Element.prototype.animate;Element.prototype.animate=function(frames,options){if(this.hasAttribute('data-chapter-motion'))window.careerMotions.push({chapter:this.getAttribute('data-chapter-motion'),frames,duration:options.duration});return animate.call(this,frames,options);};});
+  await page.goto(`${baseUrl}/career/walkthrough?stop=${career.chapters[0].id}`,{waitUntil:'networkidle'});
+  assert.equal(await page.evaluate(()=>window.careerMotions.length),0,'initial chapter is immediately visible without entrance motion');
+  const progress=page.getByRole('navigation',{name:'Walkthrough chapters'});
+  await progress.evaluate(element=>{window.careerProgress=element;});
+  await progress.getByRole('link').nth(1).click();
+  await page.waitForURL(`**stop=${career.chapters[1].id}`);
+  await page.getByRole('heading',{level:1,name:career.chapters[1].title,exact:true}).waitFor();
+  const motions=await page.evaluate(()=>window.careerMotions);
+  if(reduced)assert.equal(motions.length,0,'reduced motion avoids chapter animation');
+  else {assert.ok(motions.length>=2,'heading and chapter/evidence respond to the chapter change');for(const motion of motions)assert.equal(motion.duration,210);}
+  assert.equal(await progress.evaluate(element=>element===window.careerProgress),true,'progress navigation remains mounted');
+  await page.goBack();await page.getByRole('heading',{level:1,name:career.chapters[0].title,exact:true}).waitFor();
+  await page.goForward();await page.getByRole('heading',{level:1,name:career.chapters[1].title,exact:true}).waitFor();
+  await progress.getByRole('link').nth(2).click();
+  await progress.getByRole('link').nth(4).click();
+  await progress.getByRole('link').nth(6).click();
+  await page.waitForURL(`**stop=${career.chapters[6].id}`);
+  await page.getByRole('heading',{level:1,name:career.chapters[6].title,exact:true}).waitFor();
+  assert.equal(await page.locator('[data-chapter-motion]').count(),2,'only the latest chapter wrappers remain');
+
+  if(reduced)assert.equal(await page.locator('main').evaluate(element=>element.getAnimations({subtree:true}).length),0);
+}
+
 async function checkViewport(name, viewport) {
   const page=await browser.newPage({viewport,colorScheme:'dark'});
   page.on('pageerror',error=>errors.push(error.message));
@@ -240,6 +331,7 @@ async function checkViewport(name, viewport) {
   await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).waitFor();
   await page.getByText('Applications are reps.',{exact:true}).first().waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width);
+  await checkFolderDisclosures(page,viewport);
   await checkNotebook(page,viewport);
   await checkQuickFind(page);
   if(name==='mobile') {
@@ -247,7 +339,9 @@ async function checkViewport(name, viewport) {
     await open.click();
     const drawer=page.getByRole('dialog',{name:'Career navigation'});
     await drawer.waitFor();
-    for(const folder of career.folders.filter(f=>f.id!=='root')) assert.equal(await drawer.locator(`a[href="/career/${folder.id}"]`).count(),1,`${folder.id} missing from mobile navigation`);
+    const rootToggle=drawer.getByRole('button',{name:/^(Expand|Collapse) Career$/});
+    await rootToggle.waitFor();
+    assert.equal(await drawer.locator('a[href="/career/resumes/assets"]').count(),1,'nested folders remain represented in disclosures');
     await page.keyboard.press('Escape');
     assert.equal(await open.evaluate(el=>el===document.activeElement),true,'drawer restores focus');
   }
@@ -342,6 +436,7 @@ if(process.argv.includes('--career-interactions-only')) {
       const page=await browser.newPage({viewport:{width,height:900},colorScheme:'dark'});
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(baseUrl,{waitUntil:'networkidle'});
+      await checkFolderDisclosures(page,{width,height:900});
       await checkNotebook(page,{width,height:900});
       await checkQuickFind(page);
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,`${width}: overflow`);
@@ -353,6 +448,13 @@ if(process.argv.includes('--career-interactions-only')) {
       await page.close();
       console.log(`[OK] ${width}px: finder/search/keyboard/drawer, notebook, geometry and inline receipts`);
     }
+    const blocked=await browser.newPage({viewport:{width:390,height:900}});
+    await blocked.addInitScript(()=>{Storage.prototype.getItem=()=>{throw new Error('Storage unavailable');};Storage.prototype.setItem=()=>{throw new Error('Storage unavailable');};});
+    await blocked.goto(`${baseUrl}/career/resumes/assets`,{waitUntil:'networkidle'});
+    await blocked.getByRole('button',{name:'Open Career navigation'}).click();
+    await blocked.getByRole('dialog',{name:'Career navigation'}).getByRole('button',{name:'Collapse Resume assets',exact:true}).waitFor();
+    await blocked.close();
+    for(const reduced of [false,true]){const page=await browser.newPage({viewport:{width:390,height:900},reducedMotion:reduced?'reduce':'no-preference'});await checkChapterMotion(page,reduced);await page.close();}
     assert.deepEqual(errors,[],'interaction accessibility/browser errors');
     console.log('[OK] focused Career interactions passed');
   } finally { await browser.close(); }

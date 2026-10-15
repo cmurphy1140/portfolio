@@ -26,3 +26,10 @@ export function noteTable(block:string):{headers:string[];rows:string[][]}|undef
  if(!cells(lines[1]).every(value=>/^:?-{3,}:?$/.test(value)))return undefined;
  return {headers,rows:lines.slice(2).map(line=>{const row=cells(line);return headers.map((_,i)=>row[i]||'');})};
 }
+
+export function folderBranch(folderId?:string):string[] {
+ if(!folderId)return [];
+ if(folderId==='root')return ['root'];
+ const parts=folderId.split('/');
+ return ['root',...parts.map((_,index)=>parts.slice(0,index+1).join('/'))];
+}

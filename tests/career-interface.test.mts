@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filterRoles, safeHref, noteHref, cleanNote, noteTable } from '@/components/career/logic';
+import { filterRoles, safeHref, noteHref, cleanNote, noteTable, folderBranch } from '@/components/career/logic';
 
 test('search combines preparation filter and company/title/location text', () => {
  const roles = [{id:'a',company:'UCF',title:'Engineer',location:'Orlando',preparationStatus:'Ready'}, {id:'b',company:'UCF',title:'Analyst',location:'Remote',preparationStatus:'Review fit'}];
@@ -29,4 +29,10 @@ test('source comments are hidden and Markdown table headers remain structured', 
  assert.equal(cleanNote('Before %% private editor comment %% after'), 'Before  after');
  assert.deepEqual(noteTable('| Work | State |\n| --- | --- |\n| Scorer | Planned |'), {headers:['Work','State'],rows:[['Scorer','Planned']]});
  assert.equal(noteTable('ordinary | sentence'),undefined);
+});
+
+test('deep document navigation opens its folder ancestors without unrelated branches', () => {
+ assert.deepEqual(folderBranch('cover-letters/tailored'),['root','cover-letters','cover-letters/tailored']);
+ assert.deepEqual(folderBranch('root'),['root']);
+ assert.deepEqual(folderBranch(undefined),[]);
 });
