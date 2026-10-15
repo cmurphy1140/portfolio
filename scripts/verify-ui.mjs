@@ -137,6 +137,19 @@ async function checkVeroInteractions(page, viewport, label) {
 }
 
 const career = JSON.parse(await readFile(new URL('../src/data/career-public.json', import.meta.url), 'utf8'));
+async function checkHeroOpening(page) {
+  const opening="Ideas are cheap, software builds fast. I'm pragmatically slow.";
+  const paragraph=page.locator('main p').first();
+  assert.equal(await paragraph.textContent(),opening,'exact corrected opening comes first');
+  assert.equal(await page.locator('main').getByText(opening,{exact:true}).count(),1,'one opening');
+  assert.equal(await page.getByText('A working record of finding my next role.',{exact:true}).count(),0);
+  const presentation=await paragraph.evaluate(element=>{const style=getComputedStyle(element);const hero=element.parentElement;return {weight:Number(style.fontWeight),size:parseFloat(style.fontSize),family:style.fontFamily,bodyFamily:getComputedStyle(hero.querySelector('[data-contrast-check="body"]')).fontFamily,competing:[...hero.querySelectorAll(':scope > p')].some(paragraph=>paragraph.textContent==='Applications are reps.'),beforeName:Boolean(element.compareDocumentPosition(hero.querySelector('h1'))&Node.DOCUMENT_POSITION_FOLLOWING)};});
+  assert.ok(presentation.weight>=500&&presentation.weight<=600&&presentation.size>=22&&presentation.size<=28);
+  assert.notEqual(presentation.family,presentation.bodyFamily,'opening has the serif voice');
+  assert.equal(presentation.competing,false,'home motto is removed while source passages remain');
+  assert.equal(presentation.beforeName,true);
+}
+
 async function checkHeroGrounding(page) {
   const line=page.locator('[data-hero-grounding]');
   assert.equal(await line.count(),1,'one continuous grounding stroke');
@@ -159,6 +172,7 @@ async function checkHeroGrounding(page) {
 }
 
 async function checkNotebook(page, viewport) {
+  await checkHeroOpening(page);
   await checkHeroGrounding(page);
   const notebook=page.getByRole('region',{name:'From my notebook'});
   await notebook.waitFor();
@@ -351,7 +365,7 @@ async function checkViewport(name, viewport) {
   page.on('pageerror',error=>errors.push(error.message));
   await page.goto(baseUrl,{waitUntil:'networkidle'});
   await page.getByRole('heading',{level:1,name:'Connor Murphy.'}).waitFor();
-  await page.getByText('Applications are reps.',{exact:true}).first().waitFor();
+  await checkHeroOpening(page);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),viewport.width);
   await checkFolderDisclosures(page,viewport);
   await checkNotebook(page,viewport);

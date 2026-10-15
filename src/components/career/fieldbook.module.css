@@ -41,13 +41,13 @@
 .readingLayout{max-width:1100px;margin:auto}
 .main{padding:60px clamp(28px,4.5vw,64px) 0;min-width:0}
 .hero{padding:8px 0 44px}
-.intro{font-size:14px;color:var(--muted);margin-bottom:29px!important}
+.intro{font-family:var(--font-source-serif),Georgia,serif;font-size:clamp(24px,2.1vw,28px);font-weight:500;line-height:1.5;color:var(--blue);max-width:48ch;margin-bottom:32px!important}
 .heroIdentity{--hero-size:clamp(72px,7.7vw,110px);--companion-size:160px;--hero-gap:32px;position:relative;display:flex;align-items:flex-end;gap:var(--hero-gap);width:fit-content;max-width:100%;padding-bottom:24px}
 .fieldbook .hero h1{position:relative;font-size:var(--hero-size);letter-spacing:-.075em;line-height:.99;font-weight:650;width:fit-content;flex-shrink:0}
 .period{color:var(--blue)}
 .heroCharacter{display:block;flex:0 0 auto;width:var(--companion-size);height:auto;max-height:185px;object-fit:contain;background:transparent;border:0;box-shadow:none}
-.hero .motto{margin:35px 0 20px;font-family:var(--font-source-serif),Georgia,serif;font-size:clamp(27px,2.6vw,36px);font-weight:500;letter-spacing:-.02em;color:var(--blue)}
 .heroText{color:var(--muted);font-size:16px;max-width:52ch}
+.hero .heroText{margin-top:28px}
 .actions{display:flex;align-items:center;gap:25px;margin-top:32px;flex-wrap:wrap}
 .primary{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 19px;border:2px solid var(--blue);border-radius:12px;background:var(--blue);color:var(--base)!important;font-size:14px;font-weight:700;text-decoration:none!important}
 .primary:hover{background:var(--text)}
@@ -183,10 +183,9 @@
   .mobileHeader button{font-size:12px;padding:5px 7px;display:flex;gap:10px;align-items:center}
   .breadcrumb{padding:14px 22px;font-size:12px;gap:8px;min-height:48px}.edition{font-size:12px}
   .main{padding:38px 24px 0}.hero{padding-top:0;padding-bottom:32px}
-  .intro{font-size:12px;margin-bottom:26px!important}
+  .intro{font-size:22px;margin-bottom:28px!important}
   .heroIdentity{--hero-gap:16px;--hero-size:clamp(36px,12vw,52px);--companion-size:clamp(90px,28.2vw,110px)}
   .heroCharacter{max-height:130px}
-  .hero .motto{font-size:28px;margin-top:32px}
   .heroText{font-size:16px;line-height:1.8}.actions{gap:23px;margin-top:27px}
   .primary{font-size:12px;padding:11px 15px}.secondary{font-size:12px}
   .notebook{grid-template-columns:1fr auto;padding:19px;margin-bottom:32px;gap:14px}
@@ -247,7 +246,7 @@
 .sidebar nav .fileNode>a,.drawer nav .fileNode>a{min-width:0;padding:7px 5px;gap:7px;font-size:12px;font-weight:500}
 .fileNode>a>span{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .sidebar nav>a,.drawer nav>a{font-weight:600}
-.hero .motto,.words,.note blockquote{font-weight:500}
+.words,.note blockquote{font-weight:500}
 .notebook>p{font-weight:600}
 @media(max-width:380px){.mobileHeader{gap:6px}.mobileHeader button{padding-left:5px;padding-right:5px;gap:6px}}
 
