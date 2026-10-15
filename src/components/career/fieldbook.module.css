@@ -827,3 +827,5 @@
 .subSection .downloadPage{margin-top:8px}
 .fieldbook main .beforeSheet>.trackingHead{padding-top:clamp(64px,8vw,120px)}
 .fieldbook .stopGrid{padding-right:clamp(0px,4vw,56px)}
+/* Index aligned right, rule on the right edge. */
+.fieldbook .menu ul.tocList{border-left:0;border-right:3px solid var(--tan);text-align:right}
