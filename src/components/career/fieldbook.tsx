@@ -28,7 +28,7 @@ const SITE_LINKS:{label:string;href:string;download?:boolean}[]=[
 ];
 const PROJECT_COPY=["Catch 5 was the card game played at home, built as an iPhone app. It showed ownership from start to finish: the rules, the interface, the testing and the release.", "Drive Score rebuilt the data pipeline from the Liberty Mutual internship without a team around it, carrying that experience into independent work.", "Vero, a home-automation client, separated what a device reported from what it actually did. That careful checking is exactly what a team wants from a new engineer.", "tracker-digest turned the job search itself into a small tool, a habit of measuring before deciding."];
 const PROJECT_LINKS=[{"label": "Catch 5", "href": "/work/catch-5"}, {"label": "Drive Score", "href": "/work/drive-score"}, {"label": "Vero", "href": "/work/vero"}, {"label": "tracker-digest", "href": "/work/tracker-digest"}];
-const STATUS_ORDER=['Ready','Review schedule','Review fit','Closed'];
+const STATUS_ORDER=['Applied','Ready','Review schedule','Review fit','Closed'];
 const statusLabel=(status:string)=>status==='Ready'?'Apply':status;
 function StatusText({status,url,company,title}:{status:string;url?:string;company:string;title:string}){const href=status==='Ready'?safeHref(url):undefined;return href?<a className={s.applyLink} href={href} target="_blank" rel="noreferrer" aria-label={`Apply to ${title} at ${company} (opens the posting)`} title="Opens the posting">Apply</a>:<>{statusLabel(status)}</>;}
 function CompanyMark({company}:{company:string}){const src=companyLogos[company];return <span className={s.companyMark} aria-hidden="true">{src?<Image src={src} alt="" width={28} height={28} unoptimized/>:company.replace(/^(City of|The)\s+/,'').charAt(0)}</span>;}

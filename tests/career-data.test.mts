@@ -12,7 +12,7 @@ test('public snapshot has seven stops, every drawer and no private fields', () =
   const content = getPublicCareerContent();
   assert.equal(content.chapters.length, 2);
   assert.equal(content.roles.length, 23);
-  assert.deepEqual(Object.fromEntries(['Ready', 'Review schedule', 'Review fit', 'Closed'].map(s => [s, content.roles.filter(r => r.preparationStatus === s).length])), {Ready:10,'Review schedule':5,'Review fit':5,Closed:3});
+  assert.deepEqual(Object.fromEntries(['Applied', 'Ready', 'Review schedule', 'Review fit', 'Closed'].map(s => [s, content.roles.filter(r => r.preparationStatus === s).length])), {Applied:9,Ready:1,'Review schedule':5,'Review fit':5,Closed:3});
   for (const id of ['applied','cover-letters','cover-letters/assets','cover-letters/tailored','resumes','resumes/assets','resumes/tailored','to-apply','review']) assert.ok(content.folders.some(f => f.id === id));
   assert.ok(content.roles.every(r => !r.fit && !r.gaps && !r.notes && !r.schedule && !r.recordedApplied));
   assert.equal(content.applied.length, 0);
@@ -56,7 +56,7 @@ test('attached workbook parser preserves all 23 preparation statuses', {skip: !p
   assert.equal(result.status, 0, result.stderr);
   const rows = JSON.parse(result.stdout);
   assert.equal(rows.length, 23);
-  assert.equal(rows.filter((r: {preparationStatus:string}) => r.preparationStatus === 'Ready').length, 10);
+  assert.equal(rows.filter((r: {preparationStatus:string}) => r.preparationStatus === 'Ready').length, 1);
   assert.equal(rows.filter((r: {preparationStatus:string}) => r.preparationStatus === 'Closed').length, 3);
   assert.equal(rows[0].company, 'Florida Digital Service');
   assert.equal(rows[0].title, 'Training Consultant');

@@ -176,11 +176,12 @@ def build(source, workbook):
     folder_map['to-apply']['documentIds'].append(id)
     files[id] = dict(path=str(workbook.resolve()),mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',filename=workbook.name)
     roles = parse_shortlist(workbook)
-    lookup = {slug(r['A']+'-'+r['B']):r for r in workbook_rows(source/'to-apply/applications.xlsx') if r.get('C')=='lead'}
+    lookup = {slug(r['A']+'-'+r['B']):r for r in workbook_rows(source/'to-apply/applications.xlsx') if r.get('C') in ('lead','applied')}
     letter_keys = {'Florida Digital Service':'florida-digital-service-training-consultant','Florida Department of Corrections':'fdc-systems-project-analyst','City of Deerfield Beach':'deerfield-beach-business-analyst'}
     for role in roles:
         old = lookup.get(role['id'], {})
         if old.get('E'): role['recordedApplied'] = old['E']
+        if old.get('C')=='applied': role['preparationStatus'] = 'Applied'
         if old.get('F'): role['recordedContact'] = excel_date(old['F'])
         key = letter_keys.get(role['company'])
         if role['company']=='UCF':
