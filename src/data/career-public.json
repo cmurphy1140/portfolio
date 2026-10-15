@@ -801,7 +801,7 @@
   "chapters": [
     {
       "id": "outgoing",
-      "title": "What goes out the door",
+      "title": "Resume",
       "summary": "One base r\u00e9sum\u00e9, tuned by audience.",
       "paragraphs": [
         "One base r\u00e9sum\u00e9, with the emphasis shifted by the kind of role: software, IT or analyst.",
@@ -823,7 +823,7 @@
     },
     {
       "id": "projects",
-      "title": "The projects are deliverables",
+      "title": "Projects",
       "summary": "Things that ran, with evidence attached.",
       "paragraphs": [
         "Catch 5 was the card game we played at home, built as an iPhone app and checked by 264 automated tests.",
@@ -847,7 +847,7 @@
     },
     {
       "id": "selection",
-      "title": "Selection, not chasing",
+      "title": "Filter",
       "summary": "Applied wide, accepted narrow.",
       "paragraphs": [
         "Searches ran more than one way, because each found roles the other missed. Every posting was read for warning signs: constant on-call, ticket quotas, being the only IT person.",
@@ -861,24 +861,6 @@
       ],
       "receiptIds": [
         "selection"
-      ]
-    },
-    {
-      "id": "measurement",
-      "title": "The instrument",
-      "summary": "Built the scoreboard before drawing conclusions.",
-      "paragraphs": [
-        "tracker-digest, a small purpose-built tool, read the application spreadsheet and listed the follow-ups owed.",
-        "The scoreboard kept the search honest. Decisions came from the numbers, not from one quiet week."
-      ],
-      "links": [
-        {
-          "label": "Applied",
-          "href": "/career/applied"
-        }
-      ],
-      "receiptIds": [
-        "measurement"
       ]
     },
     {
