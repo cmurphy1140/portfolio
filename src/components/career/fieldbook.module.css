@@ -563,3 +563,15 @@
 .fieldbook main a.applyLink{display:inline-flex;align-items:baseline;gap:4px;color:var(--phthalo)!important}
 .fieldbook main a.applyLink span{color:var(--phthalo)!important;font-size:.85em}
 .fieldbook main a.applyLink:hover{text-decoration:underline!important;text-underline-offset:3px}
+
+/* No boxed buttons: actions are deep blue text with a small arrow. */
+.fieldbook main .primary,.fieldbook main .primary:hover{background:transparent!important;border:0!important;border-radius:0!important;padding:6px 0!important;min-height:44px;color:var(--phthalo)!important;font-family:var(--sans)!important;font-size:20px!important;font-weight:400!important;display:inline-flex;align-items:center;gap:8px}
+.fieldbook main .primary span,.fieldbook main .more span{color:var(--phthalo)!important;font-size:.85em}
+.fieldbook main .more{display:inline-flex;align-items:center;gap:8px;color:var(--phthalo)!important;font-size:18px}
+.fieldbook main .primary:hover,.fieldbook main .more:hover{text-decoration:underline!important;text-underline-offset:5px}
+.fieldbook main .detailsToggle{border:0!important;padding:4px 0!important;border-radius:0!important;background:transparent!important;font-weight:400!important}
+.fieldbook main .role summary:hover .detailsToggle,.fieldbook main .role summary:hover .detailsToggle span{background:transparent!important;color:var(--phthalo)!important;text-decoration:underline}
+.fieldbook main .detailsToggle span:first-child::after{content:' ▾'}
+.fieldbook main .detailsToggle span:last-child::after{content:' ▴'}
+.fieldbook main .ledgerStatus::before{display:none!important}
+.fieldbook main a.more,.fieldbook main a.more span{color:var(--phthalo)!important}
