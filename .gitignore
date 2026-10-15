@@ -42,3 +42,7 @@ next-env.d.ts
 
 # generated diagram screenshots
 docs/**/*.visual-check.*
+
+# editors and agents
+.idea
+.codex

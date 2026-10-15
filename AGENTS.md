@@ -56,7 +56,7 @@ approved public Vero material only.
 - A destination is publishable only when its route or public URL passes the
   verification script.
 - Do not deploy, create a remote, commit, or push without Connor's authorization.
-- Run `npm run lint`, `npm run build`, and `npm run validate:images` before any
+- Run `scripts/check.sh` (lint, tests, build, privacy, images) before any
   completion claim.
 
 ## Current Status

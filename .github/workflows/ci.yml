@@ -1,0 +1,45 @@
+name: CI
+
+# The commit gate. Runs scripts/check.sh: destinations, lint, tests, build,
+# the public-output privacy gate and the image check. The vault check skips
+# itself when the vault is absent.
+#
+# Read-only by design: no deploy, no write access (`permissions: contents: read`).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  check:
+    name: scripts/check.sh
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        # ripgrep: validate-images.sh scans with rg; without it the scan finds nothing.
+        run: |
+          sudo apt-get install -y ripgrep
+          npm ci
+
+      - name: scripts/check.sh
+        # The same command a developer runs. No check exists only in CI.
+        run: scripts/check.sh

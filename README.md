@@ -1,4 +1,42 @@
-# Career fieldbook
+# portfolio
+
+Connor Murphy's portfolio site: a job-search spreadsheet of roles with Apply links, plus a Resume page with projects and downloads, live on Vercel.
+
+**Serves:** career · codename **Capri** (Campanian Archipelago) · live at https://personal-os-weld-beta.vercel.app · vault note [Projects/active/portfolio/portfolio](obsidian://open?vault=Archipelago&file=Projects%2Factive%2Fportfolio%2Fportfolio)
+
+**Status:** stage **parked**, live on Vercel. Checked 2026-10-15: Node tests 51 passed, 0 failed; build ok; 1 image reference resolves; site states match the vault.
+
+**Run:** `scripts/check.sh` (once: `npm ci`). CI runs the same command on every push.
+
+**Start here:** [`AGENTS.md`](AGENTS.md), the public boundary and working rules for the site.
+
+**Map**
+
+```
+src/app/         Next.js routes: home, career, resume, timeline, work case studies
+src/components/  the career fieldbook and page components
+src/data/        destinations.ts, the only source of navigation destinations
+public/career/   publishable résumé, cover letter, logos, tracker and images
+scripts/         check.sh, destination, privacy, image and vault checks, career export
+tests/           node --test suites
+```
+
+## What this is not
+
+- Not a deployment tool. Nothing here deploys; shipping to Vercel is a separate, authorized step.
+- Not a home for private material. No local paths, house or device data, or private employer and customer material.
+- Not the written record. Plans, audits and progress live in the vault; `STATE.md` points there.
+
+## Principles
+
+1. **Read first.** Understand what exists before changing it. The record of how it was learned is part of the product.
+2. **Every claim carries its check.** Checked, Recorded or UNTESTED. A note is never the proof for a later claim.
+3. **Corrections stay on the record.** A wrong finding is corrected in place with the date, never erased.
+4. **Private stays private.** Raw data, people, addresses, device maps and client material never enter the repo. Only facts come in, plus documents the client already hands out.
+5. **Say what it is not.** Scope is written down so nobody builds the wrong thing.
+6. **One place for status.** The vault note. The repo points to it.
+
+## What is here
 
 Connor Murphy's portfolio follows the Career folders from his Obsidian vault.
 Start with seven connected walkthrough chapters, inspect the receipts alongside

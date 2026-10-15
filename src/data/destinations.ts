@@ -61,9 +61,9 @@ export const destinations = [
     shortTitle: "Evidence Room",
     kind: "case-study",
     href: "/work/evidence-room",
-    summary: "An investigation game built around fictional records, supported claims, and the moment new evidence changes the story. My current learning project.",
+    summary: "An investigation game built around fictional records, supported claims, and the moment new evidence changes the story.",
     status: "Phase 1 scaffold built. The validation rule is my exercise, and it is still open.",
-    state: "Active",
+    state: "Parked",
     question: "What does it take to change your mind when new evidence arrives?",
     evidence: [
       "The starter includes fictional records, citation selection, a claim notebook, and a revision flow.",
