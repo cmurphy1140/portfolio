@@ -686,3 +686,23 @@
 @media(max-width:900px){.fieldbook main .showcase.slide{grid-template-columns:1fr}}
 .fieldbook main .showcase .docsVisual .pages{height:clamp(240px,26vw,340px);max-width:440px;width:100%}
 .fieldbook.fieldbook.fieldbook main h2.bigTitle{font-size:clamp(44px,5.6vw,76px)!important;font-weight:300!important;letter-spacing:-.01em!important;line-height:1.02!important}
+
+/* Thin hamburger, top right on every page; its list carries the site's links. */
+.menu{position:fixed;top:clamp(16px,2.4vw,28px);right:clamp(16px,2.4vw,32px);z-index:20;display:flex;flex-direction:column;align-items:flex-end}
+.fieldbook .menuButton{display:flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;padding:0 8px;background:transparent;border:0;border-radius:0;cursor:pointer}
+.menuButton span{display:block;height:1.5px;width:100%;background:var(--black)}
+.fieldbook .menuButton:hover{background:transparent;opacity:.6}
+.menuButton[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.menuButton[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menuButton[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.menu ul{list-style:none;margin:8px 0 0;padding:8px 0;background:var(--paper);border-left:2px solid var(--tan);min-width:200px}
+.menu ul[hidden]{display:none}
+.menu li a{display:block;padding:8px 22px;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--black);text-decoration:none}
+.menu li a:hover{opacity:.6}
+.menu a:focus-visible,.menuButton:focus-visible{outline:2px solid var(--phthalo);outline-offset:2px}
+@media(prefers-reduced-motion:no-preference){.menuButton span{transition:transform .2s ease,opacity .2s ease}}
+
+/* No horizontal dividers; documents slide centered on its own. */
+.fieldbook main :is(.slide,.ledgerSection,.zPlan,.projectSection,.sectionIntro){border-top:0!important}
+.fieldbook main .showcase.slide{display:flex;justify-content:center}
+.fieldbook main .showcase .docsVisual{align-items:center;text-align:center;width:min(100%,460px)}
