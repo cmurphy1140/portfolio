@@ -36,8 +36,10 @@ step build npm run --silent build
 step privacy npm run --silent validate:privacy
 step images npm run --silent validate:images
 
-# The vault defaults to Murph's Obsidian vault on the Mac; CI has none and skips.
-vault="${PORTFOLIO_VAULT:-$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Archipelago}"
+# The vault path comes from PORTFOLIO_VAULT or the gitignored .vault-path file (one line),
+# so no local path enters this public repo. CI has neither and skips.
+vault="${PORTFOLIO_VAULT:-$( [ -f .vault-path ] && head -1 .vault-path )}"
+if [ -z "$vault" ]; then vault="(not set)"; fi
 export PORTFOLIO_VAULT="$vault"
 if [ ! -d "$vault" ]; then
   echo "== vault"

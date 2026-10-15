@@ -46,3 +46,6 @@ docs/**/*.visual-check.*
 # editors and agents
 .idea
 .codex
+
+# local vault path for scripts/check.sh
+.vault-path
