@@ -706,3 +706,14 @@
 .fieldbook main :is(.slide,.ledgerSection,.zPlan,.projectSection,.sectionIntro){border-top:0!important}
 .fieldbook main .showcase.slide{display:flex;justify-content:center}
 .fieldbook main .showcase .docsVisual{align-items:center;text-align:center;width:min(100%,460px)}
+
+/* Menu rides along while scrolling and stops where the spreadsheet starts. */
+.beforeSheet{position:relative}
+.menuRail{position:sticky;top:clamp(12px,2vw,24px);height:0;z-index:20;display:flex;justify-content:flex-end}
+.fieldbook .menuRail .menu{position:static}
+.workspace>.menuRail{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+.fieldbook main .menuRail{margin-right:calc(-1 * clamp(8px,2vw,32px))}
+.trackingHead{padding-top:50px}
+.trackingHead h2{margin-bottom:28px}
+.fieldbook main .ledgerSection.slide{padding-top:0}
+.fieldbook.fieldbook.fieldbook main .trackingHead h2{font-size:clamp(44px,5.6vw,76px)!important;line-height:1.02!important}
