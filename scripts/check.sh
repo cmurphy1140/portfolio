@@ -14,8 +14,8 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 fail() { echo "check: $*" >&2; exit 2; }
-command -v node >/dev/null 2>&1 || fail "node is missing. Node 20 or newer is required."
-command -v npm  >/dev/null 2>&1 || fail "npm is missing. Node 20 or newer is required."
+command -v node >/dev/null 2>&1 || fail "node is missing. Node 22 or newer is required."
+command -v npm  >/dev/null 2>&1 || fail "npm is missing. Node 22 or newer is required."
 [ -d node_modules ] || fail "node_modules is missing. Run 'npm ci' first."
 
 log=$(mktemp)
@@ -55,7 +55,7 @@ refs=$(grep -aoE '\[INFO\] [0-9]+ reference' "$log" | tail -1 | grep -oE '[0-9]+
 
 echo
 echo "Checked $(date -u +%Y-%m-%d): Node tests $node_pass passed, $node_fail failed; build ok; $refs image references resolve; vault $vault_state."
-if [ "$status" -eq 0 ] && [ "$node_fail" = 0 ]; then
+if [ "$status" -eq 0 ] && [ "$node_fail" = 0 ] && [ "$node_pass" -gt 0 ]; then
   echo "check: passed"
 else
   echo "check: FAILED" >&2

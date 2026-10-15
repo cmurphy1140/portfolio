@@ -28,10 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node 20
+      - name: Set up Node 22
+        # 22, not 20: `node --test "tests/**/*.test.mts"` needs glob support (Node 21+).
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
 
       - name: Install dependencies
