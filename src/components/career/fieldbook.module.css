@@ -455,3 +455,35 @@
 .chapterHeading .lede{font-family:var(--serif)!important;font-weight:400}
 .fieldbook .notebook>p{font-family:var(--serif)!important;font-weight:500}
 .steps p,.chapterBody,.showcaseText p{line-height:1.65}
+
+/* The tracker as a spreadsheet: formula bar, column letters, row numbers,
+   hairline grid, one sheet tab. The grid is the design; no boxes inside it. */
+.sheet{margin-top:8px;overflow-x:auto;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.sheet:focus-visible{outline:3px solid var(--phthalo);outline-offset:4px}
+.formulaBar{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--edge);font-size:14px;color:var(--muted);min-width:640px}
+.formulaBar span{padding:9px 14px;border-right:1px solid var(--edge)}
+.formulaBar span:first-child{width:56px;text-align:center;font-weight:700;color:var(--ink)}
+.formulaBar span:nth-child(2){font-style:italic;font-family:var(--serif);color:var(--numeral-ink)}
+.formulaBar span:nth-child(3){flex:1;font-family:var(--font-geist-mono),monospace;color:var(--ink)}
+.formulaBar span:last-child{border-right:0;font-weight:700;color:var(--phthalo)}
+.fieldbook .ledger{min-width:640px;font-size:16px;border-collapse:collapse}
+.fieldbook .ledger th,.fieldbook .ledger td{border:1px solid var(--edge);border-top:0;padding:10px 14px;vertical-align:top}
+.fieldbook .ledger tr>*:first-child{border-left:0}
+.fieldbook .ledger tr>*:last-child{border-right:0}
+.colLetters th{font-family:var(--sans);font-size:12px!important;font-weight:600!important;color:var(--muted)!important;text-align:center!important;padding:5px 0!important;background:color-mix(in srgb,var(--beige) 45%,transparent);border-bottom:1px solid var(--edge)!important}
+.fieldbook .ledger thead tr:last-child th{background:var(--phthalo);color:#fff;font-size:14px;font-weight:700;text-align:left;border-color:var(--phthalo);border-bottom:0}
+.fieldbook .ledger thead tr:last-child th.rowNum{background:color-mix(in srgb,var(--beige) 45%,transparent);color:var(--muted);border-color:var(--edge)}
+.fieldbook .ledger .rowNum{width:56px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);background:color-mix(in srgb,var(--beige) 45%,transparent);font-family:var(--sans)}
+.fieldbook .ledger tbody tr:hover td{background:color-mix(in srgb,var(--sky) 30%,transparent)}
+.fieldbook .ledger td small{display:inline;margin-left:6px;font-size:13px}
+.fieldbook .ledger td small::before{content:'· '}
+.sheetTabs{display:flex;min-width:640px;font-size:14px;border-top:1px solid var(--edge)}
+.sheetTabs span{padding:8px 18px;font-weight:700;color:var(--phthalo);border-right:1px solid var(--edge);border-bottom:3px solid var(--phthalo);margin-left:56px}
+@media(max-width:700px){
+  .fieldbook .ledger thead{display:table-header-group}
+  .fieldbook .ledger{display:table}
+  .fieldbook .ledger tbody{display:table-row-group}
+  .fieldbook .ledger tr{display:table-row;padding:0;border:0}
+  .fieldbook .ledger td,.fieldbook .ledger th{display:table-cell;padding:9px 12px}
+}
+.fieldbook .ledger tbody td:nth-child(2){font-weight:700}
