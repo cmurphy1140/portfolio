@@ -882,19 +882,6 @@
       ]
     },
     {
-      "id": "ai",
-      "title": "The AI era, honestly",
-      "summary": "Learned the tools and where they stopped.",
-      "paragraphs": [
-        "I learned AI-assisted development on purpose. Knowing when work needed more oversight was part of that skill.",
-        "My class projects from 2022 were written before these tools existed. Rebuilding one put the before and after side by side."
-      ],
-      "links": [],
-      "receiptIds": [
-        "pre-ai"
-      ]
-    },
-    {
       "id": "contribution",
       "title": "What I actually bring",
       "summary": "The intangibles counted more, not less.",
@@ -1207,8 +1194,7 @@
   "approach": [
     "Applications are free.",
     "Precision is the argument.",
-    "Stay useful inside whatever a team needs.",
-    "Learn the tools and understand their limits."
+    "Stay useful inside whatever a team needs."
   ],
   "projects": [
     {
