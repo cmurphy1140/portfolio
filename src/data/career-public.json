@@ -802,10 +802,10 @@
     {
       "id": "mentality",
       "title": "The mentality",
-      "summary": "Applications are reps, not lottery tickets.",
+      "summary": "Applications were reps, not lottery tickets.",
       "paragraphs": [
-        "Every application is practice. I send them steadily and keep score with one number: interviews back for every twenty sent.",
-        "If that number is zero after two weeks, the r\u00e9sum\u00e9 or the targeting needs work, so I fix it and keep going. Every claim on the page has to hold up when someone asks."
+        "Every application was practice. I sent them steadily and kept score with one number: interviews back for every twenty sent.",
+        "A zero after two weeks meant the r\u00e9sum\u00e9 or the targeting needed work, so I fixed it and kept going. Every claim on the page had to hold up when someone asked."
       ],
       "links": [
         {
@@ -821,10 +821,10 @@
     {
       "id": "outgoing",
       "title": "What goes out the door",
-      "summary": "One master r\u00e9sum\u00e9, tuned by audience.",
+      "summary": "One base r\u00e9sum\u00e9, tuned by audience.",
       "paragraphs": [
-        "I keep one main r\u00e9sum\u00e9 and shift the emphasis by the kind of role: software, IT or analyst.",
-        "Every cover letter is written to one posting, not a template. If I cannot back a number, it comes off the page, even when it was my strongest line."
+        "I kept one base r\u00e9sum\u00e9 and shifted the emphasis by the kind of role: software, IT or analyst.",
+        "Every cover letter started from one base and was written to one posting. Any number I could not back came off the page, even my strongest line."
       ],
       "links": [
         {
@@ -843,10 +843,10 @@
     {
       "id": "projects",
       "title": "The projects are deliverables",
-      "summary": "Things that run, with evidence attached.",
+      "summary": "Things that ran, with evidence attached.",
       "paragraphs": [
-        "Catch 5 is the card game we play at home, built as an iPhone app and checked by 264 automated tests.",
-        "Drive Score rebuilds the kind of data pipeline I worked on as an intern, running on sample trips. Each project shows the result and the decisions behind it, not just the code."
+        "Catch 5 was the card game we played at home, built as an iPhone app and checked by 264 automated tests.",
+        "Drive Score rebuilt the kind of data pipeline I worked on as an intern, running on sample trips. Each project showed the result and the decisions behind it, not just the code."
       ],
       "links": [
         {
@@ -867,10 +867,10 @@
     {
       "id": "selection",
       "title": "Selection, not chasing",
-      "summary": "Apply wide, accept narrow.",
+      "summary": "Applied wide, accepted narrow.",
       "paragraphs": [
-        "I search more than one way, because each search finds roles the other misses. Then I read every posting for warning signs: constant on-call, ticket quotas, being the only IT person.",
-        "The shortlist holds 23 roles: 10 ready to send, five to check on schedule, five to check on fit and three closed. What I accept stays narrow: predictable hours and a team that supports people."
+        "I searched more than one way, because each search found roles the other missed. Then I read every posting for warning signs: constant on-call, ticket quotas, being the only IT person.",
+        "The shortlist held 23 roles: 10 ready to send, five to check on schedule, five to check on fit and three closed. What I would accept stayed narrow: predictable hours and a team that supported people."
       ],
       "links": [
         {
@@ -885,10 +885,10 @@
     {
       "id": "measurement",
       "title": "The instrument",
-      "summary": "Build the scoreboard before drawing conclusions.",
+      "summary": "Built the scoreboard before drawing conclusions.",
       "paragraphs": [
-        "tracker-digest is a small tool I built. It reads my application spreadsheet and lists who I owe a follow-up.",
-        "The scoreboard keeps the search honest. Decisions come from the numbers, not from one quiet week."
+        "I built tracker-digest, a small tool that read my application spreadsheet and listed the follow-ups I owed.",
+        "The scoreboard kept the search honest. Decisions came from the numbers, not from one quiet week."
       ],
       "links": [
         {
@@ -903,10 +903,10 @@
     {
       "id": "ai",
       "title": "The AI era, honestly",
-      "summary": "Learn the tools, and know where they stop.",
+      "summary": "Learned the tools and where they stopped.",
       "paragraphs": [
-        "AI-assisted development is a skill I am learning on purpose. Knowing when work needs more oversight is part of that skill.",
-        "I have class projects from 2022, written before these tools existed. Rebuilding one now puts the before and after side by side."
+        "I learned AI-assisted development on purpose. Knowing when work needed more oversight was part of that skill.",
+        "My class projects from 2022 were written before these tools existed. Rebuilding one put the before and after side by side."
       ],
       "links": [],
       "receiptIds": [
@@ -916,10 +916,10 @@
     {
       "id": "contribution",
       "title": "What I actually bring",
-      "summary": "The intangibles are worth more now.",
+      "summary": "The intangibles counted more, not less.",
       "paragraphs": [
-        "Explaining a technical idea to someone without the background. Reconciling a cash drawer to zero. Writing things down so the next person can pick them up.",
-        "Teaching, restaurants and a county golf course taught me those. They are the half of the job AI does not touch."
+        "Explaining a technical idea to someone without the background. Reconciling a cash drawer to zero. Writing things down so the next person could pick them up.",
+        "Teaching, restaurants and a county golf course taught me those. They were the half of the job AI did not touch."
       ],
       "links": [],
       "receiptIds": [

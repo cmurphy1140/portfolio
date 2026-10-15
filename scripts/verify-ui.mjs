@@ -138,7 +138,7 @@ async function checkVeroInteractions(page, viewport, label) {
 
 const career = JSON.parse(await readFile(new URL('../src/data/career-public.json', import.meta.url), 'utf8'));
 async function checkHeroOpening(page) {
-  const opening="Ideas are cheap, software builds fast. I'm pragmatically slow.";
+  const opening="Ideas are cheap, software builds fast. Be pragmatically slow.";
   const paragraph=page.locator('main p').first();
   assert.equal(await paragraph.textContent(),opening,'exact corrected opening comes first');
   assert.equal(await page.locator('main').getByText(opening,{exact:true}).count(),1,'one opening');
