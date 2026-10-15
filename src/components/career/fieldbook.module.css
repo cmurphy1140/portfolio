@@ -634,3 +634,4 @@
 .fieldbook .opening .agenda ul{padding-left:0}
 .fieldbook .opening .agenda li{padding:10px 0 10px 28px}
 @media(max-width:900px){.fieldbook .opening{flex-direction:column;align-items:flex-start;gap:40px}.fieldbook .opening .agenda{padding-top:0}}
+.fieldbook.fieldbook.fieldbook main h2.quoteHeading{font-family:var(--serif)!important;font-size:clamp(26px,2.4vw,32px)!important;font-weight:300!important;line-height:1.35!important;color:var(--phthalo)!important;letter-spacing:-.01em!important}
