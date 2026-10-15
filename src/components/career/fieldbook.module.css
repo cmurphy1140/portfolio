@@ -575,3 +575,54 @@
 .fieldbook main .detailsToggle span:last-child::after{content:' ▴'}
 .fieldbook main .ledgerStatus::before{display:none!important}
 .fieldbook main a.more,.fieldbook main a.more span{color:var(--phthalo)!important}
+
+/* Three kinds of text only.
+   1. Main headers (h1, h2): deep blue.
+   2. Subheaders (h3) and every clickable: thin Newsreader, black.
+   3. Everything else: Public Sans, one size, black (white on the sheet header row). */
+.fieldbook main :is(p,li,td,th,small,span,em,strong,dd,dt,label,summary,div){font-size:16px!important;font-weight:400!important;line-height:1.6}
+.fieldbook main .agenda li{font-size:clamp(26px,2.8vw,36px)!important}
+.fieldbook main h3,.fieldbook main h3 *{font-family:var(--serif)!important;font-weight:300!important;color:var(--black)!important}
+.fieldbook main a,.fieldbook main a *,.fieldbook main a:hover,.fieldbook main summary .detailsToggle,.fieldbook main summary .detailsToggle span{font-family:var(--serif)!important;font-weight:300!important;color:var(--black)!important;text-decoration:none!important}
+.fieldbook main :is(.primary,.more){font-size:22px!important}
+.fieldbook main :is(.primary,.more) span{font-size:18px!important}
+.fieldbook main .agenda a,.fieldbook main .agenda li{font-family:var(--serif)!important;font-weight:300!important}
+.fieldbook main .progress a,.fieldbook main .progress small{font-size:18px!important}
+.fieldbook main .progress a[aria-current] small{font-weight:400!important;border-bottom:1px solid var(--black);text-decoration:none!important}
+.fieldbook main .ledger a.applyLink,.fieldbook main .ledger a.applyLink span{font-size:16px!important}
+.fieldbook main .chapterBody p{font-size:16px!important}
+.fieldbook main .ledger thead tr:last-child th:not(.rowNum){color:#fff!important}
+.fieldbook main a:hover,.fieldbook main summary:hover .detailsToggle span{opacity:.65}
+.fieldbook main :is(h1,h2,h3) *{font-size:inherit!important;font-weight:inherit!important}
+.fieldbook main p.intro{font-size:clamp(26px,2.4vw,32px)!important;font-weight:300!important;line-height:1.35}
+
+/* Final type pass, written to outrank every earlier rule. */
+.fieldbook.fieldbook.fieldbook main :is(p,li,td,th,small,span,em,strong,dd,dt,label,div){font-family:var(--sans)!important;font-size:16px!important;font-weight:400!important;color:var(--black)!important}
+.fieldbook.fieldbook.fieldbook main .ledger thead tr:last-child th:not(.rowNum){color:#fff!important}
+.fieldbook.fieldbook.fieldbook main :is(h1,h2) :is(span,*){font-family:inherit!important;font-size:inherit!important;font-weight:inherit!important;color:inherit!important}
+.fieldbook.fieldbook.fieldbook main .hero h1 .period{color:var(--mocha)!important}
+.fieldbook.fieldbook.fieldbook main p.intro{font-family:var(--serif)!important;font-size:clamp(26px,2.4vw,32px)!important;font-weight:300!important;color:var(--phthalo)!important}
+.fieldbook.fieldbook.fieldbook main .agenda li{font-family:var(--serif)!important;font-size:clamp(26px,2.8vw,36px)!important;font-weight:300!important}
+.fieldbook.fieldbook.fieldbook main :is(h3,h3 *){font-family:var(--serif)!important;font-weight:300!important;color:var(--black)!important}
+.fieldbook.fieldbook.fieldbook main :is(a,a *,button,button *){font-family:var(--serif)!important;font-weight:300!important;color:var(--black)!important;text-decoration:none!important}
+.fieldbook.fieldbook.fieldbook main :is(.primary,.more){font-size:22px!important}
+.fieldbook.fieldbook.fieldbook main :is(.primary,.more) span{font-size:18px!important}
+.fieldbook.fieldbook.fieldbook main :is(.ledger a,.ledger a span,.relatedLinks a,.relatedLinks a span,.receipt a,.applyLink,.applyLink span){font-size:16px!important}
+.fieldbook.fieldbook.fieldbook main .progress :is(a,small){font-size:18px!important}
+.fieldbook.fieldbook.fieldbook main .chapterPaging :is(a,span){font-size:22px!important}
+.fieldbook.fieldbook.fieldbook main .detailsToggle{float:none;display:inline-block;margin:12px 0 0;padding:6px 0;border:0;background:transparent;font-size:18px!important;cursor:pointer}
+.fieldbook.fieldbook.fieldbook main .companyMark{font-family:var(--serif)!important;font-size:17px!important;color:var(--phthalo)!important}
+.fieldbook.fieldbook.fieldbook main :is(a,button):hover{opacity:.65}
+.fieldbook main .role{display:block}
+
+/* Opening screen: the plan top-left, name and companion bottom-right, one viewport. */
+.opening{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;min-height:calc(100svh - clamp(48px,8vw,96px));padding-bottom:40px}
+.fieldbook .opening .agenda{grid-area:1/1;display:block;min-height:0;padding:0;border:0}
+.fieldbook .opening .agenda h2{margin-bottom:28px}
+.fieldbook .opening .hero{grid-area:2/2;align-self:end;justify-self:end;padding:0;text-align:left}
+@media(max-width:900px){
+  .opening{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:0;gap:72px}
+  .fieldbook .opening .hero{grid-area:2/1;justify-self:start}
+}
+.fieldbook.fieldbook.fieldbook main :is(h1,h2) *{line-height:inherit!important}
+.fieldbook .opening .agenda h2{font-size:clamp(44px,5.6vw,76px)!important;line-height:1.02}
