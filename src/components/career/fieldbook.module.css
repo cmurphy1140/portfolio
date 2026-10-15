@@ -769,3 +769,13 @@
 .fieldbook.fieldbook.fieldbook main a.pageCaption{font-family:var(--sans)!important;font-size:13px!important;font-weight:400!important;color:#6b6460!important;text-decoration:none!important}
 .fieldbook.fieldbook.fieldbook main a.pageCaption:hover{color:var(--black)!important;opacity:1}
 .fieldbook main .pages img{filter:none!important;box-shadow:none!important;outline:1px solid #e4dccf;outline-offset:-1px}
+
+/* Quiet quote at the top; quote and credit share one small grey style. */
+.topQuote{margin:0 0 clamp(20px,3vw,36px);padding-right:64px}
+.topQuote blockquote{margin:0}
+.fieldbook.fieldbook.fieldbook main .topQuote :is(p,figcaption){font-family:var(--sans)!important;font-size:14px!important;font-weight:400!important;line-height:1.5!important;color:#6b6460!important;font-style:normal!important}
+.topQuote figcaption::before{content:'— '}
+/* Pages sit lower. */
+.fieldbook main .showcase.slide{margin-top:clamp(-70px,-4vw,-20px)}
+@media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px}}
+.topQuote{width:fit-content;max-width:calc(100% - 64px);padding-right:0}
