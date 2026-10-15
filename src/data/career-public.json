@@ -6,7 +6,7 @@
       "id": "root",
       "title": "Career",
       "path": "Career",
-      "description": "The walkthrough, the receipts, and the thinking behind the work.",
+      "description": "The walkthrough, the proof, and the thinking behind the work.",
       "documentIds": [
         "base-resume-cover-letter-plan-md",
         "base-resume-cover-letter-review-md",
@@ -745,7 +745,7 @@
     },
     {
       "id": "the-receipts-md",
-      "title": "The receipts",
+      "title": "The proof",
       "kind": "note",
       "folderId": "root",
       "summary": "Read the evidence and qualifications behind the walkthrough.",
@@ -900,7 +900,7 @@
       "id": "catch-five",
       "title": "Catch 5",
       "claim": "264 tests recorded",
-      "detail": "The receipts note reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.",
+      "detail": "My project record reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/catch-5"
@@ -909,7 +909,7 @@
       "id": "vero",
       "title": "Vero",
       "claim": "318 tests, one skipped, recorded",
-      "detail": "The receipts note reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.",
+      "detail": "My project record reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/vero"
@@ -918,7 +918,7 @@
       "id": "drive-score",
       "title": "Drive Score",
       "claim": "26 tests recorded",
-      "detail": "The receipts note records a clean-export check dated October 12, 2026. This export did not rerun the project.",
+      "detail": "My project record records a clean-export check dated October 12, 2026. This export did not rerun the project.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/drive-score"
@@ -953,7 +953,7 @@
       "id": "measurement",
       "title": "Measurement",
       "claim": "Screens per twenty applications",
-      "detail": "The receipts note records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.",
+      "detail": "My project record records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/tracker-digest"

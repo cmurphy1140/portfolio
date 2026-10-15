@@ -68,7 +68,7 @@ def parse_shortlist(path):
     return roles
 
 FOLDERS = [
-    ('root', 'Career', 'The walkthrough, the receipts, and the thinking behind the work.'),
+    ('root', 'Career', 'The walkthrough, the proof, and the thinking behind the work.'),
     ('resumes', 'Resumes', 'Start with the current resume, then choose a version for your audience.'),
     ('resumes/assets', 'Resume assets', 'A page preview and duplicate PDF of the main professional resume.'),
     ('resumes/tailored', 'Audience variants', 'Compare versions for IT and analyst roles, relocation, and professional networking.'),
@@ -92,13 +92,13 @@ CHAPTERS = [
 
 def public_receipts():
     rows = [
-        ('catch-five','Catch 5','264 tests recorded','The receipts note reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.','the-receipts.md','/work/catch-5'),
-        ('vero','Vero','318 tests, one skipped, recorded','The receipts note reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.','the-receipts.md','/work/vero'),
-        ('drive-score','Drive Score','26 tests recorded','The receipts note records a clean-export check dated October 12, 2026. This export did not rerun the project.','the-receipts.md','/work/drive-score'),
+        ('catch-five','Catch 5','264 tests recorded','My project record reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.','the-receipts.md','/work/catch-5'),
+        ('vero','Vero','318 tests, one skipped, recorded','My project record reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.','the-receipts.md','/work/vero'),
+        ('drive-score','Drive Score','26 tests recorded','My project record records a clean-export check dated October 12, 2026. This export did not rerun the project.','the-receipts.md','/work/drive-score'),
         ('precision','Precision','Remove a number that cannot be defended','The source describes revising application materials and adding a regression check. This export presents the recorded practice, not a newly executed check.','the-receipts.md',''),
         ('documents','Outgoing documents','One current resume; audience-specific variants','The current mapped main file is resume-SEND-THIS.pdf. An older index reference to an October 14 master is absent; it is not invented here.','resumes/resumes.md','/career/documents/resumes-resume-send-this-pdf'),
         ('selection','Search selection','Independent sweeps; explicit preparation labels','Job_Applications.xlsx supplies the 23-role shortlist. Ready, Review schedule, Review fit and Closed describe preparation as recorded, not live posting status.','to-apply/to-apply.md','/career/to-apply'),
-        ('measurement','Measurement','Screens per twenty applications','The receipts note records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.','the-receipts.md','/work/tracker-digest'),
+        ('measurement','Measurement','Screens per twenty applications','My project record records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.','the-receipts.md','/work/tracker-digest'),
         ('pre-ai','Dated original work','Compare the original approach with a rebuild','The walkthrough describes CS770 work dated September–December 2022. The original commit histories have not been independently inspected for this website.','the-walkthrough.md',''),
         ('contribution','Communication and follow-through','Practical habits across technical and service work','The walkthrough connects teaching, restaurants and county golf-course work to explanation, documentation and dependable operations.','the-walkthrough.md','/career/resumes'),
     ]
@@ -132,7 +132,7 @@ def describe_document(path, folder_id):
     descriptions = {
         'career-root': ('Career overview', 'The four main drawers and the principles that connect them.'),
         'the-walkthrough': ('The walkthrough', 'Seven stops connecting mindset, work, selection, and evidence.'),
-        'the-receipts': ('The receipts', 'Read the evidence and qualifications behind the walkthrough.'),
+        'the-receipts': ('The proof', 'Read the evidence and qualifications behind the walkthrough.'),
         'my-words-2026-10-14': ('My words', 'Original phrasing and reflections, preserved in the local workspace.'),
         'base-resume-cover-letter-plan': ('Resume and letter revision plan', 'The proposed direction for revising the core application documents.'),
         'base-resume-cover-letter-review': ('Resume and letter revision notes', 'Working feedback on the next resume and cover-letter drafts.'),
