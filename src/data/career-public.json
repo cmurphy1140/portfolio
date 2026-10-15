@@ -868,19 +868,6 @@
       "receiptIds": [
         "selection"
       ]
-    },
-    {
-      "id": "contribution",
-      "title": "The intangibles",
-      "summary": "The intangibles counted more, not less.",
-      "paragraphs": [
-        "Explaining a technical idea to someone without the background. Reconciling a cash drawer to zero. Writing things down so the next person could pick them up.",
-        "Teaching, restaurants and a county golf course built those habits. They were the half of the job AI did not touch."
-      ],
-      "links": [],
-      "receiptIds": [
-        "contribution"
-      ]
     }
   ],
   "receipts": [
