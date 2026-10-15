@@ -654,3 +654,26 @@
 .fieldbook .stopGrid{margin-bottom:0}
 .fieldbook main .chapterPaging{margin-top:29px}
 @media(max-width:700px){.fieldbook main .slide{padding:50px 0}.fieldbook .opening{min-height:0}}
+
+/* Documents slide: quote and its line list on the left, pages on the right. */
+.fieldbook main .showcase .showcaseText{flex-direction:row;align-items:center;justify-content:flex-start;text-align:left;gap:clamp(20px,2.5vw,36px)}
+.fieldbook main .showcase .showcaseText h2{margin:0;white-space:nowrap}
+.lineList{list-style:none;margin:0;padding:0;border-left:3px solid var(--tan)}
+.fieldbook.fieldbook.fieldbook main .lineList li{font-family:var(--serif)!important;font-size:clamp(22px,2.2vw,28px)!important;font-weight:300!important;padding:6px 0 6px 24px}
+.fieldbook.fieldbook.fieldbook main .lineList a{font-size:inherit!important}
+.fieldbook main .showcase.slide{max-width:none;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+@media(max-width:900px){.fieldbook main .showcase .showcaseText{flex-direction:column;align-items:flex-start}.fieldbook main .showcase .showcaseText h2{white-space:normal}}
+
+/* Smaller tracker. */
+.fieldbook.fieldbook.fieldbook main .sheet :is(td,th:not(.rowNum),span,small,a,.formulaBar span,.sheetTabs span){font-size:13px!important}
+.fieldbook.fieldbook.fieldbook main .sheet :is(.colLetters th,.rowNum){font-size:11px!important}
+.fieldbook.fieldbook.fieldbook main .sheet :is(td,th){padding:5px 10px!important;line-height:1.4!important}
+.fieldbook main .sheet .formulaBar span{padding:6px 10px}
+.fieldbook main .sheet .sheetTabs span{padding:6px 14px}
+.fieldbook main .sheet .companyMark,.fieldbook main .sheet .companyMark img{width:15px!important;height:15px!important;flex-basis:15px!important}
+.fieldbook.fieldbook.fieldbook main .sheet .companyMark{font-size:13px!important}
+.fieldbook main .sheet .formulaBar,.fieldbook main .sheet .ledger,.fieldbook main .sheet .sheetTabs{min-width:560px}
+
+/* Name in a refined serif. */
+.fieldbook.fieldbook.fieldbook main .hero h1,.fieldbook.fieldbook.fieldbook main .hero h1 *{font-family:var(--serif)!important;font-weight:500!important;letter-spacing:-.02em!important}
+.fieldbook.fieldbook.fieldbook main .hero h1 .period{color:var(--mocha)!important}
