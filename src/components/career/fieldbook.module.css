@@ -487,3 +487,33 @@
   .fieldbook .ledger td,.fieldbook .ledger th{display:table-cell;padding:9px 12px}
 }
 .fieldbook .ledger tbody td:nth-child(2){font-weight:700}
+
+/* Deck: each home section is a slide with one headline and one thing to look at. */
+.fieldbook .footer,.fieldbook .actions{display:none}
+.slide{min-height:min(100svh,920px);display:grid;align-content:center;padding:96px 0;border-top:1px solid var(--edge)}
+.slide h2{font-size:clamp(44px,5.6vw,76px)!important;line-height:1.02}
+.agenda{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 72px;align-items:center}
+.agenda ul{list-style:none;margin:0;padding:0;border-left:3px solid var(--tan)}
+.agenda li{font-family:var(--serif)!important;font-size:clamp(26px,2.8vw,36px);font-weight:500;line-height:1.2;padding:10px 0 10px 32px}
+.fieldbook .agenda a{color:var(--ink)}
+.fieldbook .agenda a:hover{color:var(--phthalo);text-decoration:underline;text-underline-offset:6px}
+.projectsSlide{justify-items:center;text-align:center}
+.projectsSlide ul{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 96px}
+.projectsSlide li{font-family:var(--serif)!important;font-size:clamp(32px,3.6vw,48px);font-weight:600}
+.fieldbook .projectsSlide a{color:var(--bark);text-decoration:underline;text-decoration-color:var(--tan);text-decoration-thickness:3px;text-underline-offset:10px}
+.fieldbook .projectsSlide a:hover{color:var(--phthalo);text-decoration-color:var(--phthalo)}
+.ledgerSection.slide h2{margin-bottom:36px}
+.ledgerActions a:not(.primary){font-weight:700;text-decoration:underline;text-underline-offset:4px}
+/* Company marks sit on the page with no frame. */
+.companyCell{display:inline-flex;align-items:center;gap:10px}
+.companyMark{flex:0 0 22px;width:22px;height:22px;display:inline-grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:17px;color:var(--phthalo)}
+.companyMark img{width:22px;height:22px;object-fit:contain;border-radius:4px}
+.company{display:flex!important;align-items:center;gap:10px;font-size:15px!important}
+.status[data-status="Ready"]{color:var(--numeral-ink)!important}
+/* Stop pages: titles only, no counters. */
+.fieldbook .progress small{display:block;font-size:14px;max-width:none;color:var(--muted);margin:0;padding:0}
+.fieldbook .progress{gap:10px 28px;flex-wrap:wrap}
+.fieldbook .progress a{flex:0 0 auto}
+.fieldbook .progress a[aria-current] small{color:var(--phthalo);font-weight:700;text-decoration:underline;text-underline-offset:6px}
+@media(max-width:900px){.agenda{grid-template-columns:1fr}.projectsSlide ul{grid-template-columns:1fr;gap:20px}}
+@media(max-width:700px){.slide{min-height:auto;padding:72px 0}.fieldbook .progress small{display:block}}

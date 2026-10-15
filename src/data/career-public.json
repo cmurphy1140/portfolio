@@ -800,25 +800,6 @@
   ],
   "chapters": [
     {
-      "id": "mentality",
-      "title": "The mentality",
-      "summary": "Applications are free.",
-      "paragraphs": [
-        "Applications are free, so every one was practice. I sent them steadily and kept score with one number: interviews back for every twenty sent.",
-        "A zero after two weeks meant the r\u00e9sum\u00e9 or the targeting needed work, so I fixed it and kept going. Every claim on the page had to hold up when someone asked."
-      ],
-      "links": [
-        {
-          "label": "To apply",
-          "href": "/career/to-apply"
-        }
-      ],
-      "receiptIds": [
-        "measurement",
-        "precision"
-      ]
-    },
-    {
       "id": "outgoing",
       "title": "What goes out the door",
       "summary": "One base r\u00e9sum\u00e9, tuned by audience.",

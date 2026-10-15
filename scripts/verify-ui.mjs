@@ -353,8 +353,8 @@ async function checkChapterMotion(page, reduced=false) {
   await progress.getByRole('link').nth(2).click();
   await progress.getByRole('link').nth(4).click();
   await progress.getByRole('link').nth(6).click();
-  await page.waitForURL(`**stop=${career.chapters[6].id}`);
-  await page.getByRole('heading',{level:1,name:career.chapters[6].title,exact:true}).waitFor();
+  await page.waitForURL(`**stop=${career.chapters[career.chapters.length-1].id}`);
+  await page.getByRole('heading',{level:1,name:career.chapters[career.chapters.length-1].title,exact:true}).waitFor();
   assert.equal(await page.locator('[data-chapter-motion]').count(),2,'only the latest chapter wrappers remain');
 
   if(reduced)assert.equal(await page.locator('main').evaluate(element=>element.getAnimations({subtree:true}).length),0);
@@ -398,7 +398,7 @@ async function checkViewport(name, viewport) {
   await page.goBack();
   await page.getByRole('heading',{level:1,name:career.chapters[5].title,exact:true}).waitFor();
   await page.getByRole('navigation',{name:'Continue walkthrough'}).getByRole('link',{name:/Next stop/}).click();
-  await page.getByRole('heading',{level:1,name:career.chapters[6].title,exact:true}).waitFor();
+  await page.getByRole('heading',{level:1,name:career.chapters[career.chapters.length-1].title,exact:true}).waitFor();
   await page.getByRole('navigation',{name:'Continue walkthrough'}).getByRole('link',{name:/Previous stop/}).click();
   await page.getByRole('heading',{level:1,name:career.chapters[5].title,exact:true}).waitFor();
   await page.goto(`${baseUrl}/career/to-apply`);
