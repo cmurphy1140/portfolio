@@ -84,7 +84,7 @@ PROJECTS = [dict(label='Catch 5', href='/work/catch-5'), dict(label='Drive Score
 
 CHAPTERS = [
     ('outgoing', 'Resume', 'One base résumé, tuned by audience.', ['One base résumé, with the emphasis shifted by the kind of role: software, IT or analyst.', 'Every cover letter started from one base and was written to one posting. Any number without backing came off the page, even the strongest line.'], ['documents'], ['resumes', 'cover-letters']),
-    ('projects', 'Projects', 'Things that ran, with evidence attached.', ['Catch 5 was the card game we played at home, built as an iPhone app and checked by 264 automated tests.', 'Drive Score rebuilt the data pipeline from the internship, running on sample trips. Each project showed the result and the decisions behind it, not just the code.'], ['catch-five', 'drive-score', 'vero'], []),
+    ('projects', 'Projects', 'Things that ran, with evidence attached.', ['Catch 5 was the card game played at home, built as an iPhone app. It showed ownership from start to finish: the rules, the interface, the testing and the release.', 'Drive Score rebuilt the data pipeline from the Liberty Mutual internship without a team around it, carrying that experience into independent work.', 'Vero, a home-automation client, separated what a device reported from what it actually did. That careful checking is exactly what a team wants from a new engineer.', 'tracker-digest turned the job search itself into a small tool, a habit of measuring before deciding.'], [], []),
     ('selection', 'Filter', 'Applied wide, accepted narrow.', ['Searches ran more than one way, because each found roles the other missed. Every posting was read for warning signs: constant on-call, ticket quotas, being the only IT person.', 'The shortlist held 23 roles: 10 ready to send, five to check on schedule, five to check on fit and three closed. The bar for accepting stayed narrow: predictable hours and a team that supported people.'], ['selection'], ['to-apply']),
     ('contribution', 'The intangibles', 'The intangibles counted more, not less.', ['Explaining a technical idea to someone without the background. Reconciling a cash drawer to zero. Writing things down so the next person could pick them up.', 'Teaching, restaurants and a county golf course built those habits. They were the half of the job AI did not touch.'], ['contribution'], []),
 ]
@@ -190,7 +190,7 @@ def build(source, workbook):
         role['resumeId'] = 'resumes-resume-send-this-pdf'
         if key and 'cover-letters-tailored-cover-letter-'+key+'-pdf' in files:
             role['letterId'] = 'cover-letters-tailored-cover-letter-'+key+'-pdf'
-    chapters = [dict(id=i,title=t,summary=s,paragraphs=p,links=[dict(label=folder_map[f]['title'],href='/career/'+f) for f in fs] + (PROJECTS[:2] if i=='projects' else []),receiptIds=rs) for i,t,s,p,rs,fs in CHAPTERS]
+    chapters = [dict(id=i,title=t,summary=s,paragraphs=p,links=[dict(label=folder_map[f]['title'],href='/career/'+f) for f in fs] + (PROJECTS if i=='projects' else []),receiptIds=rs) for i,t,s,p,rs,fs in CHAPTERS]
     public_roles = [{k:v for k,v in r.items() if k in ['id','company','title','location','preparationStatus','postingUrl','resumeId']} for r in roles]
     for role in public_roles:
         role['location'] = re.sub(r'; \$[^\n]+', '', role['location'])

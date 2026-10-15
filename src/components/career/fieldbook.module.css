@@ -548,3 +548,8 @@
 .fieldbook main .detailsToggle,.fieldbook main .detailsToggle span{font-family:var(--sans)!important;color:var(--phthalo)!important}
 .fieldbook main .role summary:hover .detailsToggle,.fieldbook main .role summary:hover .detailsToggle span{color:#fff!important}
 .fieldbook main .chapterReceipts .evidenceState,.fieldbook main .ledgerStatus{color:var(--black)!important}
+
+/* Thin subheaders and no underlines anywhere. */
+.fieldbook main h2,.fieldbook main h3,.fieldbook .intro{font-weight:300!important;letter-spacing:-.01em!important}
+.fieldbook a,.fieldbook main a:not(.primary),.fieldbook .progress a[aria-current] small,.fieldbook .agenda a:hover,.fieldbook .projectsSlide a{text-decoration:none!important}
+.fieldbook main a:not(.primary),.fieldbook main :is(.agenda li,.numeral,.tally strong){font-weight:400!important}
