@@ -26,7 +26,7 @@ case study. Arbitrary commands, paths, and URLs must fail closed.
 The living project journal (October 2026) evolves “A Different Road.” Connor's
 name and current direction come first. Keep the asphalt/amber palette, Geist
 Sans narrative, Geist Mono controls, light/dark themes, and dated road record.
-See `docs/living-journal-design.md` for the design rationale.
+See the design rationale in the vault record (`Projects/active/portfolio/record/living-journal-design.md`).
 
 - A large name and short introduction lead into the current learning project.
 - An on-demand, silent Remotion story demonstrates evidence and revision.
@@ -62,7 +62,7 @@ approved public Vero material only.
 ## Current Status
 
 2026-09-26: the "A Different Road" redesign replaced the split-plane layout
-(see Aesthetic North Star and docs/design.md).
+(see Aesthetic North Star and the vault record `Projects/active/portfolio/record/design.md`).
 
 2026-09-20: the split-plane Personal OS Shell, closed command engine, typed
 destination manifest, internal case-study and resume routes, public-output

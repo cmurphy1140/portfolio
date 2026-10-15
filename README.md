@@ -65,7 +65,7 @@ The UI test expects the production server at `http://127.0.0.1:4174` unless
 
 The project is separate from Vero. It must never contain raw house evidence,
 local paths, network details, device maps, household identifiers, or private
-customer/employer material. See `AGENTS.md` and `docs/design.md` before editing.
+customer/employer material. See `AGENTS.md` and the design record (vault: `Projects/active/portfolio/record/design.md`) before editing.
 
 ## Career fieldbook
 
