@@ -613,7 +613,7 @@
     },
     {
       "id": "my-words-2026-10-14-md",
-      "title": "My words",
+      "title": "Own words",
       "kind": "note",
       "folderId": "root",
       "summary": "Original phrasing and reflections, preserved in the local workspace.",
@@ -804,8 +804,8 @@
       "title": "What goes out the door",
       "summary": "One base r\u00e9sum\u00e9, tuned by audience.",
       "paragraphs": [
-        "I kept one base r\u00e9sum\u00e9 and shifted the emphasis by the kind of role: software, IT or analyst.",
-        "Every cover letter started from one base and was written to one posting. Any number I could not back came off the page, even my strongest line."
+        "One base r\u00e9sum\u00e9, with the emphasis shifted by the kind of role: software, IT or analyst.",
+        "Every cover letter started from one base and was written to one posting. Any number without backing came off the page, even the strongest line."
       ],
       "links": [
         {
@@ -827,7 +827,7 @@
       "summary": "Things that ran, with evidence attached.",
       "paragraphs": [
         "Catch 5 was the card game we played at home, built as an iPhone app and checked by 264 automated tests.",
-        "Drive Score rebuilt the kind of data pipeline I worked on as an intern, running on sample trips. Each project showed the result and the decisions behind it, not just the code."
+        "Drive Score rebuilt the data pipeline from the internship, running on sample trips. Each project showed the result and the decisions behind it, not just the code."
       ],
       "links": [
         {
@@ -850,8 +850,8 @@
       "title": "Selection, not chasing",
       "summary": "Applied wide, accepted narrow.",
       "paragraphs": [
-        "I searched more than one way, because each search found roles the other missed. Then I read every posting for warning signs: constant on-call, ticket quotas, being the only IT person.",
-        "The shortlist held 23 roles: 10 ready to send, five to check on schedule, five to check on fit and three closed. What I would accept stayed narrow: predictable hours and a team that supported people."
+        "Searches ran more than one way, because each found roles the other missed. Every posting was read for warning signs: constant on-call, ticket quotas, being the only IT person.",
+        "The shortlist held 23 roles: 10 ready to send, five to check on schedule, five to check on fit and three closed. The bar for accepting stayed narrow: predictable hours and a team that supported people."
       ],
       "links": [
         {
@@ -868,7 +868,7 @@
       "title": "The instrument",
       "summary": "Built the scoreboard before drawing conclusions.",
       "paragraphs": [
-        "I built tracker-digest, a small tool that read my application spreadsheet and listed the follow-ups I owed.",
+        "tracker-digest, a small purpose-built tool, read the application spreadsheet and listed the follow-ups owed.",
         "The scoreboard kept the search honest. Decisions came from the numbers, not from one quiet week."
       ],
       "links": [
@@ -883,11 +883,11 @@
     },
     {
       "id": "contribution",
-      "title": "What I actually bring",
+      "title": "The intangibles",
       "summary": "The intangibles counted more, not less.",
       "paragraphs": [
         "Explaining a technical idea to someone without the background. Reconciling a cash drawer to zero. Writing things down so the next person could pick them up.",
-        "Teaching, restaurants and a county golf course taught me those. They were the half of the job AI did not touch."
+        "Teaching, restaurants and a county golf course built those habits. They were the half of the job AI did not touch."
       ],
       "links": [],
       "receiptIds": [
@@ -900,7 +900,7 @@
       "id": "catch-five",
       "title": "Catch 5",
       "claim": "264 tests recorded",
-      "detail": "My project record reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.",
+      "detail": "The project record reports a clean published-code run on October 14, 2026: 93 engine and 171 view-model tests. This website export did not rerun them.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/catch-5"
@@ -909,7 +909,7 @@
       "id": "vero",
       "title": "Vero",
       "claim": "318 tests, one skipped, recorded",
-      "detail": "My project record reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.",
+      "detail": "The project record reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/vero"
@@ -918,7 +918,7 @@
       "id": "drive-score",
       "title": "Drive Score",
       "claim": "26 tests recorded",
-      "detail": "My project record records a clean-export check dated October 12, 2026. This export did not rerun the project.",
+      "detail": "The project record records a clean-export check dated October 12, 2026. This export did not rerun the project.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/drive-score"
@@ -953,7 +953,7 @@
       "id": "measurement",
       "title": "Measurement",
       "claim": "Screens per twenty applications",
-      "detail": "My project record records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.",
+      "detail": "The project record records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.",
       "state": "Recorded",
       "sourceLabel": "Career/the-receipts.md",
       "href": "/work/tracker-digest"

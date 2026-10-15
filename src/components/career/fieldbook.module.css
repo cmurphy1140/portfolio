@@ -532,3 +532,19 @@
 .fieldbook .receipt p{font-size:17px;color:var(--ink);margin-top:8px}
 .fieldbook .receipt small{display:block;color:var(--muted);margin:10px 0 6px}
 .fieldbook .receipt small{display:none}
+
+/* Three type roles only. Title: Public Sans bold, deep blue. Subheader: Newsreader, deep blue.
+   Everything else: Public Sans, plain black. Buttons and the sheet header keep white on blue. */
+.fieldbook{--black:#000;color:var(--black)}
+.fieldbook main h1,.fieldbook .hero h1,.chapterHeading h1,.fieldbook main h1.documentTitle{font-family:var(--sans)!important;font-weight:700!important;letter-spacing:-.035em!important;color:var(--phthalo)!important}
+.fieldbook main h2,.fieldbook main h3,.fieldbook .intro{font-family:var(--serif)!important;color:var(--phthalo)!important;font-style:normal!important}
+.fieldbook main :is(p,li,td,small,span,em,strong,dd,dt,label,a,summary,div,th):not(h1 *,h2 *,h3 *,.intro,.primary,.primary *,.period,.companyMark,.detailsToggle,.detailsToggle *){font-family:var(--sans)!important;color:var(--black)!important;font-style:normal!important}
+.fieldbook main :is(.agenda li,.projectsSlide li,.numeral,.tally strong){font-family:var(--sans)!important;font-weight:600!important}
+.fieldbook main .ledger thead tr:last-child th:not(.rowNum){color:#fff!important}
+.fieldbook main .ledgerStatus::before{color:var(--numeral)}
+.fieldbook main .ledgerStatus[data-status="Closed"]::before{color:var(--mocha)}
+.fieldbook main .projectsSlide a{text-decoration-color:var(--black)}
+.fieldbook main a:not(.primary){text-decoration-color:var(--black)}
+.fieldbook main .detailsToggle,.fieldbook main .detailsToggle span{font-family:var(--sans)!important;color:var(--phthalo)!important}
+.fieldbook main .role summary:hover .detailsToggle,.fieldbook main .role summary:hover .detailsToggle span{color:#fff!important}
+.fieldbook main .chapterReceipts .evidenceState,.fieldbook main .ledgerStatus{color:var(--black)!important}
