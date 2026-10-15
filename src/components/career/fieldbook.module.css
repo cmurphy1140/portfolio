@@ -553,3 +553,10 @@
 .fieldbook main h2,.fieldbook main h3,.fieldbook .intro{font-weight:300!important;letter-spacing:-.01em!important}
 .fieldbook a,.fieldbook main a:not(.primary),.fieldbook .progress a[aria-current] small,.fieldbook .agenda a:hover,.fieldbook .projectsSlide a{text-decoration:none!important}
 .fieldbook main a:not(.primary),.fieldbook main :is(.agenda li,.numeral,.tally strong){font-weight:400!important}
+
+/* Spreadsheet: smaller, all regular weight. */
+.fieldbook main .sheet :is(td,th,span,small){font-weight:400!important}
+.fieldbook main .sheet :is(td,th:not(.rowNum),.formulaBar span,.sheetTabs span){font-size:14px!important}
+.fieldbook main .sheet :is(.colLetters th,.rowNum,td small){font-size:12px!important}
+.fieldbook main .sheet td,.fieldbook main .sheet th{padding:8px 12px!important}
+.fieldbook main .sheet .companyMark,.fieldbook main .sheet .companyMark img{width:18px;height:18px;flex-basis:18px}
