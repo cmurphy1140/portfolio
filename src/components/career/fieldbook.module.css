@@ -717,3 +717,8 @@
 .trackingHead h2{margin-bottom:28px}
 .fieldbook main .ledgerSection.slide{padding-top:0}
 .fieldbook.fieldbook.fieldbook main .trackingHead h2{font-size:clamp(44px,5.6vw,76px)!important;line-height:1.02!important}
+
+/* Apply: plain lettering; the cue is bark-brown text and a tan wash on hover. */
+.fieldbook.fieldbook.fieldbook main a.applyLink{font-family:var(--sans)!important;font-weight:400!important;color:var(--bark)!important;text-decoration:none!important;padding:1px 6px;margin:-1px -6px;border-radius:4px;cursor:pointer}
+.fieldbook.fieldbook.fieldbook main a.applyLink:hover,.fieldbook.fieldbook.fieldbook main a.applyLink:focus-visible{background:color-mix(in srgb,var(--tan) 45%,transparent);opacity:1}
+.fieldbook main .ledgerStatus .companyCell{gap:8px}
