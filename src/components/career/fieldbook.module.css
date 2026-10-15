@@ -722,3 +722,15 @@
 .fieldbook.fieldbook.fieldbook main a.applyLink{font-family:var(--sans)!important;font-weight:400!important;color:var(--bark)!important;text-decoration:none!important;padding:1px 6px;margin:-1px -6px;border-radius:4px;cursor:pointer}
 .fieldbook.fieldbook.fieldbook main a.applyLink:hover,.fieldbook.fieldbook.fieldbook main a.applyLink:focus-visible{background:color-mix(in srgb,var(--tan) 45%,transparent);opacity:1}
 .fieldbook main .ledgerStatus .companyCell{gap:8px}
+
+/* Documents far right, less air around them. */
+.fieldbook .opening{min-height:0!important;padding-bottom:0!important}
+.fieldbook main .showcase.slide{justify-content:flex-end;padding:8px 0 16px!important;margin-top:clamp(-140px,-9vw,-40px)}
+.fieldbook main .showcase .docsVisual{align-items:flex-end;text-align:right;width:min(100%,400px)}
+.trackingHead{padding-top:24px}
+@media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px;justify-content:flex-start}.fieldbook main .showcase .docsVisual{align-items:flex-start;text-align:left}}
+/* Pages stay still. */
+.fieldbook main .pages a{transition:none!important}
+.fieldbook main .pages a:first-child:hover{transform:rotate(-6deg)!important;z-index:2}
+.fieldbook main .pages a:last-child:hover{transform:rotate(5deg)!important;z-index:auto}
+.fieldbook main .pages a:hover{opacity:1!important}
