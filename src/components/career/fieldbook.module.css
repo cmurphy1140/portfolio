@@ -779,3 +779,16 @@
 .fieldbook main .showcase.slide{margin-top:clamp(-70px,-4vw,-20px)}
 @media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px}}
 .topQuote{width:fit-content;max-width:calc(100% - 64px);padding-right:0}
+
+/* Home: contents list always open in the menu's spot. */
+.fieldbook .menu ul.tocList{display:block;margin-top:0}
+.fieldbook .menu ul.tocList li a{font-size:20px;padding:6px 20px}
+/* Papers under the headline, the letter overlapping the résumé a little. */
+.fieldbook main .showcase.slide{justify-content:flex-start!important;margin:clamp(20px,3vw,40px) 0 0!important;padding:0 0 16px!important}
+.fieldbook main .showcase .docsVisual{align-items:flex-start!important;text-align:left!important}
+.fieldbook main .showcase .docsVisual .pages{gap:0!important}
+.fieldbook main .showcase .docsVisual .pages .pageItem+.pageItem{margin-left:clamp(-44px,-3.2vw,-28px);margin-top:18px}
+.fieldbook main .showcase .docsVisual .pages .pageItem+.pageItem a.pageImage{position:relative!important;z-index:1}
+.fieldbook main .showcase .docsVisual .pages .pageItem:first-child a.pageCaption{align-self:flex-start}
+@media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px!important}}
+.fieldbook main .showcase .docsVisual .pages .pageItem+.pageItem{margin-left:clamp(-28px,-2vw,-16px);margin-top:14px}
