@@ -560,3 +560,6 @@
 .fieldbook main .sheet :is(.colLetters th,.rowNum,td small){font-size:12px!important}
 .fieldbook main .sheet td,.fieldbook main .sheet th{padding:8px 12px!important}
 .fieldbook main .sheet .companyMark,.fieldbook main .sheet .companyMark img{width:18px;height:18px;flex-basis:18px}
+.fieldbook main a.applyLink{display:inline-flex;align-items:baseline;gap:4px;color:var(--phthalo)!important}
+.fieldbook main a.applyLink span{color:var(--phthalo)!important;font-size:.85em}
+.fieldbook main a.applyLink:hover{text-decoration:underline!important;text-underline-offset:3px}
