@@ -743,3 +743,15 @@
 .fieldbook .heroCharacter{max-height:148px}
 @media(max-width:1000px){.fieldbook .heroIdentity{--hero-size:clamp(48px,6.4vw,66px);--hero-gap:20px}}
 @media(max-width:700px){.fieldbook .heroIdentity{--hero-size:clamp(32px,10vw,44px);--companion-size:clamp(76px,24vw,92px);--hero-gap:14px}.fieldbook .heroCharacter{max-height:108px}}
+
+/* Smaller headline; résumé and letter side by side, nudged up and right. */
+.fieldbook .heroIdentity{--hero-size:clamp(50px,5.4vw,76px)}
+@media(max-width:1000px){.fieldbook .heroIdentity{--hero-size:clamp(42px,5.6vw,58px)}}
+.fieldbook main .showcase .docsVisual .pages{display:flex;gap:14px;height:auto;max-width:none;width:auto;position:static}
+.fieldbook main .showcase .docsVisual .pages a,.fieldbook main .showcase .docsVisual .pages a:first-child,.fieldbook main .showcase .docsVisual .pages a:last-child,.fieldbook main .showcase .docsVisual .pages a:hover{position:static!important;transform:none!important;width:clamp(130px,13vw,190px)!important;left:auto!important;top:auto!important}
+.fieldbook main .showcase.slide{margin-top:clamp(-200px,-13vw,-60px);margin-right:calc(-1 * clamp(8px,2vw,28px))}
+.fieldbook main .showcase .docsVisual{width:auto}
+@media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px;margin-right:0}.fieldbook main .showcase .docsVisual .pages a{width:min(44vw,180px)!important}}
+.fieldbook main .showcase.slide{margin-top:clamp(-150px,-10vw,-60px)}
+@media(max-width:900px){.fieldbook main .showcase.slide{margin-top:24px}}
+@media(max-width:700px){.fieldbook .heroIdentity{--hero-size:clamp(30px,9vw,40px)}}
