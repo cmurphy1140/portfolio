@@ -762,3 +762,10 @@
 .fieldbook.fieldbook.fieldbook main .closingQuote p{font-family:var(--serif)!important;font-size:clamp(26px,2.6vw,36px)!important;font-weight:300!important;line-height:1.3!important;color:var(--phthalo)!important}
 .fieldbook.fieldbook.fieldbook main .closingQuote figcaption{margin-top:14px;font-family:var(--sans)!important;font-size:16px!important;color:var(--black)!important}
 .closingQuote figcaption::before{content:'— '}
+
+/* Small grey download line under each page. */
+.pageItem{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fieldbook main .showcase .docsVisual .pages .pageItem a.pageCaption{position:static!important;transform:none!important;width:auto!important;left:auto!important;top:auto!important}
+.fieldbook.fieldbook.fieldbook main a.pageCaption{font-family:var(--sans)!important;font-size:13px!important;font-weight:400!important;color:#6b6460!important;text-decoration:none!important}
+.fieldbook.fieldbook.fieldbook main a.pageCaption:hover{color:var(--black)!important;opacity:1}
+.fieldbook main .pages img{filter:none!important;box-shadow:none!important;outline:1px solid #e4dccf;outline-offset:-1px}
