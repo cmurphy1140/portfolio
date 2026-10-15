@@ -737,3 +737,9 @@
 /* Applications are free and Tracking read as normal text. */
 .fieldbook.fieldbook.fieldbook main .showcase p.intro,.fieldbook.fieldbook.fieldbook main .trackingHead h2{font-family:var(--sans)!important;font-size:16px!important;font-weight:400!important;line-height:1.6!important;letter-spacing:0!important;color:var(--black)!important}
 .trackingHead h2{margin-bottom:12px!important}
+.fieldbook.fieldbook.fieldbook main .trackingHead h2{font-family:var(--serif)!important;font-size:clamp(26px,2.4vw,32px)!important;font-weight:300!important;line-height:1.35!important;letter-spacing:-.01em!important;color:var(--phthalo)!important}
+/* Name and companion about 20% smaller. */
+.fieldbook .heroIdentity{--hero-size:clamp(58px,6.2vw,88px);--companion-size:128px;--hero-gap:26px}
+.fieldbook .heroCharacter{max-height:148px}
+@media(max-width:1000px){.fieldbook .heroIdentity{--hero-size:clamp(48px,6.4vw,66px);--hero-gap:20px}}
+@media(max-width:700px){.fieldbook .heroIdentity{--hero-size:clamp(32px,10vw,44px);--companion-size:clamp(76px,24vw,92px);--hero-gap:14px}.fieldbook .heroCharacter{max-height:108px}}
