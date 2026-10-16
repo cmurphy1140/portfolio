@@ -8,10 +8,13 @@
       "path": "Career",
       "description": "The walkthrough, the proof, and the thinking behind the work.",
       "documentIds": [
+        "job-applications-tailored-xlsx-md",
         "base-resume-cover-letter-plan-md",
         "base-resume-cover-letter-review-md",
         "career-root-md",
         "my-words-2026-10-14-md",
+        "professional-summary-md",
+        "template-cleanup-plan-md",
         "the-receipts-md",
         "the-walkthrough-md"
       ]
@@ -22,8 +25,8 @@
       "path": "Career/resumes",
       "description": "Start with the current resume, then choose a version for your audience.",
       "documentIds": [
-        "resumes-resume-send-this-md",
-        "resumes-resume-send-this-pdf",
+        "resumes-resume-base-md",
+        "resumes-resume-base-pdf",
         "resumes-resumes-md"
       ]
     },
@@ -31,10 +34,9 @@
       "id": "resumes/assets",
       "title": "Resume assets",
       "path": "Career/resumes/assets",
-      "description": "A page preview and duplicate PDF of the main professional resume.",
+      "description": "A page preview of the base resume.",
       "documentIds": [
-        "resumes-assets-resume-send-this-pdf",
-        "resumes-assets-resume-send-this-png"
+        "resumes-assets-resume-base-png"
       ],
       "parentId": "resumes"
     },
@@ -42,10 +44,8 @@
       "id": "resumes/tailored",
       "title": "Audience variants",
       "path": "Career/resumes/tailored",
-      "description": "Compare versions for IT and analyst roles, relocation, and professional networking.",
+      "description": "A version for professional networking.",
       "documentIds": [
-        "resumes-tailored-resume-send-this-it-and-analyst-pdf",
-        "resumes-tailored-resume-send-this-relocating-pdf",
         "resumes-tailored-resume-savant-network-pdf"
       ],
       "parentId": "resumes"
@@ -54,10 +54,10 @@
       "id": "cover-letters",
       "title": "Cover letters",
       "path": "Career/cover-letters",
-      "description": "A reusable master and employer-specific writing. Templates retain their intentional placeholders.",
+      "description": "The base letter and employer-specific writing. The base keeps its intentional placeholders.",
       "documentIds": [
-        "cover-letters-cover-letter-master-md",
-        "cover-letters-cover-letter-master-pdf",
+        "cover-letters-cover-letter-base-md",
+        "cover-letters-cover-letter-base-pdf",
         "cover-letters-cover-letters-md"
       ]
     },
@@ -77,7 +77,7 @@
       "id": "cover-letters/tailored",
       "title": "Tailored letters",
       "path": "Career/cover-letters/tailored",
-      "description": "Sixteen note/PDF pairs, six employer letters available as PDFs, and one general template. Drafts are separate from sends.",
+      "description": "Sixteen note/PDF pairs and six employer letters available as PDFs. Drafts are separate from sends.",
       "documentIds": [
         "cover-letters-tailored-cover-letter-additec-pdf",
         "cover-letters-tailored-cover-letter-bae-systems-merrimack-nh-md",
@@ -100,7 +100,6 @@
         "cover-letters-tailored-cover-letter-fidelity-leap-pdf",
         "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-md",
         "cover-letters-tailored-cover-letter-florida-digital-service-training-consultant-pdf",
-        "cover-letters-tailored-cover-letter-general-pdf",
         "cover-letters-tailored-cover-letter-owl-services-md",
         "cover-letters-tailored-cover-letter-owl-services-pdf",
         "cover-letters-tailored-cover-letter-perfectserve-md",
@@ -129,6 +128,7 @@
       "documentIds": [
         "to-apply-applications-csv",
         "to-apply-applications-xlsx",
+        "to-apply-leads-2026-10-15-md",
         "to-apply-to-apply-md",
         "attached-job-applications-xlsx"
       ]
@@ -149,15 +149,20 @@
       "path": "Career/review",
       "description": "Follow how the resume and cover letter are reviewed and revised.",
       "documentIds": [
-        "review-connor-murphy-base-cover-letter-review-md",
-        "review-connor-murphy-base-cover-letter-review-pdf",
-        "review-connor-murphy-base-resume-review-md",
-        "review-connor-murphy-base-resume-review-pdf",
         "review-resume-and-cover-letter-review-md"
       ]
     }
   ],
   "documents": [
+    {
+      "id": "job-applications-tailored-xlsx-md",
+      "title": "Job_Applications_Tailored.xlsx",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Supporting Career document, available in the local workspace.",
+      "sourceLabel": "Career/Job_Applications_Tailored.xlsx.md",
+      "localOnly": true
+    },
     {
       "id": "applied-applied-md",
       "title": "Application history guide",
@@ -231,24 +236,26 @@
       "localOnly": true
     },
     {
-      "id": "cover-letters-cover-letter-master-md",
-      "title": "Cover-letter template source",
+      "id": "cover-letters-cover-letter-base-md",
+      "title": "Base cover letter notes",
       "kind": "note",
       "folderId": "cover-letters",
       "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
-      "sourceLabel": "Career/cover-letters/cover-letter-MASTER.md",
+      "sourceLabel": "Career/cover-letters/cover-letter-base.md",
       "localOnly": true,
       "template": true
     },
     {
-      "id": "cover-letters-cover-letter-master-pdf",
-      "title": "Cover-letter template",
+      "id": "cover-letters-cover-letter-base-pdf",
+      "title": "Base cover letter",
       "kind": "pdf",
       "folderId": "cover-letters",
       "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
-      "sourceLabel": "Career/cover-letters/cover-letter-MASTER.pdf",
-      "localOnly": true,
-      "template": true
+      "sourceLabel": "Career/cover-letters/cover-letter-base.pdf",
+      "localOnly": false,
+      "template": true,
+      "href": "/career/cover-letter-base.pdf",
+      "previewHref": "/career/cover-letter-base.png"
     },
     {
       "id": "cover-letters-cover-letters-md",
@@ -449,16 +456,6 @@
       "localOnly": true
     },
     {
-      "id": "cover-letters-tailored-cover-letter-general-pdf",
-      "title": "General letter template",
-      "kind": "pdf",
-      "folderId": "cover-letters/tailored",
-      "summary": "Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.",
-      "sourceLabel": "Career/cover-letters/tailored/cover-letter-general.pdf",
-      "localOnly": true,
-      "template": true
-    },
-    {
       "id": "cover-letters-tailored-cover-letter-owl-services-md",
       "title": "Owl Services \u00b7 letter source",
       "kind": "note",
@@ -613,7 +610,7 @@
     },
     {
       "id": "my-words-2026-10-14-md",
-      "title": "Own words",
+      "title": "My words",
       "kind": "note",
       "folderId": "root",
       "summary": "Original phrasing and reflections, preserved in the local workspace.",
@@ -621,46 +618,44 @@
       "localOnly": true
     },
     {
-      "id": "resumes-assets-resume-send-this-pdf",
-      "title": "Resume PDF asset",
-      "kind": "pdf",
-      "folderId": "resumes/assets",
-      "summary": "One-page resume connecting software, teaching, and practical operations.",
-      "sourceLabel": "Career/resumes/assets/resume-SEND-THIS.pdf",
-      "localOnly": false,
-      "href": "/career/resume-SEND-THIS.pdf",
-      "previewHref": "/career/resume-SEND-THIS.png"
+      "id": "professional-summary-md",
+      "title": "professional summary",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Supporting Career document, available in the local workspace.",
+      "sourceLabel": "Career/professional-summary.md",
+      "localOnly": true
     },
     {
-      "id": "resumes-assets-resume-send-this-png",
+      "id": "resumes-assets-resume-base-png",
       "title": "Resume preview",
       "kind": "image",
       "folderId": "resumes/assets",
-      "summary": "See the current one-page resume before opening the PDF.",
-      "sourceLabel": "Career/resumes/assets/resume-SEND-THIS.png",
+      "summary": "See the base one-page resume before opening the PDF.",
+      "sourceLabel": "Career/resumes/assets/resume-base.png",
       "localOnly": false,
-      "href": "/career/resume-SEND-THIS.png",
-      "previewHref": "/career/resume-SEND-THIS.png"
+      "href": "/career/resume-base.png",
+      "previewHref": "/career/resume-base.png"
     },
     {
-      "id": "resumes-resume-send-this-md",
+      "id": "resumes-resume-base-md",
       "title": "Resume source and revisions",
       "kind": "note",
       "folderId": "resumes",
       "summary": "The written resume, its supporting notes, and the record of revisions.",
-      "sourceLabel": "Career/resumes/resume-SEND-THIS.md",
+      "sourceLabel": "Career/resumes/resume-base.md",
       "localOnly": true
     },
     {
-      "id": "resumes-resume-send-this-pdf",
-      "title": "Current resume",
+      "id": "resumes-resume-base-pdf",
+      "title": "Base resume",
       "kind": "pdf",
       "folderId": "resumes",
       "summary": "One-page resume connecting software, teaching, and practical operations.",
-      "sourceLabel": "Career/resumes/resume-SEND-THIS.pdf",
+      "sourceLabel": "Career/resumes/resume-base.pdf",
       "localOnly": false,
-      "href": "/career/resume-SEND-THIS.pdf",
-      "previewHref": "/career/resume-SEND-THIS.png"
+      "href": "/career/resume-base.pdf",
+      "previewHref": "/career/resume-base.png"
     },
     {
       "id": "resumes-resumes-md",
@@ -669,24 +664,6 @@
       "folderId": "resumes",
       "summary": "Choose the main resume, an audience variant, or the page preview.",
       "sourceLabel": "Career/resumes/resumes.md",
-      "localOnly": true
-    },
-    {
-      "id": "resumes-tailored-resume-send-this-it-and-analyst-pdf",
-      "title": "IT and analyst resume",
-      "kind": "pdf",
-      "folderId": "resumes/tailored",
-      "summary": "Audience variant for IT and analyst roles; consult the local review before sending.",
-      "sourceLabel": "Career/resumes/tailored/resume-SEND-THIS-it-and-analyst.pdf",
-      "localOnly": true
-    },
-    {
-      "id": "resumes-tailored-resume-send-this-relocating-pdf",
-      "title": "Relocating resume",
-      "kind": "pdf",
-      "folderId": "resumes/tailored",
-      "summary": "Audience variant for opportunities that involve a move.",
-      "sourceLabel": "Career/resumes/tailored/resume-SEND-THIS-relocating.pdf",
       "localOnly": true
     },
     {
@@ -699,48 +676,21 @@
       "localOnly": true
     },
     {
-      "id": "review-connor-murphy-base-cover-letter-review-md",
-      "title": "Connor Murphy Base Cover Letter Review",
-      "kind": "note",
-      "folderId": "review",
-      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
-      "sourceLabel": "Career/review/Connor-Murphy-Base-Cover-Letter-Review.md",
-      "localOnly": true
-    },
-    {
-      "id": "review-connor-murphy-base-cover-letter-review-pdf",
-      "title": "Connor Murphy Base Cover Letter Review",
-      "kind": "pdf",
-      "folderId": "review",
-      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
-      "sourceLabel": "Career/review/Connor-Murphy-Base-Cover-Letter-Review.pdf",
-      "localOnly": true
-    },
-    {
-      "id": "review-connor-murphy-base-resume-review-md",
-      "title": "Connor Murphy Base Resume Review",
-      "kind": "note",
-      "folderId": "review",
-      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
-      "sourceLabel": "Career/review/Connor-Murphy-Base-Resume-Review.md",
-      "localOnly": true
-    },
-    {
-      "id": "review-connor-murphy-base-resume-review-pdf",
-      "title": "Connor Murphy Base Resume Review",
-      "kind": "pdf",
-      "folderId": "review",
-      "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
-      "sourceLabel": "Career/review/Connor-Murphy-Base-Resume-Review.pdf",
-      "localOnly": true
-    },
-    {
       "id": "review-resume-and-cover-letter-review-md",
       "title": "Resume and Cover Letter Review",
       "kind": "note",
       "folderId": "review",
       "summary": "Review draft: proposed wording and emphasis, awaiting final voice review.",
       "sourceLabel": "Career/review/Resume-and-Cover-Letter-Review.md",
+      "localOnly": true
+    },
+    {
+      "id": "template-cleanup-plan-md",
+      "title": "template cleanup plan",
+      "kind": "note",
+      "folderId": "root",
+      "summary": "Supporting Career document, available in the local workspace.",
+      "sourceLabel": "Career/template-cleanup-plan.md",
       "localOnly": true
     },
     {
@@ -777,6 +727,15 @@
       "folderId": "to-apply",
       "summary": "The vault tracker snapshot; kept separate from the attached preparation shortlist.",
       "sourceLabel": "Career/to-apply/applications.xlsx",
+      "localOnly": true
+    },
+    {
+      "id": "to-apply-leads-2026-10-15-md",
+      "title": "leads 2026 10 15",
+      "kind": "note",
+      "folderId": "to-apply",
+      "summary": "Supporting Career document, available in the local workspace.",
+      "sourceLabel": "Career/to-apply/leads-2026-10-15.md",
       "localOnly": true
     },
     {
@@ -879,11 +838,11 @@
     {
       "id": "documents",
       "title": "Outgoing documents",
-      "claim": "One current resume; audience-specific variants",
-      "detail": "The current mapped main file is resume-SEND-THIS.pdf. An older index reference to an October 14 master is absent; it is not invented here.",
+      "claim": "One base resume and one base cover letter",
+      "detail": "The main files are resume-base.pdf and cover-letter-base.pdf, the bases Murph locked on October 16, 2026.",
       "state": "Recorded",
       "sourceLabel": "Career/resumes/resumes.md",
-      "href": "/career/documents/resumes-resume-send-this-pdf"
+      "href": "/career/documents/resumes-resume-base-pdf"
     },
     {
       "id": "selection",
@@ -929,7 +888,7 @@
       "location": "Tallahassee, FL\nIn-office",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.myflorida.com/job/TALLAHASSEE-TRAINING-CONSULTANT-72004171-FL-32399/1438642500/",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "ucf-it-project-manager-i",
@@ -938,7 +897,7 @@
       "location": "Orlando, FL\nOnsite",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.ucf.edu/jobs/it-project-manager-i-orlando-florida-united-states-eb0e826b-759f-427b-bc54-71fc3ecaa4f6",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "ucf-cloud-computing-engineer-i",
@@ -947,7 +906,7 @@
       "location": "Orlando, FL\nOnsite",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.ucf.edu/jobs/cloud-computing-engineer-i-orlando-florida-united-states-f23a86dd-f7bf-45ba-a6ef-b8aebc927df4",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "florida-department-of-corrections-systems-project-analyst",
@@ -956,7 +915,7 @@
       "location": "Lake Butler / Region II, FL\nOnsite and site visits",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.myflorida.com/job/LAKE-BUTLER-SYSTEMS-PROJECT-ANALYST-FL-32054/1438591800/",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "ucf-applications-programmer-ii-success-pathways",
@@ -965,7 +924,7 @@
       "location": "Orlando, FL\nOnsite",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.ucf.edu/jobs/applications-programmer-ii-success-pathways-orlando-florida-united-states",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "florida-senate-it-net-software-developer",
@@ -974,7 +933,7 @@
       "location": "Tallahassee, FL\nOnsite",
       "preparationStatus": "Review schedule",
       "postingUrl": "https://www.governmentjobs.com/jobs/5278034-0/net-software-developer-angular-c-tallahassee-fl",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "ucf-transformational-giving-analyst",
@@ -983,7 +942,7 @@
       "location": "Orlando, FL\nOnsite",
       "preparationStatus": "Review fit",
       "postingUrl": "https://jobs.ucf.edu/jobs/transformational-giving-analyst-orlando-florida-united-states",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "city-of-deerfield-beach-business-analyst",
@@ -992,7 +951,7 @@
       "location": "Deerfield Beach, FL\nOnsite",
       "preparationStatus": "Review schedule",
       "postingUrl": "https://www.governmentjobs.com/jobs/5498244-0/business-analyst",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "fiscalnote-associate-software-engineer",
@@ -1001,7 +960,7 @@
       "location": "Remote, US / DC hybrid",
       "preparationStatus": "Applied",
       "postingUrl": "https://jobs.lever.co/fiscalnote/c76e748f-6e25-42cf-bf26-ebae44280ffd",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "john-gore-organization-broadway-com-software-engineer",
@@ -1010,7 +969,7 @@
       "location": "Boca Raton, FL\nOffice Mon\u2013Thu",
       "preparationStatus": "Closed",
       "postingUrl": "https://johngore.wd1.myworkdayjobs.com/careers/job/Boca-Raton-FL-Mon---Th-in-Office/Software-Engineer_R100723",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "whoop-software-engineer-i-frontend-ai-platform",
@@ -1019,7 +978,7 @@
       "location": "Boston, MA\nOffice required",
       "preparationStatus": "Review schedule",
       "postingUrl": "https://www.builtinboston.com/job/software-engineer-i-frontend-ai-platform/11530216",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "oppfi-software-engineer-i",
@@ -1028,7 +987,7 @@
       "location": "Remote, US",
       "preparationStatus": "Applied",
       "postingUrl": "https://job-boards.greenhouse.io/opploans/jobs/8011770003",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "optum-associate-software-engineer",
@@ -1037,7 +996,7 @@
       "location": "Remote, US",
       "preparationStatus": "Review fit",
       "postingUrl": "https://careers.unitedhealthgroup.com/job/basking-ridge/associate-software-engineer/34088/101072065280",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "thought-industries-tier-2-customer-support-specialist",
@@ -1046,7 +1005,7 @@
       "location": "Remote; Boston-listed\nConfirm state eligibility",
       "preparationStatus": "Review schedule",
       "postingUrl": "https://www.builtinboston.com/job/tier-2-customer-support-specialist/11579622",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "prestige-trucking-insurance-junior-software-engineer",
@@ -1055,7 +1014,7 @@
       "location": "Tamarac, FL\nOnsite",
       "preparationStatus": "Applied",
       "postingUrl": "https://www.jobtarget.com/jobs/jt-plxmh2kqvr/junior-software-engineer-tamarac-florida",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "tines-technical-support-engineer-i",
@@ -1064,7 +1023,7 @@
       "location": "Boston / Massachusetts\nFour days, incl. weekend",
       "preparationStatus": "Review schedule",
       "postingUrl": "https://job-boards.greenhouse.io/tines/jobs/6220150004",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "jamf-software-engineer-i",
@@ -1073,7 +1032,7 @@
       "location": "Remote, US",
       "preparationStatus": "Review fit",
       "postingUrl": "https://www.jamf.com/about/careers/jobs/?gh_jid=6207163004",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "veradigm-entry-level-salesforce-engineer",
@@ -1082,7 +1041,7 @@
       "location": "Remote, US",
       "preparationStatus": "Review fit",
       "postingUrl": "https://simplify.jobs/p/ec47c64d-480c-4cc0-8246-f45a85814be0/Entry-Level-Salesforce-Engineer",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "stability-ai-junior-it-support-engineer",
@@ -1091,7 +1050,7 @@
       "location": "Remote, US",
       "preparationStatus": "Applied",
       "postingUrl": "https://builtin.com/job/junior-it-support-engineer/10958694",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "onestream-software-engineer-i",
@@ -1100,7 +1059,7 @@
       "location": "Remote, US",
       "preparationStatus": "Review fit",
       "postingUrl": "https://job-boards.greenhouse.io/onestream/jobs/4425162009",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "andromeda-systems-junior-software-developer",
@@ -1109,7 +1068,7 @@
       "location": "Jacksonville, FL\nOnsite",
       "preparationStatus": "Ready",
       "postingUrl": "https://www.dice.com/job-detail/b1832427-f3e7-4e0c-bbd5-acac1b8f967a",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "u-haul-quality-assurance-analyst-dispatch",
@@ -1118,7 +1077,7 @@
       "location": "Remote reported in supplied research\nEmployer description lists Phoenix",
       "preparationStatus": "Closed",
       "postingUrl": "https://jobs.uhaul.com/OpenJobs/JobDetail/R251132",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     },
     {
       "id": "nextera-fpl-programmer-analyst-i",
@@ -1127,7 +1086,7 @@
       "location": "Miami, FL\nWork model unspecified",
       "preparationStatus": "Closed",
       "postingUrl": "https://jobs.nexteraenergy.com/job/Miami-Programmer-Analyst-I-FL-33155/1436403600/",
-      "resumeId": "resumes-resume-send-this-pdf"
+      "resumeId": "resumes-resume-base-pdf"
     }
   ],
   "applied": [],

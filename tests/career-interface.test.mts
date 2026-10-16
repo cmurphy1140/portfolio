@@ -21,8 +21,8 @@ test('wikilinks resolve only to known documents or Career destinations', () => {
 });
 
 test('real Obsidian embeds and heading links retain an owning document', () => {
- const docs=[{id:'master',title:'Resume master',sourceLabel:'Career/resumes/resume-SEND-THIS.md'}];
- assert.equal(noteHref('Career/resumes/resume-SEND-THIS#Experience',docs),'/career/documents/master#experience');
+ const docs=[{id:'master',title:'Resume master',sourceLabel:'Career/resumes/resume-base.md'}];
+ assert.equal(noteHref('Career/resumes/resume-base#Experience',docs),'/career/documents/master#experience');
 });
 
 test('source comments are hidden and Markdown table headers remain structured', () => {

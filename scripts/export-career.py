@@ -70,11 +70,11 @@ def parse_shortlist(path):
 FOLDERS = [
     ('root', 'Career', 'The walkthrough, the proof, and the thinking behind the work.'),
     ('resumes', 'Resumes', 'Start with the current resume, then choose a version for your audience.'),
-    ('resumes/assets', 'Resume assets', 'A page preview and duplicate PDF of the main professional resume.'),
-    ('resumes/tailored', 'Audience variants', 'Compare versions for IT and analyst roles, relocation, and professional networking.'),
-    ('cover-letters', 'Cover letters', 'A reusable master and employer-specific writing. Templates retain their intentional placeholders.'),
+    ('resumes/assets', 'Resume assets', 'A page preview of the base resume.'),
+    ('resumes/tailored', 'Audience variants', 'A version for professional networking.'),
+    ('cover-letters', 'Cover letters', 'The base letter and employer-specific writing. The base keeps its intentional placeholders.'),
     ('cover-letters/assets', 'Supporting writing', 'Application fields, KSA answers, and supporting prose are available in the local workspace.'),
-    ('cover-letters/tailored', 'Tailored letters', 'Sixteen note/PDF pairs, six employer letters available as PDFs, and one general template. Drafts are separate from sends.'),
+    ('cover-letters/tailored', 'Tailored letters', 'Sixteen note/PDF pairs and six employer letters available as PDFs. Drafts are separate from sends.'),
     ('to-apply', 'To apply', 'Search the shortlist and compare preparation status before choosing your next application.'),
     ('applied', 'Applied', 'Review recorded application history and follow-up notes.'),
     ('review', 'Document review', 'Follow how the resume and cover letter are reviewed and revised.'),
@@ -93,7 +93,7 @@ def public_receipts():
         ('vero','Vero','318 tests, one skipped, recorded','The project record reports a clean GitHub main check on October 14, 2026. Its earlier 277 count was corrected. This export did not rerun the project.','the-receipts.md','/work/vero'),
         ('drive-score','Drive Score','26 tests recorded','The project record records a clean-export check dated October 12, 2026. This export did not rerun the project.','the-receipts.md','/work/drive-score'),
         ('precision','Precision','Remove a number that cannot be defended','The source describes revising application materials and adding a regression check. This export presents the recorded practice, not a newly executed check.','the-receipts.md',''),
-        ('documents','Outgoing documents','One current resume; audience-specific variants','The current mapped main file is resume-SEND-THIS.pdf. An older index reference to an October 14 master is absent; it is not invented here.','resumes/resumes.md','/career/documents/resumes-resume-send-this-pdf'),
+        ('documents','Outgoing documents','One base resume and one base cover letter','The main files are resume-base.pdf and cover-letter-base.pdf, the bases Murph locked on October 16, 2026.','resumes/resumes.md','/career/documents/resumes-resume-base-pdf'),
         ('selection','Search selection','Independent sweeps; explicit preparation labels','Job_Applications.xlsx supplies the 23-role shortlist. Ready, Review schedule, Review fit and Closed describe preparation as recorded, not live posting status.','to-apply/to-apply.md','/career/to-apply'),
         ('measurement','Measurement','Screens per twenty applications','The project record records tracker-digest v0.1.0, 33 tests, and Python 3.10, 3.12 and 3.14 CI, released October 4, 2026. The newer review qualifies the shipped tool as a CSV follow-up digest; automated conversion scoring is unverified. Not rerun by this export.','the-receipts.md','/work/tracker-digest'),
         ('pre-ai','Dated original work','Compare the original approach with a rebuild','The walkthrough describes CS770 work dated September–December 2022. The original commit histories have not been independently inspected for this website.','the-walkthrough.md',''),
@@ -106,23 +106,19 @@ def describe_document(path, folder_id):
     kind = path.suffix.lower()
     if folder_id == 'review':
         return (stem.replace('-', ' '), 'Review draft: proposed wording and emphasis, awaiting final voice review.')
-    if stem == 'resume-SEND-THIS':
+    if stem == 'resume-base':
         if kind == '.png':
-            return ('Resume preview', 'See the current one-page resume before opening the PDF.')
+            return ('Resume preview', 'See the base one-page resume before opening the PDF.')
         if kind == '.pdf':
-            return ('Current resume' if folder_id == 'resumes' else 'Resume PDF asset', 'One-page resume connecting software, teaching, and practical operations.')
+            return ('Base resume', 'One-page resume connecting software, teaching, and practical operations.')
         return ('Resume source and revisions', 'The written resume, its supporting notes, and the record of revisions.')
     if folder_id == 'resumes/tailored':
         variants = {
-            'resume-SEND-THIS-it-and-analyst': ('IT and analyst resume', 'Audience variant for IT and analyst roles; consult the local review before sending.'),
-            'resume-SEND-THIS-relocating': ('Relocating resume', 'Audience variant for opportunities that involve a move.'),
             'resume-savant-network': ('Networking resume', 'A version for professional introductions and networking.'),
         }
         if stem in variants: return variants[stem]
-    if stem == 'cover-letter-MASTER':
-        return ('Cover-letter template' + (' source' if kind == '.md' else ''), 'Reusable letter structure with intentional role and company placeholders.')
-    if stem == 'cover-letter-general':
-        return ('General letter template', 'An untailored starting point; complete the company details before using it.')
+    if stem == 'cover-letter-base':
+        return ('Base cover letter' + (' notes' if kind == '.md' else ''), 'The letter every application starts from, with intentional role and company placeholders.')
     if stem.startswith('cover-letter-'):
         employer = stem.removeprefix('cover-letter-').replace('-', ' ').title()
         return (employer + (' · letter' if kind == '.pdf' else ' · letter source'), 'Employer-specific letter draft' + (', ready to preview as a PDF.' if kind == '.pdf' else ', retained as editable writing.'))
@@ -153,6 +149,10 @@ def build(source, workbook):
     for path in sorted(source.rglob('*')):
         if not path.is_file() or (path.name == '.DS_Store' or path.name.startswith('~$')):
             continue
+        if path.relative_to(source).parts[0] == 'tailored-applications':
+            continue  # the 2026-10-14 tailored pairs stay off the site until a folder is mapped for them
+        if path.suffix.lower() in ('.typ', '.docx'):
+            continue  # sources and Word copies stay local; the PDF beside each carries the words
         if path.suffix.lower() not in kinds:
             raise ValueError('Unmapped file type: '+path.name)
         rel = path.relative_to(source).as_posix()
@@ -164,7 +164,7 @@ def build(source, workbook):
             raise ValueError('Duplicate document id: '+id)
         title, summary = describe_document(path, folder_id)
         document = dict(id=id,title=title,kind=kinds[path.suffix.lower()],folderId=folder_id,summary=summary,sourceLabel='Career/'+rel,localOnly=True)
-        if 'MASTER' in path.name or path.stem == 'cover-letter-general':
+        if path.stem == 'cover-letter-base':
             document['template'] = True
             document['summary'] = 'Reusable template. Intentional role/company placeholders remain; this is not a completed employer letter.'
         documents.append(document)
@@ -186,7 +186,7 @@ def build(source, workbook):
         key = letter_keys.get(role['company'])
         if role['company']=='UCF':
             key = next((k for k in ['ucf-it-project-manager-i','ucf-cloud-computing-engineer-i','ucf-applications-programmer-ii','ucf-transformational-giving-analyst'] if slug(role['title']).startswith(k[4:])), None)
-        role['resumeId'] = 'resumes-resume-send-this-pdf'
+        role['resumeId'] = 'resumes-resume-base-pdf'
         if key and 'cover-letters-tailored-cover-letter-'+key+'-pdf' in files:
             role['letterId'] = 'cover-letters-tailored-cover-letter-'+key+'-pdf'
     chapters = [dict(id=i,title=t,summary=s,paragraphs=p,links=[dict(label=folder_map[f]['title'],href='/career/'+f) for f in fs] + (PROJECTS if i=='projects' else []),receiptIds=rs) for i,t,s,p,rs,fs in CHAPTERS]
@@ -195,10 +195,11 @@ def build(source, workbook):
         role['location'] = re.sub(r'; \$[^\n]+', '', role['location'])
     public = dict(mode='public',asOf=AS_OF,folders=folders,documents=documents,chapters=chapters,receipts=public_receipts(),roles=public_roles,applied=[],words=['If the storm is coming, be a lighthouse.','be true to the numbers','The proof is in the action, but I need to show where im headed, how i tuned my compass, and why'],approach=['Applications are free.','Precision is the argument.','Stay useful inside whatever a team needs.'],projects=PROJECTS)
     for d in documents:
-        if d['id'] in ['resumes-resume-send-this-pdf','resumes-assets-resume-send-this-png','resumes-assets-resume-send-this-pdf']:
+        public_name = {'resumes-resume-base-pdf':'resume-base','resumes-assets-resume-base-png':'resume-base','cover-letters-cover-letter-base-pdf':'cover-letter-base'}.get(d['id'])
+        if public_name:
             d['localOnly'] = False
-            d['href'] = '/career/resume-SEND-THIS.'+('png' if d['kind']=='image' else 'pdf')
-            d['previewHref'] = '/career/resume-SEND-THIS.png'
+            d['href'] = '/career/'+public_name+('.png' if d['kind']=='image' else '.pdf')
+            d['previewHref'] = '/career/'+public_name+'.png'
     local = copy.deepcopy(public)
     local['mode'] = 'local'
     local['roles'] = roles
@@ -265,8 +266,12 @@ def main():
     local_path.chmod(0o600)
     assets=repo/'public/career'
     assets.mkdir(exist_ok=True)
-    shutil.copy2(args.source/'resumes/resume-SEND-THIS.pdf',assets/'resume-SEND-THIS.pdf')
-    shutil.copy2(args.source/'resumes/assets/resume-SEND-THIS.png',assets/'resume-SEND-THIS.png')
+    # The two bases are the only public documents: copy each PDF and render a fresh page preview beside it.
+    renderer = shutil.which('pdftoppm')
+    if not renderer: parser.error('Public previews require pdftoppm from Poppler.')
+    for rel, name in [('resumes/resume-base.pdf','resume-base'),('cover-letters/cover-letter-base.pdf','cover-letter-base')]:
+        shutil.copy2(args.source/rel,assets/(name+'.pdf'))
+        subprocess.run([renderer,'-f','1','-l','1','-singlefile','-scale-to','1600','-png',str(args.source/rel),str(assets/name)],check=True)
     print(json.dumps(dict(sourceFiles=len(local['files'])-1,documents=len(public['documents']),roles=len(public['roles']),localAppliedRecords=len(local['content']['applied']),folders=len(public['folders']),pdfs=sum(d['kind']=='pdf' for d in public['documents']))))
 
 if __name__=='__main__': main()

@@ -40,11 +40,11 @@ test('local gates deny unknown files and fall back to public content', async () 
     process.env.CAREER_LOCAL_DATA = '/does/not/exist.json';
     assert.equal((await getCareerContent()).mode, 'public');
     assert.equal(await getCareerFile('../escape'), null);
-    assert.equal(await getCareerFile('resumes-resume-send-this-pdf', true), null);
+    assert.equal(await getCareerFile('resumes-resume-base-pdf', true), null);
     process.env.CAREER_LOCAL_MODE = '1';
     process.env.VERCEL = '1';
     assert.equal((await getCareerContent()).mode, 'public');
-    assert.equal(await getCareerFile('resumes-resume-send-this-pdf'), null);
+    assert.equal(await getCareerFile('resumes-resume-base-pdf'), null);
     delete process.env.VERCEL;
     process.env.CAREER_LOCAL_DATA = 'relative.json';
     assert.equal((await getCareerContent()).mode, 'public');
@@ -110,11 +110,11 @@ test('local manifest serves only allowlisted source files and never exposes file
 test('actual local export preserves source distinctions and existing files', {skip: !process.env.CAREER_TEST_LOCAL}, async () => {
   const manifest = JSON.parse(await readFile(process.env.CAREER_TEST_LOCAL!, 'utf8'));
   assert.equal(validateCareerContent(manifest.content), true);
-  assert.equal(manifest.content.roles.filter((r: {recordedApplied?:string}) => r.recordedApplied).length, 14);
+  assert.equal(manifest.content.roles.filter((r: {recordedApplied?:string}) => r.recordedApplied).length, 17);
   assert.equal(manifest.content.documents.filter((d: {kind:string;body?:string}) => d.kind === 'note' && !!d.body).length, manifest.content.documents.filter((d: {kind:string}) => d.kind === 'note').length);
   for (const file of Object.values(manifest.files) as {path:string}[]) await access(file.path);
   const pdfs = manifest.content.documents.filter((d: {kind:string}) => d.kind === 'pdf');
-  assert.equal(pdfs.length, 31);
+  assert.equal(pdfs.length, 25);
   for (const doc of pdfs) {
     assert.equal(doc.previewHref, '/career-files/' + doc.id + '?preview=1');
     assert.equal(manifest.files[doc.id].previewMime, 'image/png');
