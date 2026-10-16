@@ -69,9 +69,8 @@ def parse_shortlist(path):
 
 FOLDERS = [
     ('root', 'Career', 'The walkthrough, the proof, and the thinking behind the work.'),
-    ('resumes', 'Resumes', 'Start with the current resume, then choose a version for your audience.'),
+    ('resumes', 'Resumes', 'Start with the base resume.'),
     ('resumes/assets', 'Resume assets', 'A page preview of the base resume.'),
-    ('resumes/tailored', 'Audience variants', 'A version for professional networking.'),
     ('cover-letters', 'Cover letters', 'The base letter and employer-specific writing. The base keeps its intentional placeholders.'),
     ('cover-letters/assets', 'Supporting writing', 'Application fields, KSA answers, and supporting prose are available in the local workspace.'),
     ('cover-letters/tailored', 'Tailored letters', 'Sixteen note/PDF pairs and six employer letters available as PDFs. Drafts are separate from sends.'),
@@ -112,11 +111,6 @@ def describe_document(path, folder_id):
         if kind == '.pdf':
             return ('Base resume', 'One-page resume connecting software, teaching, and practical operations.')
         return ('Resume source and revisions', 'The written resume, its supporting notes, and the record of revisions.')
-    if folder_id == 'resumes/tailored':
-        variants = {
-            'resume-savant-network': ('Networking resume', 'A version for professional introductions and networking.'),
-        }
-        if stem in variants: return variants[stem]
     if stem == 'cover-letter-base':
         return ('Base cover letter' + (' notes' if kind == '.md' else ''), 'The letter every application starts from, with intentional role and company placeholders.')
     if stem.startswith('cover-letter-'):

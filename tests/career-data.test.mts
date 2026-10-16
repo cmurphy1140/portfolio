@@ -13,7 +13,7 @@ test('public snapshot has seven stops, every drawer and no private fields', () =
   assert.equal(content.chapters.length, 2);
   assert.equal(content.roles.length, 23);
   assert.deepEqual(Object.fromEntries(['Applied', 'Ready', 'Review schedule', 'Review fit', 'Closed'].map(s => [s, content.roles.filter(r => r.preparationStatus === s).length])), {Applied:9,Ready:1,'Review schedule':5,'Review fit':5,Closed:3});
-  for (const id of ['applied','cover-letters','cover-letters/assets','cover-letters/tailored','resumes','resumes/assets','resumes/tailored','to-apply','review']) assert.ok(content.folders.some(f => f.id === id));
+  for (const id of ['applied','cover-letters','cover-letters/assets','cover-letters/tailored','resumes','resumes/assets','to-apply','review']) assert.ok(content.folders.some(f => f.id === id));
   assert.ok(content.roles.every(r => !r.fit && !r.gaps && !r.notes && !r.schedule && !r.recordedApplied));
   assert.equal(content.applied.length, 0);
   assert.ok(content.roles.every(r => !r.location.includes('$')));
@@ -114,7 +114,7 @@ test('actual local export preserves source distinctions and existing files', {sk
   assert.equal(manifest.content.documents.filter((d: {kind:string;body?:string}) => d.kind === 'note' && !!d.body).length, manifest.content.documents.filter((d: {kind:string}) => d.kind === 'note').length);
   for (const file of Object.values(manifest.files) as {path:string}[]) await access(file.path);
   const pdfs = manifest.content.documents.filter((d: {kind:string}) => d.kind === 'pdf');
-  assert.equal(pdfs.length, 25);
+  assert.equal(pdfs.length, 24);
   for (const doc of pdfs) {
     assert.equal(doc.previewHref, '/career-files/' + doc.id + '?preview=1');
     assert.equal(manifest.files[doc.id].previewMime, 'image/png');

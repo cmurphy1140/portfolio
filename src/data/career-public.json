@@ -8,7 +8,6 @@
       "path": "Career",
       "description": "The walkthrough, the proof, and the thinking behind the work.",
       "documentIds": [
-        "job-applications-tailored-xlsx-md",
         "base-resume-cover-letter-plan-md",
         "base-resume-cover-letter-review-md",
         "career-root-md",
@@ -23,7 +22,7 @@
       "id": "resumes",
       "title": "Resumes",
       "path": "Career/resumes",
-      "description": "Start with the current resume, then choose a version for your audience.",
+      "description": "Start with the base resume.",
       "documentIds": [
         "resumes-resume-base-md",
         "resumes-resume-base-pdf",
@@ -37,16 +36,6 @@
       "description": "A page preview of the base resume.",
       "documentIds": [
         "resumes-assets-resume-base-png"
-      ],
-      "parentId": "resumes"
-    },
-    {
-      "id": "resumes/tailored",
-      "title": "Audience variants",
-      "path": "Career/resumes/tailored",
-      "description": "A version for professional networking.",
-      "documentIds": [
-        "resumes-tailored-resume-savant-network-pdf"
       ],
       "parentId": "resumes"
     },
@@ -154,15 +143,6 @@
     }
   ],
   "documents": [
-    {
-      "id": "job-applications-tailored-xlsx-md",
-      "title": "Job_Applications_Tailored.xlsx",
-      "kind": "note",
-      "folderId": "root",
-      "summary": "Supporting Career document, available in the local workspace.",
-      "sourceLabel": "Career/Job_Applications_Tailored.xlsx.md",
-      "localOnly": true
-    },
     {
       "id": "applied-applied-md",
       "title": "Application history guide",
@@ -664,15 +644,6 @@
       "folderId": "resumes",
       "summary": "Choose the main resume, an audience variant, or the page preview.",
       "sourceLabel": "Career/resumes/resumes.md",
-      "localOnly": true
-    },
-    {
-      "id": "resumes-tailored-resume-savant-network-pdf",
-      "title": "Networking resume",
-      "kind": "pdf",
-      "folderId": "resumes/tailored",
-      "summary": "A version for professional introductions and networking.",
-      "sourceLabel": "Career/resumes/tailored/resume-savant-network.pdf",
       "localOnly": true
     },
     {
