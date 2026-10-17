@@ -61,12 +61,6 @@ approved public Vero material only.
 
 ## Current Status
 
-2026-09-26: the "A Different Road" redesign replaced the split-plane layout
-(see Aesthetic North Star and the vault record `Projects/active/portfolio/record/design.md`).
+Status: vault `Projects/active/portfolio/portfolio.md` (see STATE.md).
 
-2026-09-20: the split-plane Personal OS Shell, closed command engine, typed
-destination manifest, internal case-study and resume routes, public-output
-privacy gate, and isolated mobile/desktop browser checks are implemented and
-verified locally. Vero's public GitHub repository is the first verified external
-destination. The verified one-page resume PDF includes the flagship Vero
-project and is available from the resume route.
+Dev: `npm run dev`. Sync career data: `npm run career:sync`.
