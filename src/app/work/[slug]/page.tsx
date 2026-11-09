@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CaseStudyProof, CaseStudyStory } from "@/components/case-study";
 import SiteHeader from "@/components/site-header";
 import VeroCaseStudy from "@/components/vero-case-study";
 import { destinations, findDestination, type Destination } from "@/data/destinations";
@@ -34,8 +35,9 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           {destination.number ? <p className="doc-number"><strong>{destination.number.value}</strong> {destination.number.label} · <a href={destination.number.proof}>{destination.number.proofLabel}</a></p> : null}
         </header>
         <hr className="centre-line" />
-        <section className="doc-section" aria-labelledby="evidence-title"><h2 id="evidence-title">Evidence</h2><ul className="evidence">{destination.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>
+        {destination.study ? <CaseStudyStory study={destination.study} /> : <section className="doc-section" aria-labelledby="evidence-title"><h2 id="evidence-title">Evidence</h2><ul className="evidence">{destination.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>}
         {destination.correction ? <section className="doc-section" aria-labelledby="correction-title"><h2 id="correction-title">Corrected</h2><p className="doc-correction">{destination.correction}</p></section> : null}
+        {destination.study ? <CaseStudyProof study={destination.study} /> : null}
         <section className="doc-section" aria-labelledby="learning-title"><h2 id="learning-title">What this taught</h2><p className="learning">{destination.learning}</p></section>
         {destination.tags ? <p className="doc-stack">Built with {destination.tags.join(" · ")}</p> : null}
       </main>

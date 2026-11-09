@@ -3,6 +3,7 @@
 import { Fragment, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import type { Destination } from "@/data/destinations";
+import { CaseStudyProof, CaseStudyStory } from "./case-study";
 import "./vero-design/upstream.css";
 import styles from "./vero-case-study.module.css";
 
@@ -31,6 +32,7 @@ export default function VeroCaseStudy({ destination }: { destination: Destinatio
         <p className="doc-state"><span className="doc-state-name">{destination.state}</span>{" "}{destination.status}</p>
         <p className="doc-summary">{destination.summary}</p>
       </header>
+      {destination.study ? <CaseStudyStory study={destination.study} /> : null}
       <section className="doc-section" aria-labelledby="evidence-title">
         <div className="sheet paper">
           <div className="sheet-head"><h2 id="evidence-title">Evidence</h2><span className="label">Select a claim</span></div>
@@ -46,6 +48,7 @@ export default function VeroCaseStudy({ destination }: { destination: Destinatio
           <figcaption className={styles.context}>{destination.correction}</figcaption>
         </figure>
       </section>
+      {destination.study ? <CaseStudyProof study={destination.study} /> : null}
       <section className="doc-section" aria-labelledby="learning-title"><h2 id="learning-title">What this taught</h2><p className="learning">{destination.learning}</p></section>
       {destination.tags ? <p className="doc-stack">Built with {destination.tags.join(" · ")}</p> : null}
       <p className={styles.credit}>Highlighter effect adapted from a pen by <a href="https://codepen.io/HejChristian/pen/NPbBeqO">Christian Alder</a>, via <a href="https://instalanding.ai/prompt/highlighter-markup-page">InstaLanding</a>. <a href="/licenses/instalanding-highlighter.txt">MIT licenses</a>.</p>

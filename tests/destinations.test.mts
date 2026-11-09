@@ -2,6 +2,7 @@
    they run offline with the rest of the suite (the script also HEAD-fetches
    every https href, which stays in `npm run validate:destinations`). */
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { describe, test } from "node:test";
 import { destinationKinds, destinations, findDestination } from "@/data/destinations";
 
@@ -77,5 +78,23 @@ describe("destination manifest", () => {
     assert.equal(findDestination("vero")?.slug, "vero");
     assert.equal(findDestination("Vero"), undefined);
     assert.equal(findDestination("vero/"), undefined);
+  });
+
+  test("a long-form case study has every part, and its links and images resolve", () => {
+    for (const destination of destinations) {
+      if (!("study" in destination)) continue;
+      const { study } = destination;
+      assert.equal(destination.kind, "case-study", destination.slug);
+      assert.ok(study.problem.length > 0 && study.built.length > 0, `${destination.slug}: no problem or build`);
+      assert.ok(study.role.trim() && study.notYet.trim(), `${destination.slug}: no role or limits`);
+      assert.ok(study.decisions.length > 0 && study.proof.length > 0, `${destination.slug}: no decisions or proof`);
+      for (const item of study.proof) {
+        if ("href" in item) assert.match(item.href, /^https:\/\//, `${destination.slug}: ${item.claim}`);
+      }
+      for (const shot of "screenshots" in study ? study.screenshots : []) {
+        assert.ok(shot.alt.trim(), `${destination.slug}: ${shot.src} has no alt text`);
+        assert.ok(existsSync(new URL(`../public${shot.src}`, import.meta.url)), `${destination.slug}: ${shot.src} is missing`);
+      }
+    }
   });
 });
