@@ -1,0 +1,85 @@
+.role {
+  margin-top: 18px;
+  font-size: 0.95rem;
+}
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 18px);
+}
+
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.decisions {
+  display: grid;
+  gap: 0;
+  counter-reset: decision;
+}
+
+.decisions li {
+  padding: 18px 0;
+  border-top: 1px solid var(--line-soft);
+  counter-increment: decision;
+}
+
+.decisions li:last-child {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.decisions h3 {
+  margin: 0 0 8px;
+  font: 600 1.05rem/1.35 var(--sans);
+  color: var(--ink);
+}
+
+.decisions h3::before {
+  content: counter(decision, decimal-leading-zero);
+  margin-right: 10px;
+  font: 500 0.78rem/1 var(--mono);
+  color: var(--amber);
+}
+
+.proof {
+  display: grid;
+  gap: 0;
+}
+
+.proof > div {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 6px 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.proof > div:last-child {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.proof dt {
+  font: 600 1.05rem/1.35 var(--sans);
+  color: var(--ink);
+}
+
+.proof dd {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 700px) {
+  .shots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proof > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
