@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope, Newsreader, Public_Sans, Source_Serif_4 } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
-
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
-const sourceSerif = Source_Serif_4({ subsets: ["latin"], variable: "--font-source-serif" });
-const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-newsreader" });
-const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-public-sans" });
+// The fieldbook's typefaces live in src/components/career/fonts.ts, so they load only where it renders.
 
 export const metadata: Metadata = {
   title: "Connor Murphy — Software Engineer",
@@ -20,7 +16,7 @@ const themeScript = `try{const t=localStorage.getItem("personal-os-theme");if(t)
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable} ${manrope.variable} ${sourceSerif.variable} ${newsreader.variable} ${publicSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
