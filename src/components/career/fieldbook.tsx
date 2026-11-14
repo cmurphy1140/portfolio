@@ -32,7 +32,7 @@ const PROJECT_LINKS=[{"label": "Catch 5", "href": "/work/catch-5"}, {"label": "D
 const STATUS_ORDER=['Applied','Ready','Review schedule','Review fit','Closed'];
 const statusLabel=(status:string)=>status==='Ready'?'Apply':status;
 function StatusText({status,url,company,title}:{status:string;url?:string;company:string;title:string}){const href=status==='Ready'?safeHref(url):undefined;return href?<a className={s.applyLink} href={href} target="_blank" rel="noreferrer" aria-label={`Apply to ${title} at ${company} (opens the posting)`} title="Opens the posting">Apply</a>:<>{statusLabel(status)}</>;}
-function CompanyMark({company}:{company:string}){const src=companyLogos[company];return <span className={s.companyMark} aria-hidden="true">{src?<Image src={src} alt="" width={28} height={28} unoptimized/>:company.replace(/^(City of|The)\s+/,'').charAt(0)}</span>;}
+function CompanyMark({company}:{company:string}){const src=companyLogos[company];return <span className={s.companyMark} aria-hidden="true">{src?<Image src={src} alt="" width={28} height={28}/>:company.replace(/^(City of|The)\s+/,'').charAt(0)}</span>;}
 
 export default function Fieldbook({content,view='home',stop,documentId}:{content:CareerContent;view?:string;stop?:string;documentId?:string}) {
  const careerNavigation=buildCareerNavigation(content.folders);
